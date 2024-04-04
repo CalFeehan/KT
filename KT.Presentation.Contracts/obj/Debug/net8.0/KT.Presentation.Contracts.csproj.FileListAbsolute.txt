@@ -13,3 +13,4 @@
 /Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/refint/KT.Presentation.Contracts.dll
 /Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/KT.Presentation.Contracts.pdb
 /Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/ref/KT.Presentation.Contracts.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/KT.Presentation.Contracts.sourcelink.json

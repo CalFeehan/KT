@@ -1,13 +1,15 @@
 using KT.Application;
 using KT.Infrastructure;
+using KT.Presentation.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 {
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
-    builder.Services.AddAutoMapper(typeof(Program).Assembly);
+    builder.Services.AddControllers();
     
     builder.Services
+        .AddContracts()
         .AddApplication()
         .AddInfrastructure();
 }
@@ -21,4 +23,7 @@ var app = builder.Build();
     }
 
     app.UseHttpsRedirection();
+    app.MapControllers();
+
+    app.Run();
 }

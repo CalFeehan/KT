@@ -43,3 +43,4 @@
 /Users/callumfeehan/RiderProjects/KT/KT.Presentation.API/obj/Debug/net8.0/KT.Presentation.API.pdb
 /Users/callumfeehan/RiderProjects/KT/KT.Presentation.API/obj/Debug/net8.0/KT.Presentation.API.genruntimeconfig.cache
 /Users/callumfeehan/RiderProjects/KT/KT.Presentation.API/obj/Debug/net8.0/ref/KT.Presentation.API.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.API/obj/Debug/net8.0/KT.Presentation.API.sourcelink.json
