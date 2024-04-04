@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "PwVEzsiRmkHKlusudyW5qfTYUdIJ7oU5UHk22L5JSFK6H7H6QMh96yA0Hy+yxoLRyujTsK0LNTFjOsSk2GN3Fg==",
+  "dgSpecHash": "ysGbIyE2F3LMCLCw1ysQTY6rSFB7dTeV6Pzj51phUU2YZueXKtLAiNWW6UUHqPNRtJMGSK7y2psUF14+Koi8VQ==",
   "success": true,
-  "projectFilePath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj",
+  "projectFilePath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj",
   "expectedPackageFiles": [
     "/Users/callumfeehan/.nuget/packages/erroror/2.0.1/erroror.2.0.1.nupkg.sha512"
   ],

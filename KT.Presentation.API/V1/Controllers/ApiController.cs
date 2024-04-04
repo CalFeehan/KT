@@ -5,9 +5,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace KT.Presentation.API.V1.Controllers;
 
 [ApiController]
-public class ApiController : ControllerBase
+public abstract class ApiController : ControllerBase
 {
-    public IActionResult Problem(List<Error> errors)
+    protected IActionResult Problem(List<Error> errors)
     {
         HttpContext.Items[HttpContextItemKeys.Errors] = errors;
 

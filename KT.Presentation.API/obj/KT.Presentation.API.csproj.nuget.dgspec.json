@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.API/KT.Presentation.API.csproj": {}
+    "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.API/KT.Presentation.API.csproj": {}
   },
   "projects": {
-    "/Users/callumfeehan/RiderProjects/KT/KT.Application/KT.Application.csproj": {
+    "/Users/callumfeehan/Documents/GitHub/KT/KT.Application/KT.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/callumfeehan/RiderProjects/KT/KT.Application/KT.Application.csproj",
+        "projectUniqueName": "/Users/callumfeehan/Documents/GitHub/KT/KT.Application/KT.Application.csproj",
         "projectName": "KT.Application",
-        "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Application/KT.Application.csproj",
+        "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Application/KT.Application.csproj",
         "packagesPath": "/Users/callumfeehan/.nuget/packages/",
-        "outputPath": "/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/",
+        "outputPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/callumfeehan/.nuget/NuGet/NuGet.Config"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj": {
-                "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj"
+              "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj": {
+                "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj"
               }
             }
           }
@@ -75,14 +75,14 @@
         }
       }
     },
-    "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj": {
+    "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj",
+        "projectUniqueName": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj",
         "projectName": "KT.Domain",
-        "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj",
+        "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj",
         "packagesPath": "/Users/callumfeehan/.nuget/packages/",
-        "outputPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/obj/",
+        "outputPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/callumfeehan/.nuget/NuGet/NuGet.Config"
@@ -134,14 +134,14 @@
         }
       }
     },
-    "/Users/callumfeehan/RiderProjects/KT/KT.Infrastructure/KT.Infrastructure.csproj": {
+    "/Users/callumfeehan/Documents/GitHub/KT/KT.Infrastructure/KT.Infrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/callumfeehan/RiderProjects/KT/KT.Infrastructure/KT.Infrastructure.csproj",
+        "projectUniqueName": "/Users/callumfeehan/Documents/GitHub/KT/KT.Infrastructure/KT.Infrastructure.csproj",
         "projectName": "KT.Infrastructure",
-        "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Infrastructure/KT.Infrastructure.csproj",
+        "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Infrastructure/KT.Infrastructure.csproj",
         "packagesPath": "/Users/callumfeehan/.nuget/packages/",
-        "outputPath": "/Users/callumfeehan/RiderProjects/KT/KT.Infrastructure/obj/",
+        "outputPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Infrastructure/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/callumfeehan/.nuget/NuGet/NuGet.Config"
@@ -156,8 +156,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/callumfeehan/RiderProjects/KT/KT.Application/KT.Application.csproj": {
-                "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Application/KT.Application.csproj"
+              "/Users/callumfeehan/Documents/GitHub/KT/KT.Application/KT.Application.csproj": {
+                "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Application/KT.Application.csproj"
               }
             }
           }
@@ -197,14 +197,14 @@
         }
       }
     },
-    "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.API/KT.Presentation.API.csproj": {
+    "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.API/KT.Presentation.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.API/KT.Presentation.API.csproj",
+        "projectUniqueName": "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.API/KT.Presentation.API.csproj",
         "projectName": "KT.Presentation.API",
-        "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.API/KT.Presentation.API.csproj",
+        "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.API/KT.Presentation.API.csproj",
         "packagesPath": "/Users/callumfeehan/.nuget/packages/",
-        "outputPath": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.API/obj/",
+        "outputPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/callumfeehan/.nuget/NuGet/NuGet.Config"
@@ -219,11 +219,11 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/callumfeehan/RiderProjects/KT/KT.Infrastructure/KT.Infrastructure.csproj": {
-                "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Infrastructure/KT.Infrastructure.csproj"
+              "/Users/callumfeehan/Documents/GitHub/KT/KT.Infrastructure/KT.Infrastructure.csproj": {
+                "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Infrastructure/KT.Infrastructure.csproj"
               },
-              "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj": {
-                "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj"
+              "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj": {
+                "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj"
               }
             }
           }
@@ -278,14 +278,14 @@
         }
       }
     },
-    "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj": {
+    "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj",
+        "projectUniqueName": "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj",
         "projectName": "KT.Presentation.Contracts",
-        "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj",
+        "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj",
         "packagesPath": "/Users/callumfeehan/.nuget/packages/",
-        "outputPath": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/",
+        "outputPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.Contracts/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/callumfeehan/.nuget/NuGet/NuGet.Config"
@@ -300,8 +300,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj": {
-                "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj"
+              "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj": {
+                "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj"
               }
             }
           }

@@ -991,11 +991,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/callumfeehan/RiderProjects/KT/KT.Application.Tests/KT.Application.Tests.csproj",
+      "projectUniqueName": "/Users/callumfeehan/Documents/GitHub/KT/KT.Application.Tests/KT.Application.Tests.csproj",
       "projectName": "KT.Application.Tests",
-      "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Application.Tests/KT.Application.Tests.csproj",
+      "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Application.Tests/KT.Application.Tests.csproj",
       "packagesPath": "/Users/callumfeehan/.nuget/packages/",
-      "outputPath": "/Users/callumfeehan/RiderProjects/KT/KT.Application.Tests/obj/",
+      "outputPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Application.Tests/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/callumfeehan/.nuget/NuGet/NuGet.Config"

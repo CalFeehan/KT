@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NYVrX6Xriy0Y2bpBgnjSCzPyd6eaTUur/6Y8bkmPZtUP/XzjOMTegZE1t4Ug1kq4wbwk7q4Sa724UqZbXIDJCg==",
+  "dgSpecHash": "5vOH1e/rDdKT5T/vNt2lNci36dnU4uXAwvYFFF7u3PPKBVyF+7Sb7IkTzPXFIuctibu/QEUmg0tMZvKXfVnXnA==",
   "success": true,
-  "projectFilePath": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.API/KT.Presentation.API.csproj",
+  "projectFilePath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.API/KT.Presentation.API.csproj",
   "expectedPackageFiles": [
     "/Users/callumfeehan/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
     "/Users/callumfeehan/.nuget/packages/erroror/2.0.1/erroror.2.0.1.nupkg.sha512",

@@ -1,5 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34723.18
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B82D8E40-7749-4931-86D3-34AE055C2FDE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Application", "Application", "{76886DF8-80DA-47FE-A83A-20860A1026E4}"
@@ -8,23 +11,28 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{B14A0E
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{156CB3CD-E05C-4710-932C-5E6BDFA4A99A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KT.Presentation.API", "KT.Presentation.API\KT.Presentation.API.csproj", "{D626CFCE-E3CF-4179-AFC0-4DAA893E5DC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KT.Presentation.API", "KT.Presentation.API\KT.Presentation.API.csproj", "{D626CFCE-E3CF-4179-AFC0-4DAA893E5DC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KT.Infrastructure", "KT.Infrastructure\KT.Infrastructure.csproj", "{9776EAF3-5109-4E00-8972-A97DF006A02F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KT.Infrastructure", "KT.Infrastructure\KT.Infrastructure.csproj", "{9776EAF3-5109-4E00-8972-A97DF006A02F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KT.Presentation.Contracts", "KT.Presentation.Contracts\KT.Presentation.Contracts.csproj", "{87E6FA5C-996C-4F76-8252-3D735843F23E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KT.Presentation.Contracts", "KT.Presentation.Contracts\KT.Presentation.Contracts.csproj", "{87E6FA5C-996C-4F76-8252-3D735843F23E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KT.Application", "KT.Application\KT.Application.csproj", "{C89CE206-80A5-471B-B8C0-3E1ADBEA6EAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KT.Application", "KT.Application\KT.Application.csproj", "{C89CE206-80A5-471B-B8C0-3E1ADBEA6EAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KT.Domain", "KT.Domain\KT.Domain.csproj", "{E1D6B661-3FCB-45AE-BCC4-09718F06738F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KT.Domain", "KT.Domain\KT.Domain.csproj", "{E1D6B661-3FCB-45AE-BCC4-09718F06738F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KT.Application.Tests", "KT.Application.Tests\KT.Application.Tests.csproj", "{2E00A352-0607-4843-826B-B422D64F7824}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KT.Application.Tests", "KT.Application.Tests\KT.Application.Tests.csproj", "{2E00A352-0607-4843-826B-B422D64F7824}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KT.Domain.Tests", "KT.Domain.Tests\KT.Domain.Tests.csproj", "{E2540DAE-422F-41A5-965C-2AF4EB96D3C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KT.Domain.Tests", "KT.Domain.Tests\KT.Domain.Tests.csproj", "{E2540DAE-422F-41A5-965C-2AF4EB96D3C4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Docs", "Docs", "{27B77F21-89D9-4F4D-AB4D-535C8773671D}"
 	ProjectSection(SolutionItems) = preProject
 		Api.md = Api.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{ACC78B45-0AD1-43DD-99A6-B2FCE1C98865}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
 	EndProjectSection
 EndProject
 Global
@@ -62,6 +70,9 @@ Global
 		{E2540DAE-422F-41A5-965C-2AF4EB96D3C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2540DAE-422F-41A5-965C-2AF4EB96D3C4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D626CFCE-E3CF-4179-AFC0-4DAA893E5DC5} = {156CB3CD-E05C-4710-932C-5E6BDFA4A99A}
 		{9776EAF3-5109-4E00-8972-A97DF006A02F} = {B82D8E40-7749-4931-86D3-34AE055C2FDE}
@@ -70,5 +81,8 @@ Global
 		{E1D6B661-3FCB-45AE-BCC4-09718F06738F} = {B14A0E71-A4F6-47DF-8514-B7B867D2E975}
 		{2E00A352-0607-4843-826B-B422D64F7824} = {76886DF8-80DA-47FE-A83A-20860A1026E4}
 		{E2540DAE-422F-41A5-965C-2AF4EB96D3C4} = {B14A0E71-A4F6-47DF-8514-B7B867D2E975}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {EA62A650-B8DF-48B5-B95D-3C8D9507144E}
 	EndGlobalSection
 EndGlobal

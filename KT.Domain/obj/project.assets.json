@@ -47,11 +47,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj",
+      "projectUniqueName": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj",
       "projectName": "KT.Domain",
-      "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj",
+      "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj",
       "packagesPath": "/Users/callumfeehan/.nuget/packages/",
-      "outputPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/obj/",
+      "outputPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/callumfeehan/.nuget/NuGet/NuGet.Config"

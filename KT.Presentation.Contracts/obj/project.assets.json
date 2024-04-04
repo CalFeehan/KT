@@ -261,11 +261,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj",
+      "projectUniqueName": "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj",
       "projectName": "KT.Presentation.Contracts",
-      "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj",
+      "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj",
       "packagesPath": "/Users/callumfeehan/.nuget/packages/",
-      "outputPath": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/",
+      "outputPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Presentation.Contracts/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/callumfeehan/.nuget/NuGet/NuGet.Config"
@@ -280,8 +280,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj": {
-              "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj"
+            "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj": {
+              "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj"
             }
           }
         }

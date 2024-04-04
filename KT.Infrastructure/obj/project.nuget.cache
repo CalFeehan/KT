@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "7NEmQN+wsN6KTlFEZub8mkxTimSnbSPv4qJJf9arY3VInOYVCTMtrAldTSh/rdVf7LPBoZ28A2JAZBoJjubxBw==",
+  "dgSpecHash": "EDFe995teulxcjuQ+NCY1E26scW0W/B8LxaGsBvyKGWX2Z1l57ww+1rYZYrdo9smVh/RILBt4MPay1H5HmCcag==",
   "success": true,
-  "projectFilePath": "/Users/callumfeehan/RiderProjects/KT/KT.Infrastructure/KT.Infrastructure.csproj",
+  "projectFilePath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Infrastructure/KT.Infrastructure.csproj",
   "expectedPackageFiles": [
     "/Users/callumfeehan/.nuget/packages/erroror/2.0.1/erroror.2.0.1.nupkg.sha512",
     "/Users/callumfeehan/.nuget/packages/mediatr/12.2.0/mediatr.12.2.0.nupkg.sha512",

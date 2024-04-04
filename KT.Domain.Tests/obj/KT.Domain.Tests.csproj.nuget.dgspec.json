@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/callumfeehan/RiderProjects/KT/KT.Domain.Tests/KT.Domain.Tests.csproj": {}
+    "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain.Tests/KT.Domain.Tests.csproj": {}
   },
   "projects": {
-    "/Users/callumfeehan/RiderProjects/KT/KT.Domain.Tests/KT.Domain.Tests.csproj": {
+    "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain.Tests/KT.Domain.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/callumfeehan/RiderProjects/KT/KT.Domain.Tests/KT.Domain.Tests.csproj",
+        "projectUniqueName": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain.Tests/KT.Domain.Tests.csproj",
         "projectName": "KT.Domain.Tests",
-        "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain.Tests/KT.Domain.Tests.csproj",
+        "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain.Tests/KT.Domain.Tests.csproj",
         "packagesPath": "/Users/callumfeehan/.nuget/packages/",
-        "outputPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain.Tests/obj/",
+        "outputPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/callumfeehan/.nuget/NuGet/NuGet.Config"

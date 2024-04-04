@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/callumfeehan/RiderProjects/KT/KT.Application/KT.Application.csproj": {}
+    "/Users/callumfeehan/Documents/GitHub/KT/KT.Application/KT.Application.csproj": {}
   },
   "projects": {
-    "/Users/callumfeehan/RiderProjects/KT/KT.Application/KT.Application.csproj": {
+    "/Users/callumfeehan/Documents/GitHub/KT/KT.Application/KT.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/callumfeehan/RiderProjects/KT/KT.Application/KT.Application.csproj",
+        "projectUniqueName": "/Users/callumfeehan/Documents/GitHub/KT/KT.Application/KT.Application.csproj",
         "projectName": "KT.Application",
-        "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Application/KT.Application.csproj",
+        "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Application/KT.Application.csproj",
         "packagesPath": "/Users/callumfeehan/.nuget/packages/",
-        "outputPath": "/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/",
+        "outputPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Application/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/callumfeehan/.nuget/NuGet/NuGet.Config"
@@ -26,8 +26,8 @@
           "net8.0": {
             "targetAlias": "net8.0",
             "projectReferences": {
-              "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj": {
-                "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj"
+              "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj": {
+                "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj"
               }
             }
           }
@@ -75,14 +75,14 @@
         }
       }
     },
-    "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj": {
+    "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj",
+        "projectUniqueName": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj",
         "projectName": "KT.Domain",
-        "projectPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/KT.Domain.csproj",
+        "projectPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/KT.Domain.csproj",
         "packagesPath": "/Users/callumfeehan/.nuget/packages/",
-        "outputPath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain/obj/",
+        "outputPath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/callumfeehan/.nuget/NuGet/NuGet.Config"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z8K2FVd8h/RWhaC3lCYm5+pb41n3d9F04DMeRdNzUQ2eVSWlYOWRgtaOb9IDkoUloQqcS0dJVAG7aqrNrv5hLg==",
+  "dgSpecHash": "ZppEyWFhLKJh3/h9w3vlos4B9qTyYt098dCgjTjXQ4tvA6X7+zNypyZQPmNBnNATo0W79YhhxNuKF3Jy4rMSYw==",
   "success": true,
-  "projectFilePath": "/Users/callumfeehan/RiderProjects/KT/KT.Domain.Tests/KT.Domain.Tests.csproj",
+  "projectFilePath": "/Users/callumfeehan/Documents/GitHub/KT/KT.Domain.Tests/KT.Domain.Tests.csproj",
   "expectedPackageFiles": [
     "/Users/callumfeehan/.nuget/packages/coverlet.collector/6.0.0/coverlet.collector.6.0.0.nupkg.sha512",
     "/Users/callumfeehan/.nuget/packages/microsoft.codecoverage/17.6.0/microsoft.codecoverage.17.6.0.nupkg.sha512",
