@@ -7,15 +7,8 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 {
-    builder.Services.AddEndpointsApiExplorer();
-    builder.Services.AddSwaggerGen();
-    builder.Services.AddControllers();
-    builder.Services.AddLogging();
-    builder.Services.AddHealthChecks();
-    builder.Services.AddMemoryCache();
-    builder.Services.AddSingleton<ProblemDetailsFactory, KTProblemDetailsFactory>();
-    
     builder.Services
+        .AddApi()
         .AddContracts()
         .AddApplication()
         .AddInfrastructure();
@@ -34,4 +27,22 @@ var app = builder.Build();
     app.UseMiddleware<ErrorHandlingMiddleware>();
 
     app.Run();
+}
+
+public static class DependencyInjection
+{
+    public static IServiceCollection AddApi(this IServiceCollection services)
+    {
+        services.AddEndpointsApiExplorer();
+        services.AddSwaggerGen();
+        services.AddControllers();
+        services.AddLogging();
+        services.AddHealthChecks();
+        services.AddMemoryCache();
+        services.AddRouting(options => options.LowercaseUrls = true);
+
+        services.AddSingleton<ProblemDetailsFactory, KTProblemDetailsFactory>();
+
+        return services;
+    }
 }
