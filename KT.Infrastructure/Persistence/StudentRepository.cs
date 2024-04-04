@@ -5,7 +5,11 @@ namespace KT.Infrastructure.Persistence;
 
 public class StudentRepository : IStudentRepository
 {
-    private readonly List<Student> _students = [];
+    private readonly List<Student> _students = new()
+    {
+        new Student("Joe", "Bloggs"),
+        new Student("Jane", "Doe")
+    };
     
     /// <inheritdoc />
     public async Task AddAsync(Student entity)
@@ -26,24 +30,23 @@ public class StudentRepository : IStudentRepository
     }
 
     /// <inheritdoc />
-    public async Task DeleteAsync(Guid id)
+    public async Task<int> DeleteAsync(Guid id)
     {
         var student = _students.FirstOrDefault(x => x.Id == id);
-        if (student is not null)
-        {
-            _students.Remove(student);
-        }
+        if (student is null) return 0;
+
+        _students.Remove(student);
+        return 1;
     }
 
     /// <inheritdoc />
     public async Task UpdateAsync(Student entity)
     {
         var student = _students.FirstOrDefault(x => x.Id == entity.Id);
-        if (student is not null)
-        {
-            _students.Remove(student);
-        }
+        if (student is null) return;
         
+        // TODO: Temp implementation.
+        _students.Remove(student);
         _students.Add(entity);
     }
 }

@@ -26,24 +26,23 @@ public class CourseRepository : ICourseRepository
     }
 
     /// <inheritdoc />
-    public async Task DeleteAsync(Guid id)
+    public async Task<int> DeleteAsync(Guid id)
     {
         var student = _courses.FirstOrDefault(x => x.Id == id);
-        if (student is not null)
-        {
-            _courses.Remove(student);
-        }
+        if (student is null) return 0;
+
+        _courses.Remove(student);
+        return 1;
     }
 
     /// <inheritdoc />
     public async Task UpdateAsync(Course entity)
     {
         var student = _courses.FirstOrDefault(x => x.Id == entity.Id);
-        if (student is not null)
-        {
-            _courses.Remove(student);
-        }
-        
+        if (student is null) return;
+
+        // TODO: Temp implementation.
+        _courses.Remove(student);
         _courses.Add(entity);
     }
 }

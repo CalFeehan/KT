@@ -13,3 +13,4 @@
 /Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/refint/KT.Application.dll
 /Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/KT.Application.pdb
 /Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/ref/KT.Application.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/KT.Application.sourcelink.json
