@@ -1,6 +1,7 @@
 using AutoMapper;
 using KT.Application.Students.Commands;
 using KT.Application.Students.Queries.GetStudents;
+using KT.Presentation.Contracts.V1.Requests;
 using KT.Presentation.Contracts.V1.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +34,19 @@ public class StudentController(ISender mediatr,  IMapper mapper) : ApiController
             authResult => Ok(mapper.Map<StudentResponse>(student.Value)),
             Problem
         );
+    }
+
+    [HttpPost("")]
+    [ProducesResponseType(typeof(StudentResponse), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> CreateAsync([FromBody] CreateStudentRequest request)
+    {
+        var command = new CreateCommand(request.Forename, request.Surname);
+        var created = await mediatr.Send(command);
+        
+        return created.Match(
+            authResult => CreatedAtAction(nameof(GetAsync), new { id = created.Value.Id }, mapper.Map<StudentResponse>(created.Value)),
+            Problem);
     }
 
     [HttpDelete("{id:guid}")]

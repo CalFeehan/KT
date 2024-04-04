@@ -14,7 +14,18 @@ GET {{host}}/students/
 GET {{host}}/students/{{id:guid}}
 ```
 ```js
+POST {{host}}/students/
+```
+```js
 DELETE {{host}}/students/{{id:guid}}
+```
+
+#### Create Student Request
+```json
+{
+  "forename": "Joe",
+  "surname": "Bloggs"
+}
 ```
 
 #### Student Response

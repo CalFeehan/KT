@@ -35,10 +35,10 @@ public static class DependencyInjection
     {
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
-        services.AddControllers();
         services.AddLogging();
         services.AddHealthChecks();
         services.AddMemoryCache();
+        services.AddControllers(options => options.SuppressAsyncSuffixInActionNames = false);
         services.AddRouting(options => options.LowercaseUrls = true);
 
         services.AddSingleton<ProblemDetailsFactory, KTProblemDetailsFactory>();

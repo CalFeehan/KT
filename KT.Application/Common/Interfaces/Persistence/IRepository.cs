@@ -3,9 +3,9 @@ namespace KT.Application.Common.Interfaces.Persistence;
 public interface IRepository<T> where T : class
 {
     /// <summary>
-    /// Add the entity to the database.
+    /// Creates the entity in the database.
     /// </summary>
-    Task AddAsync(T entity);
+    Task<T> CreateAsync(T entity);
 
     /// <summary>
     /// Get the entity by id.

@@ -12,6 +12,17 @@ Accept: application/json
 
 ###
 
+// CreateAsync
+POST {{host}}/students/
+Accept: application/json
+
+{
+  "forename": "John",
+  "surname": "Doe"
+}
+
+###
+
 // DeleteAsync
 DELETE {{host}}/students/2bf954eb-b3e7-4e53-b535-4ecedee53d7e
 Accept: application/json

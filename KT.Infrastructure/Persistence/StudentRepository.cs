@@ -8,17 +8,19 @@ public class StudentRepository : IStudentRepository
     private readonly List<Student> _students = GenerateDummyData();
 
     /// <inheritdoc />
-    public async Task AddAsync(Student entity)
+    public async Task<Student> CreateAsync(Student entity)
     {
-        await Task.Delay(10);
+        await Task.CompletedTask;
         
         _students.Add(entity);
+
+        return entity;
     }
 
     /// <inheritdoc />
     public async Task<Student?> GetByIdAsync(Guid id)
     {
-        await Task.Delay(10);
+        await Task.CompletedTask;
         
         return _students.FirstOrDefault(x => x.Id == id);
     }
@@ -26,7 +28,7 @@ public class StudentRepository : IStudentRepository
     /// <inheritdoc />
     public async Task<IList<Student>> ListAsync()
     {
-        await Task.Delay(10);
+        await Task.CompletedTask;
         
         return _students;
     }
@@ -34,7 +36,7 @@ public class StudentRepository : IStudentRepository
     /// <inheritdoc />
     public async Task<int> DeleteAsync(Guid id)
     {
-        await Task.Delay(10);
+        await Task.CompletedTask;
         
         var student = _students.FirstOrDefault(x => x.Id == id);
         if (student is null) return 0;
@@ -46,7 +48,7 @@ public class StudentRepository : IStudentRepository
     /// <inheritdoc />
     public async Task UpdateAsync(Student entity)
     {
-        await Task.Delay(10);
+        await Task.CompletedTask;
         
         var student = _students.FirstOrDefault(x => x.Id == entity.Id);
         if (student is null) return;
