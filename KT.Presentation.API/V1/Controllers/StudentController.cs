@@ -41,10 +41,10 @@ public class StudentController(ISender mediatr,  IMapper mapper) : ApiController
     public async Task<IActionResult> DeleteAsync(Guid id)
     {
         var command = new DeleteCommand(id);
-        var deletedCount = await mediatr.Send(command);
+        var deleted = await mediatr.Send(new DeleteCommand(id));
         
-        return deletedCount > 0 
-            ? NoContent() 
-            : NotFound();
+        return deleted.Match(
+            authResult => NoContent(),
+            Problem);
     }
 }
