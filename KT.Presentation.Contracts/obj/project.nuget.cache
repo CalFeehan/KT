@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "luK2xYnJke0b+q2KbmQA7FRaoQwqYj0qqeaQVkjUwwsd9GlnevrNC7+lCcK2+Dk26bhKXe4Yl1Np5adeG7AHmQ==",
+  "dgSpecHash": "K8fIVi5H6h6jgXhOnuz+naLIXCwnCnoC6WmeZOnBeFbp+eOkO0pA/R7cQtWQyl13JJ/CUeLgMmasELAe8vrLiQ==",
   "success": true,
   "projectFilePath": "/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/KT.Presentation.Contracts.csproj",
   "expectedPackageFiles": [
     "/Users/callumfeehan/.nuget/packages/automapper/13.0.1/automapper.13.0.1.nupkg.sha512",
+    "/Users/callumfeehan/.nuget/packages/erroror/2.0.1/erroror.2.0.1.nupkg.sha512",
     "/Users/callumfeehan/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/6.0.0/microsoft.extensions.dependencyinjection.abstractions.6.0.0.nupkg.sha512",
     "/Users/callumfeehan/.nuget/packages/microsoft.extensions.options/6.0.0/microsoft.extensions.options.6.0.0.nupkg.sha512",
     "/Users/callumfeehan/.nuget/packages/microsoft.extensions.primitives/6.0.0/microsoft.extensions.primitives.6.0.0.nupkg.sha512",

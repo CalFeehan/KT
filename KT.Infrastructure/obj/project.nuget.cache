@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "m28pEvwqtQea3lwcEIhM4sKwV4rbaylGYtFCq0rrvLSWQniw3Vt46NBfSYEUTCMEDR9u59esBoC43C3lA/j4Pg==",
+  "dgSpecHash": "7NEmQN+wsN6KTlFEZub8mkxTimSnbSPv4qJJf9arY3VInOYVCTMtrAldTSh/rdVf7LPBoZ28A2JAZBoJjubxBw==",
   "success": true,
   "projectFilePath": "/Users/callumfeehan/RiderProjects/KT/KT.Infrastructure/KT.Infrastructure.csproj",
   "expectedPackageFiles": [
+    "/Users/callumfeehan/.nuget/packages/erroror/2.0.1/erroror.2.0.1.nupkg.sha512",
     "/Users/callumfeehan/.nuget/packages/mediatr/12.2.0/mediatr.12.2.0.nupkg.sha512",
     "/Users/callumfeehan/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
     "/Users/callumfeehan/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.0-preview.2.24128.5/microsoft.extensions.dependencyinjection.abstractions.9.0.0-preview.2.24128.5.nupkg.sha512"

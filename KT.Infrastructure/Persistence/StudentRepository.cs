@@ -16,7 +16,7 @@ public class StudentRepository : IStudentRepository
     }
 
     /// <inheritdoc />
-    public async Task<Student> GetByIdAsync(Guid id)
+    public async Task<Student?> GetByIdAsync(Guid id)
     {
         await Task.Delay(10);
         

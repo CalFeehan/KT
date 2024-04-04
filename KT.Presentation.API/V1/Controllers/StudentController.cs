@@ -7,9 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KT.Presentation.API.V1.Controllers;
 
-[ApiController]
 [Route("[controller]s")]
-public class StudentController(ISender mediatr,  IMapper mapper) : ControllerBase
+public class StudentController(ISender mediatr,  IMapper mapper) : ApiController
 {
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<StudentResponse>), StatusCodes.Status200OK)]
@@ -30,9 +29,10 @@ public class StudentController(ISender mediatr,  IMapper mapper) : ControllerBas
         var query = new GetByIdQuery(id);
         var student = await mediatr.Send(query);
 
-        return student is not null
-            ? Ok(mapper.Map<StudentResponse>(student))
-            : NotFound();
+        return student.Match(
+            authResult => Ok(mapper.Map<StudentResponse>(student.Value)),
+            Problem
+        );
     }
 
     [HttpDelete("{id:guid}")]

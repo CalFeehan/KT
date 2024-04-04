@@ -10,7 +10,7 @@ public interface IRepository<T> where T : class
     /// <summary>
     /// Get the entity by id.
     /// </summary>
-    Task<T> GetByIdAsync(Guid id);
+    Task<T?> GetByIdAsync(Guid id);
 
     /// <summary>
     /// List all entities.
