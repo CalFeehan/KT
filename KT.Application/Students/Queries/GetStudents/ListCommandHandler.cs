@@ -1,5 +1,5 @@
 using KT.Application.Common.Interfaces.Persistence;
-using KT.Domain.Aggregates;
+using KT.Domain.Student;
 using MediatR;
 
 namespace KT.Application.Students.Queries.GetStudents;

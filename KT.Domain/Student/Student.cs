@@ -1,4 +1,4 @@
-namespace KT.Domain.Aggregates;
+namespace KT.Domain.Student;
 
 public class Student(string forename, string surname)
 {

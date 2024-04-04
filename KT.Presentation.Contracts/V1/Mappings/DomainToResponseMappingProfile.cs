@@ -1,5 +1,5 @@
 using AutoMapper;
-using KT.Domain.Aggregates;
+using KT.Domain.Student;
 using KT.Presentation.Contracts.V1.Responses;
 
 namespace KT.Presentation.Contracts.V1.Mappings;

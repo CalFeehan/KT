@@ -1,5 +1,5 @@
 using KT.Application.Common.Interfaces.Persistence;
-using KT.Domain.Aggregates;
+using KT.Domain.Student;
 
 namespace KT.Infrastructure.Persistence;
 

@@ -1,5 +1,5 @@
 ﻿using ErrorOr;
-using KT.Domain.Aggregates;
+using KT.Domain.Student;
 using MediatR;
 
 namespace KT.Application.Students.Commands;

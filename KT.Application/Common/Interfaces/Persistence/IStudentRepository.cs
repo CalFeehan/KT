@@ -1,4 +1,4 @@
-using KT.Domain.Aggregates;
+using KT.Domain.Student;
 
 namespace KT.Application.Common.Interfaces.Persistence;
 
