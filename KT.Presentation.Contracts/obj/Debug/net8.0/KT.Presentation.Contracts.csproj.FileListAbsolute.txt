@@ -1,0 +1,15 @@
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/bin/Debug/net8.0/KT.Presentation.Contracts.deps.json
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/bin/Debug/net8.0/KT.Presentation.Contracts.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/bin/Debug/net8.0/KT.Presentation.Contracts.pdb
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/bin/Debug/net8.0/KT.Domain.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/bin/Debug/net8.0/KT.Domain.pdb
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/KT.Presentation.Contracts.csproj.AssemblyReference.cache
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/KT.Presentation.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/KT.Presentation.Contracts.AssemblyInfoInputs.cache
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/KT.Presentation.Contracts.AssemblyInfo.cs
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/KT.Presentation.Contracts.csproj.CoreCompileInputs.cache
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/KT.Presentation.Contracts.csproj.CopyComplete
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/KT.Presentation.Contracts.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/refint/KT.Presentation.Contracts.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/KT.Presentation.Contracts.pdb
+/Users/callumfeehan/RiderProjects/KT/KT.Presentation.Contracts/obj/Debug/net8.0/ref/KT.Presentation.Contracts.dll

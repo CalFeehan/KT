@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/KT.Presentation.API.props" />
+</Project>

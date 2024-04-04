@@ -1,0 +1,15 @@
+/Users/callumfeehan/RiderProjects/KT/KT.Application/bin/Debug/net8.0/KT.Application.deps.json
+/Users/callumfeehan/RiderProjects/KT/KT.Application/bin/Debug/net8.0/KT.Application.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Application/bin/Debug/net8.0/KT.Application.pdb
+/Users/callumfeehan/RiderProjects/KT/KT.Application/bin/Debug/net8.0/KT.Domain.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Application/bin/Debug/net8.0/KT.Domain.pdb
+/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/KT.Application.csproj.AssemblyReference.cache
+/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/KT.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/KT.Application.AssemblyInfoInputs.cache
+/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/KT.Application.AssemblyInfo.cs
+/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/KT.Application.csproj.CoreCompileInputs.cache
+/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/KT.Application.csproj.CopyComplete
+/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/KT.Application.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/refint/KT.Application.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/KT.Application.pdb
+/Users/callumfeehan/RiderProjects/KT/KT.Application/obj/Debug/net8.0/ref/KT.Application.dll

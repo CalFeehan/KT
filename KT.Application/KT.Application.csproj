@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Folder Include="Courses\Commands\" />
+      <Folder Include="Courses\Events\" />
+      <Folder Include="Courses\Queries\" />
+      <Folder Include="Students\Events\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="MediatR" Version="12.2.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.0-preview.2.24128.5" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\KT.Domain\KT.Domain.csproj" />
+    </ItemGroup>
+
+</Project>
