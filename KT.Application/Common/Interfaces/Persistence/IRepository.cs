@@ -18,9 +18,9 @@ public interface IRepository<T> where T : class
     Task<IList<T>> ListAsync();
 
     /// <summary>
-    /// Delete an entity by id.
+    /// Delete an entity by id. Returns number of records effected.
     /// </summary>
-    Task DeleteAsync(Guid id);
+    Task<int> DeleteAsync(Guid id);
 
     /// <summary>
     /// Update an entity.

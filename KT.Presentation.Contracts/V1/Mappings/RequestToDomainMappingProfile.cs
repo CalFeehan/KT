@@ -9,6 +9,5 @@ public class RequestToDomainMappingProfile : Profile
     public RequestToDomainMappingProfile()
     {
         CreateMap<StudentResponse, Student>();
-        CreateMap<CourseResponse, Course>();
     }
 }

@@ -9,7 +9,6 @@ public static class DependencyInjection
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
         services.AddScoped<IStudentRepository, StudentRepository>();
-        services.AddScoped<ICourseRepository, CourseRepository>();
         
         return services;
     }

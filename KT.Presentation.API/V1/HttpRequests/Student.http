@@ -1,0 +1,18 @@
+@KT.Presentation.API_HostAddress = http://localhost:5130
+
+// ListAsync
+GET {{KT.Presentation.API_HostAddress}}/students/
+Accept: application/json
+
+###
+
+// GetAsync
+GET {{KT.Presentation.API_HostAddress}}/students/2bf954eb-b3e7-4e53-b535-4ecedee53d7e
+Accept: application/json
+
+###
+
+// DeleteAsync
+DELETE {{KT.Presentation.API_HostAddress}}/students/2bf954eb-b3e7-4e53-b535-4ecedee53d7e
+Accept: application/json
+

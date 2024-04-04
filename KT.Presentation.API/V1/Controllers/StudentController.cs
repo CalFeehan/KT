@@ -1,4 +1,6 @@
+using AutoMapper;
 using KT.Application.Students.Commands;
+using KT.Application.Students.Queries.GetStudents;
 using KT.Presentation.Contracts.V1.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -6,32 +8,43 @@ using Microsoft.AspNetCore.Mvc;
 namespace KT.Presentation.API.V1.Controllers;
 
 [ApiController]
-[Route("[controller]")]
-public class StudentController(ISender mediatr) : ControllerBase
+[Route("[controller]s")]
+public class StudentController(ISender mediatr,  IMapper mapper) : ControllerBase
 {
-    private readonly ISender _mediatr = mediatr;
-
-    // TODO: Remove the name portion of this and further logic.
     [HttpGet("")]
-    public async Task<IActionResult> ListAsync(
-        [FromQuery] string forename, [FromQuery] string surname)
+    [ProducesResponseType(typeof(IList<StudentResponse>), StatusCodes.Status200OK)]
+    public async Task<IActionResult> ListAsync()
     {
-        await Task.Delay(10);
-        return Ok();
+        var query = new ListQuery();
+        var students = await mediatr.Send(query);
+        
+        var response = mapper.Map<IList<StudentResponse>>(students);
+        return Ok(response);
     }
     
     [HttpGet("{id:guid}")]
-    public async Task<IActionResult> GetAsync(Guid id)
+    [ProducesResponseType(typeof(StudentResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetAsync([FromRoute] Guid id)
     {
-        await Task.Delay(10);
-        return Ok();
+        var query = new GetByIdQuery(id);
+        var student = await mediatr.Send(query);
+
+        return student is not null
+            ? Ok(mapper.Map<StudentResponse>(student))
+            : NotFound();
     }
 
     [HttpDelete("{id:guid}")]
+    [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> DeleteAsync(Guid id)
     {
         var command = new DeleteCommand(id);
-        var deleted = await _mediatr.Send(command);
-        return NoContent();
+        var deletedCount = await mediatr.Send(command);
+        
+        return deletedCount > 0 
+            ? NoContent() 
+            : NotFound();
     }
 }

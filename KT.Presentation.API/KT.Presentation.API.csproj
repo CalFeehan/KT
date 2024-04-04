@@ -15,10 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="V1\" />
-    </ItemGroup>
-
-    <ItemGroup>
       <ProjectReference Include="..\KT.Infrastructure\KT.Infrastructure.csproj" />
       <ProjectReference Include="..\KT.Presentation.Contracts\KT.Presentation.Contracts.csproj" />
     </ItemGroup>

@@ -9,6 +9,5 @@ public class DomainToResponseProfile : Profile
     public DomainToResponseProfile()
     {
         CreateMap<Student, StudentResponse>();
-        CreateMap<Course, CourseResponse>();
     }
 }

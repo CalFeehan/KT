@@ -9,3 +9,4 @@
 /Users/callumfeehan/RiderProjects/KT/KT.Domain/obj/Debug/net8.0/refint/KT.Domain.dll
 /Users/callumfeehan/RiderProjects/KT/KT.Domain/obj/Debug/net8.0/KT.Domain.pdb
 /Users/callumfeehan/RiderProjects/KT/KT.Domain/obj/Debug/net8.0/ref/KT.Domain.dll
+/Users/callumfeehan/RiderProjects/KT/KT.Domain/obj/Debug/net8.0/KT.Domain.sourcelink.json
