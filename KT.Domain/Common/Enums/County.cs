@@ -1,4 +1,4 @@
-﻿namespace KT.Domain.Enums;
+﻿namespace KT.Domain.Common.Enums;
 
 // TODO: This is not an accurate representation of the UK counties. Co-Pilot has generated it.
 public enum County

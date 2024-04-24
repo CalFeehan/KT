@@ -20,17 +20,3 @@ public class Qualification(Guid id, string title, string description, Qualificat
 
     public int Level { get; set; } = level;
 }
-
-public enum QualificationType
-{
-    Certificate,
-    Diploma,
-    Degree
-}
-
-public enum AwardingOrganisation
-{
-    Pearson,
-    AQA,
-    OCR
-}

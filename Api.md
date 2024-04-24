@@ -27,7 +27,18 @@ DELETE {{host}}/students/{{id:guid}}
 ```json
 {
   "forename": "Joe",
-  "surname": "Bloggs"
+  "surname": "Bloggs",
+  "dateOfBirth": "1990-01-01",
+  "contactDetails" : {
+  "email": "
+  "phoneNumber": "01234567890"
+  },
+  "address": {
+	"line1": "1 Test Street",
+	"line2": "Test Town",
+	"city": "Test City",
+	"postcode": "TE5 7PC"
+  }
 }
 ```
 

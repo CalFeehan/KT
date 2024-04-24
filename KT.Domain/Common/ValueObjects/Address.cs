@@ -1,5 +1,5 @@
-﻿using KT.Domain.Common.Models;
-using KT.Domain.Enums;
+﻿using KT.Domain.Common.Enums;
+using KT.Domain.Common.Models;
 
 namespace KT.Domain.Common.ValueObjects;
 
