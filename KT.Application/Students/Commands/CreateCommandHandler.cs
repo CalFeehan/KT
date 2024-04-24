@@ -10,7 +10,7 @@ public class CreateCommandHandler(IStudentRepository studentRepository)
 {
     public async Task<ErrorOr<Student>> Handle(CreateCommand command, CancellationToken cancellationToken)
     {
-        var student = new Student(command.Forename, command.Surname);
+        var student = new Student(Guid.NewGuid(), command.Forename, command.Surname, command.DateOfBirth);
 
         var created = await studentRepository.CreateAsync(student);
 

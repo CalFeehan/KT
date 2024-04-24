@@ -4,13 +4,13 @@ using MediatR;
 
 namespace KT.Application.Students.Queries.GetStudents;
 
-public class ListCommandHandler(IStudentRepository studentRepository)
+public class ListQueryHandler(IStudentRepository studentRepository)
     : IRequestHandler<ListQuery, IList<Student>>
 {
     public async Task<IList<Student>> Handle(ListQuery query, CancellationToken cancellationToken)
     {
         var students = await studentRepository.ListAsync();
         
-        return students.ToList();
+        return students;
     }
 }

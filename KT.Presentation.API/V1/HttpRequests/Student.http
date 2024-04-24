@@ -18,7 +18,8 @@ Accept: application/json
 
 {
   "forename": "John",
-  "surname": "Doe"
+  "surname": "Doe",
+  "dateOfBirth": "1990-01"
 }
 
 ###

@@ -1,4 +1,5 @@
 using AutoMapper;
+using KT.Domain.Qualification;
 using KT.Domain.Student;
 using KT.Presentation.Contracts.V1.Responses;
 
@@ -9,5 +10,6 @@ public class DomainToResponseProfile : Profile
     public DomainToResponseProfile()
     {
         CreateMap<Student, StudentResponse>();
+        CreateMap<Qualification, QualificationResponse>();
     }
 }

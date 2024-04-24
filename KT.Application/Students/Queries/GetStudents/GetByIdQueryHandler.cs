@@ -6,7 +6,7 @@ using MediatR;
 
 namespace KT.Application.Students.Queries.GetStudents;
 
-public class GetByIdCommandHandler(IStudentRepository studentRepository)
+public class GetByIdQueryHandler(IStudentRepository studentRepository)
     : IRequestHandler<GetByIdQuery, ErrorOr<Student>>
 {
     public async Task<ErrorOr<Student>> Handle(GetByIdQuery query, CancellationToken cancellationToken)

@@ -41,7 +41,7 @@ public class StudentController(ISender mediatr,  IMapper mapper) : ApiController
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAsync([FromBody] CreateStudentRequest request)
     {
-        var command = new CreateCommand(request.Forename, request.Surname);
+        var command = new CreateCommand(request.Forename, request.Surname, request.DateOfBirth);
         var created = await mediatr.Send(command);
         
         return created.Match(

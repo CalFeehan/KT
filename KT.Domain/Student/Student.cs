@@ -1,11 +1,19 @@
+using KT.Domain.Common.Models;
+using KT.Domain.Common.ValueObjects;
+
 namespace KT.Domain.Student;
 
-public class Student(string forename, string surname)
+public class Student(Guid id, string forename, string surname, DateOnly dateOfBirth) : Entity<Guid>(id)
 {
-    // TODO: Remove this and implement properly
-    public Guid Id { get; set; } = Guid.NewGuid();
-
     public string Forename { get; set; } = forename;
 
     public string Surname { get; set; } = surname;
+
+    public string FullName => $"{Forename} {Surname}";
+
+    public DateOnly DateOfBirth { get; set; } = dateOfBirth;
+
+    public ContactDetails ContactDetails { get; set; }
+
+    public Address Address { get; set; }
 }
