@@ -29,9 +29,9 @@ public abstract class ValueObject : IEquatable<ValueObject>
 
     public abstract IEnumerable<object> GetEqualityComponents();
 
-    public override bool Equals(object obj)
+    public override bool Equals(object? obj)
     {
-        if (obj == null || obj.GetType() != GetType())
+        if (obj is null || obj.GetType() != GetType())
         {
             return false;
         }
@@ -49,7 +49,8 @@ public abstract class ValueObject : IEquatable<ValueObject>
 
     public ValueObject GetCopy()
     {
-        return MemberwiseClone() as ValueObject;
+        return MemberwiseClone() as ValueObject 
+            ?? throw new InvalidOperationException("Clone operation failed.");
     }
 
     public bool Equals(ValueObject? other)

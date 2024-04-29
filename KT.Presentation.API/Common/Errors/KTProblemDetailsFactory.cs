@@ -15,10 +15,10 @@ public class KTProblemDetailsFactory(IOptions<ApiBehaviorOptions> options) : Pro
     public override ProblemDetails CreateProblemDetails(
         HttpContext httpContext,
         int? statusCode = null,
-        string title = null,
-        string type = null,
-        string detail = null,
-        string instance = null)
+        string? title = null,
+        string? type = null,
+        string? detail = null,
+        string? instance = null)
     {
         statusCode ??= StatusCodes.Status500InternalServerError;
 

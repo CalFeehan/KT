@@ -2,19 +2,19 @@
 
 namespace KT.Domain.Common.ValueObjects;
 
-public class ContactDetails(string emailAddress, string phoneNumber, ContactPreference contactPreference)
+public class ContactDetails(string email, string phone, ContactPreference contactPreference)
     : ValueObject
 {
-    public string EmailAddress { get; set; } = emailAddress;
+    public string Email { get; set; } = email;
 
-    public string PhoneNumber { get; set; } = phoneNumber;
+    public string Phone { get; set; } = phone;
 
     public ContactPreference ContactPreference { get; set; } = contactPreference;
 
     public override IEnumerable<object> GetEqualityComponents()
     {
-        yield return EmailAddress;
-        yield return PhoneNumber;
+        yield return Email;
+        yield return Phone;
         yield return ContactPreference;
     }
 }

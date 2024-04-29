@@ -1,30 +1,44 @@
 ﻿namespace KT.Domain.Common.Models;
 
-public abstract class Entity<Guid> : IEquatable<Entity<Guid>>
+public abstract class Entity : IEquatable<Entity>
 {
     public Guid Id { get; protected set; }
+
+    private readonly List<IDomainEvent> _domainEvents = [];
 
     protected Entity(Guid id)
     {
         Id = id;
     }
 
-    public override bool Equals(object obj)
+    public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+
+    public void AddDomainEvent(IDomainEvent domainEvent)
     {
-        return obj is Entity<Guid> entity && Id.Equals(entity.Id);
+        _domainEvents.Add(domainEvent);
+    }
+    
+    public void ClearDomainEvents()
+    {
+        _domainEvents.Clear();
     }
 
-    public bool Equals(Entity<Guid>? other)
+    public override bool Equals(object? obj)
+    {
+        return obj is Entity entity && Id.Equals(entity.Id);
+    }
+
+    public bool Equals(Entity? other)
     {
         return Equals((object?)other);
     }
 
-    public static bool operator ==(Entity<Guid> left, Entity<Guid> right)
+    public static bool operator ==(Entity left, Entity right)
     {
         return Equals(right, right);
     }
 
-    public static bool operator !=(Entity<Guid> left, Entity<Guid> right)
+    public static bool operator !=(Entity left, Entity right)
     {
         return !Equals(right, right);
     }
