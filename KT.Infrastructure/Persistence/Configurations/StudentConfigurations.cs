@@ -38,14 +38,14 @@ public class StudentConfigurations : IEntityTypeConfiguration<Student>
             .IsRequired()
             .HasConversion(
                 a => JsonSerializer.Serialize(a, new JsonSerializerOptions()),
-                a => JsonSerializer.Deserialize<Address>(a, new JsonSerializerOptions())
+                a => JsonSerializer.Deserialize<Address>(a, new JsonSerializerOptions())!
             );
         
         builder.Property(s => s.ContactDetails)
             .IsRequired()
             .HasConversion(
                 cd => JsonSerializer.Serialize(cd, new JsonSerializerOptions()),
-                cd => JsonSerializer.Deserialize<ContactDetails>(cd, new JsonSerializerOptions())
+                cd => JsonSerializer.Deserialize<ContactDetails>(cd, new JsonSerializerOptions())!
             );
         
         // Configure relationships (if any)
