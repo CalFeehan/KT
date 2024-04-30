@@ -1,22 +1,22 @@
 using System.Text.Json;
 using KT.Domain.Common.ValueObjects;
-using KT.Domain.StudentAggregate;
+using KT.Domain.LearnerAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace KT.Infrastructure.Persistence.Configurations;
 
-public class StudentConfigurations : IEntityTypeConfiguration<Student>
+public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
 {
-    public void Configure(EntityTypeBuilder<Student> builder)
+    public void Configure(EntityTypeBuilder<Learner> builder)
     {
-        ConfigureStudentTable(builder);
+        ConfigureLearnerTable(builder);
     }
 
-    private static void ConfigureStudentTable(EntityTypeBuilder<Student> builder)
+    private static void ConfigureLearnerTable(EntityTypeBuilder<Learner> builder)
     {
         // Configure the table name
-        builder.ToTable("Students", "Student");
+        builder.ToTable("Learners", "Learner");
 
         // Configure the primary key
         builder.HasKey(s => s.Id);

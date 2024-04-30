@@ -1,6 +1,6 @@
 using AutoMapper;
-using KT.Application.Students.Commands;
-using KT.Application.Students.Queries.GetStudents;
+using KT.Application.Learners.Commands;
+using KT.Application.Learners.Queries.GetLearners;
 using KT.Domain.Common.ValueObjects;
 using KT.Presentation.Contracts.V1.Requests;
 using KT.Presentation.Contracts.V1.Responses;
@@ -10,37 +10,37 @@ using Microsoft.AspNetCore.Mvc;
 namespace KT.Presentation.API.V1.Controllers;
 
 [Route("[controller]s")]
-public class StudentController(ISender mediatr,  IMapper mapper) : ApiController
+public class LearnerController(ISender mediatr,  IMapper mapper) : ApiController
 {
     [HttpGet("")]
-    [ProducesResponseType(typeof(IList<StudentResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(IList<LearnerResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ListAsync()
     {
         var query = new ListQuery();
-        var students = await mediatr.Send(query);
+        var learners = await mediatr.Send(query);
         
-        var response = mapper.Map<IList<StudentResponse>>(students);
+        var response = mapper.Map<IList<LearnerResponse>>(learners);
         return Ok(response);
     }
     
     [HttpGet("{id:guid}")]
-    [ProducesResponseType(typeof(StudentResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(LearnerResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetAsync([FromRoute] Guid id)
     {
         var query = new GetByIdQuery(id);
-        var student = await mediatr.Send(query);
+        var learner = await mediatr.Send(query);
 
-        return student.Match(
-            authResult => Ok(mapper.Map<StudentResponse>(student.Value)),
+        return learner.Match(
+            authResult => Ok(mapper.Map<LearnerResponse>(learner.Value)),
             Problem
         );
     }
 
     [HttpPost("")]
-    [ProducesResponseType(typeof(StudentResponse), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(LearnerResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateStudentRequest request)
+    public async Task<IActionResult> CreateAsync([FromBody] CreateLearnerRequest request)
     {
         var command = new CreateCommand(request.Forename, request.Surname, request.DateOfBirth, 
             Address.Create(request.Address.Line1, request.Address.Line2, request.Address.City, request.Address.County, request.Address.Postcode),
@@ -49,7 +49,7 @@ public class StudentController(ISender mediatr,  IMapper mapper) : ApiController
         var created = await mediatr.Send(command);
         
         return created.Match(
-            authResult => CreatedAtAction(nameof(GetAsync), new { id = created.Value.Id }, mapper.Map<StudentResponse>(created.Value)),
+            authResult => CreatedAtAction(nameof(GetAsync), new { id = created.Value.Id }, mapper.Map<LearnerResponse>(created.Value)),
             Problem);
     }
 

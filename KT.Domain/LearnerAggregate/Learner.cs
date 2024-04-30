@@ -1,10 +1,10 @@
-using KT.Domain.Common.Enums;
+﻿using KT.Domain.Common.Enums;
 using KT.Domain.Common.Models;
 using KT.Domain.Common.ValueObjects;
 
-namespace KT.Domain.StudentAggregate;
+namespace KT.Domain.LearnerAggregate;
 
-public class Student : AggregateRoot
+public class Learner : AggregateRoot
 {
     public string Forename { get; private set; }
 
@@ -18,7 +18,7 @@ public class Student : AggregateRoot
 
     public Address Address { get; private set; }
 
-    private Student(Guid id, string forename, string surname, DateOnly dateOfBirth, Address address, ContactDetails contactDetails)
+    private Learner(Guid id, string forename, string surname, DateOnly dateOfBirth, Address address, ContactDetails contactDetails)
         : base(id)
     {
         Forename = forename;
@@ -38,7 +38,7 @@ public class Student : AggregateRoot
         Address = Address.Create(addressLine1, addressLine2, city, county, postcode);
     }
 
-    public static Student Create(
+    public static Learner Create(
         string forename, string surname, DateOnly dateOfBirth, 
         string addressLine1, string addressLine2, string city, County county, string postcode, 
         string email, string phone, ContactPreference contactPreference)
@@ -46,10 +46,10 @@ public class Student : AggregateRoot
         var address = Address.Create(addressLine1, addressLine2, city, county, postcode);
         var contactDetails = ContactDetails.Create(email, phone, contactPreference);
         
-        var student = new Student(Guid.NewGuid(), forename, surname, dateOfBirth, address, contactDetails);
+        var learner = new Learner(Guid.NewGuid(), forename, surname, dateOfBirth, address, contactDetails);
         
-        student.AddDomainEvent(new StudentCreated(student));
+        learner.AddDomainEvent(new LearnerCreated(learner));
         
-        return student;
+        return learner;
     }
 }

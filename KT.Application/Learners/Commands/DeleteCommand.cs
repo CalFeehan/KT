@@ -1,6 +1,6 @@
 using ErrorOr;
 using MediatR;
 
-namespace KT.Application.Students.Commands;
+namespace KT.Application.Learners.Commands;
 
 public record DeleteCommand(Guid Id) : IRequest<ErrorOr<Task>>;

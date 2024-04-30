@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KT.Infrastructure.Migrations
 {
     [DbContext(typeof(KTDbContext))]
-    [Migration("20240430122546_InitialCreate")]
+    [Migration("20240430175151_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -26,7 +26,7 @@ namespace KT.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("KT.Domain.StudentAggregate.Student", b =>
+            modelBuilder.Entity("KT.Domain.LearnerAggregate.Learner", b =>
                 {
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
@@ -54,7 +54,7 @@ namespace KT.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Students", "Student");
+                    b.ToTable("Learners", "Learner");
                 });
 #pragma warning restore 612, 618
         }

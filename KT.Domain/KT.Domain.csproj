@@ -12,8 +12,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="StudentAggregate/Entities/" />
-      <Folder Include="StudentAggregate/ValueObjects/" />
+      <Folder Include="LearnerAggregate/Entities/" />
+      <Folder Include="LearnerAggregate/ValueObjects/" />
     </ItemGroup>
 
 </Project>

@@ -1,5 +1,5 @@
 using KT.Domain;
-using KT.Domain.StudentAggregate;
+using KT.Domain.LearnerAggregate;
 using Microsoft.EntityFrameworkCore;
 
 namespace KT.Infrastructure.Persistence;
@@ -8,7 +8,7 @@ public class KTDbContext : DbContext
 {
     private readonly PublishDomainEventsInterceptor _publishDomainEventsInterceptor;
 
-    public DbSet<Student> Students { get; set; }
+    public DbSet<Learner> Learners { get; set; }
 
     public KTDbContext(DbContextOptions<KTDbContext> options, PublishDomainEventsInterceptor publishDomainEventsInterceptor) : base(options)
     {

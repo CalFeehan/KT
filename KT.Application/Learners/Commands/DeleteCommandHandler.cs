@@ -3,18 +3,18 @@ using KT.Application.Common.Interfaces.Persistence;
 using KT.Domain.Common.Errors;
 using MediatR;
 
-namespace KT.Application.Students.Commands;
+namespace KT.Application.Learners.Commands;
 
-public class DeleteCommandHandler(IStudentRepository studentRepository)
+public class DeleteCommandHandler(ILearnerRepository learnerRepository)
     : IRequestHandler<DeleteCommand, ErrorOr<Task>>
 {
     public async Task<ErrorOr<Task>> Handle(DeleteCommand command, CancellationToken cancellationToken)
     {
-        var deletedCount = await studentRepository.DeleteAsync(command.Id);
+        var deletedCount = await learnerRepository.DeleteAsync(command.Id);
 
         if (deletedCount is 0)
         {
-            return Errors.Student.NotFound;
+            return Errors.Learner.NotFound;
         }
 
         return Task.CompletedTask;

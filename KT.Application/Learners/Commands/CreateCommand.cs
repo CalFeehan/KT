@@ -1,9 +1,9 @@
 ﻿using ErrorOr;
 using KT.Domain.Common.ValueObjects;
-using KT.Domain.StudentAggregate;
+using KT.Domain.LearnerAggregate;
 using MediatR;
 
-namespace KT.Application.Students.Commands;
+namespace KT.Application.Learners.Commands;
 
 public record CreateCommand(string Forename, string Surname, DateOnly DateOfBirth, Address Address, ContactDetails ContactDetails) 
-    : IRequest<ErrorOr<Student>>;
+    : IRequest<ErrorOr<Learner>>;

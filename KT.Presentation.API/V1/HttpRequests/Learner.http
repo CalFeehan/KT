@@ -1,19 +1,19 @@
 @host = http://localhost:5130
 
 // ListAsync
-GET {{host}}/students/
+GET {{host}}/learners/
 Accept: application/json
 
 ###
 
 // GetAsync
-GET {{host}}/students/2bf954eb-b3e7-4e53-b535-4ecedee53d7e
+GET {{host}}/learners/2bf954eb-b3e7-4e53-b535-4ecedee53d7e
 Accept: application/json
 
 ###
 
 // CreateAsync
-POST {{host}}/students/
+POST {{host}}/learners/
 Accept: application/json
 
 {
@@ -37,6 +37,6 @@ Accept: application/json
 ###
 
 // DeleteAsync
-DELETE {{host}}/students/2bf954eb-b3e7-4e53-b535-4ecedee53d7e
+DELETE {{host}}/learners/2bf954eb-b3e7-4e53-b535-4ecedee53d7e
 Accept: application/json
 

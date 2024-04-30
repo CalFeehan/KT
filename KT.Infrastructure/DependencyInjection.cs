@@ -17,7 +17,7 @@ public static class DependencyInjection
 
         services.AddScoped<PublishDomainEventsInterceptor>();
         
-        services.AddScoped<IStudentRepository, StudentRepository>();
+        services.AddScoped<ILearnerRepository, LearnerRepository>();
 
         return services;
     }

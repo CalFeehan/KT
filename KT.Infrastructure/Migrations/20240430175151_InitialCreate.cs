@@ -12,11 +12,11 @@ namespace KT.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Student");
+                name: "Learner");
 
             migrationBuilder.CreateTable(
-                name: "Students",
-                schema: "Student",
+                name: "Learners",
+                schema: "Learner",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
@@ -28,7 +28,7 @@ namespace KT.Infrastructure.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Students", x => x.Id);
+                    table.PrimaryKey("PK_Learners", x => x.Id);
                 });
         }
 
@@ -36,8 +36,8 @@ namespace KT.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Students",
-                schema: "Student");
+                name: "Learners",
+                schema: "Learner");
         }
     }
 }
