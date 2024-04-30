@@ -1,5 +1,6 @@
 using AutoMapper;
-using KT.Application.Learners.Commands;
+using KT.Application.Learners.Commands.Create;
+using KT.Application.Learners.Commands.Delete;
 using KT.Application.Learners.Queries.GetLearners;
 using KT.Domain.Common.ValueObjects;
 using KT.Presentation.Contracts.V1.Requests;
@@ -59,7 +60,7 @@ public class LearnerController(ISender mediatr,  IMapper mapper) : ApiController
     public async Task<IActionResult> DeleteAsync(Guid id)
     {
         var command = new DeleteCommand(id);
-        var deleted = await mediatr.Send(new DeleteCommand(id));
+        var deleted = await mediatr.Send(command);
         
         return deleted.Match(
             authResult => NoContent(),

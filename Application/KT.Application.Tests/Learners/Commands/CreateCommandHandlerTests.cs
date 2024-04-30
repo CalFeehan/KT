@@ -1,11 +1,11 @@
 ﻿using KT.Application.Common.Interfaces.Persistence;
-using KT.Application.Learners.Commands;
 using Moq;
 using FluentAssertions;
 using KT.Domain.LearnerAggregate;
 using KT.Domain.Common.ValueObjects;
 using NUnit.Framework;
 using KT.Common.Enums;
+using KT.Application.Learners.Commands.Create;
 
 namespace KT.Application.Tests.Learners.Commands;
 

@@ -23,7 +23,6 @@
       <Folder Include="Common/Errors/" />
       <Folder Include="Common/Http/" />
       <Folder Include="Middleware/" />
-      <Folder Include="V1/Controllers/" />
       <Folder Include="V1/HttpRequests/" />
     </ItemGroup>
 

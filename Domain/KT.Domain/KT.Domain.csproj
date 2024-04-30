@@ -12,9 +12,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="LearnerAggregate/Entities/" />
       <Folder Include="LearnerAggregate/ValueObjects/" />
-      <Folder Include="LearnerAggregate/Events/" />
       <Folder Include="Common/" />
       <Folder Include="Common/Errors/" />
       <Folder Include="Common/Models/" />

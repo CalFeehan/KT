@@ -3,7 +3,7 @@ using KT.Application.Common.Interfaces.Persistence;
 using KT.Domain.LearnerAggregate;
 using MediatR;
 
-namespace KT.Application.Learners.Commands;
+namespace KT.Application.Learners.Commands.Create;
 
 public class CreateCommandHandler : IRequestHandler<CreateCommand, ErrorOr<Learner>>
 {

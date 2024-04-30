@@ -12,10 +12,8 @@
       <Folder Include="Common/Interfaces/" />
       <Folder Include="Common/Interfaces/Persistence/" />
       <Folder Include="Common/Validators/" />
-      <Folder Include="Learners/" />
-      <Folder Include="Learners/Commands/" />
+      <Folder Include="Learners/Commands/Update/" />
       <Folder Include="Learners/Events/" />
-      <Folder Include="Learners/Queries/" />
       <Folder Include="Learners/Queries/GetLearners" />
     </ItemGroup>
 

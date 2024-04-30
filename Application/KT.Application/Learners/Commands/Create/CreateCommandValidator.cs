@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace KT.Application.Learners.Commands;
+namespace KT.Application.Learners.Commands.Create;
 
 public class CreateCommandValidator : AbstractValidator<CreateCommand>
 {

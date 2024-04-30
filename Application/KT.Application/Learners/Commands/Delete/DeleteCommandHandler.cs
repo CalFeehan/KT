@@ -3,7 +3,7 @@ using KT.Application.Common.Interfaces.Persistence;
 using KT.Domain.Common.Errors;
 using MediatR;
 
-namespace KT.Application.Learners.Commands;
+namespace KT.Application.Learners.Commands.Delete;
 
 public class DeleteCommandHandler(ILearnerRepository learnerRepository)
     : IRequestHandler<DeleteCommand, ErrorOr<Task>>

@@ -11,6 +11,7 @@ public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
     public void Configure(EntityTypeBuilder<Learner> builder)
     {
         ConfigureLearnerTable(builder);
+        ConfigureLearningPlanTable(builder);
     }
 
     private static void ConfigureLearnerTable(EntityTypeBuilder<Learner> builder)
@@ -47,9 +48,36 @@ public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
                 cd => JsonSerializer.Serialize(cd, new JsonSerializerOptions()),
                 cd => JsonSerializer.Deserialize<ContactDetails>(cd, new JsonSerializerOptions())!
             );
-        
+            
         // Configure relationships (if any)
 
         // Configure indexes (if any)
+    }
+
+    private static void ConfigureLearningPlanTable(EntityTypeBuilder<Learner> builder)
+    {
+        builder.OwnsMany(s => s.LearningPlans, learningPlan =>
+        {
+            learningPlan.ToTable("LearningPlans", "Learner");
+            
+            learningPlan.HasKey(lp => lp.Id);
+            learningPlan.Property(lp => lp.Id).ValueGeneratedNever();
+            
+            learningPlan.Property(lp => lp.Title)
+                .HasMaxLength(100)
+                .IsRequired();
+            learningPlan.Property(lp => lp.Description)
+                .HasMaxLength(500)
+                .IsRequired();
+            learningPlan.Property(lp => lp.StartDate)
+                .IsRequired();
+            learningPlan.Property(lp => lp.ExpectedEndDate)
+                .IsRequired();
+
+            learningPlan.WithOwner().HasForeignKey("LearnerId");
+        });
+
+        builder.Navigation(s => s.LearningPlans)
+            .UsePropertyAccessMode(PropertyAccessMode.Field);
     }
 }
