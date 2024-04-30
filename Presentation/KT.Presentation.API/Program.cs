@@ -2,7 +2,6 @@ using KT.Application;
 using KT.Infrastructure;
 using KT.Presentation.API;
 using KT.Presentation.API.Middleware;
-using KT.Presentation.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 {
