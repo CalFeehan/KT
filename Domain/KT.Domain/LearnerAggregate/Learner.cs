@@ -34,14 +34,8 @@ public class Learner : AggregateRoot
         ContactDetails = contactDetails;
     }
 
-    public static Learner Create(
-        string forename, string surname, DateOnly dateOfBirth, 
-        string addressLine1, string addressLine2, string city, string county, string postcode, 
-        string email, string phone, ContactPreference contactPreference)
-    {
-        var address = Address.Create(addressLine1, addressLine2, city, county, postcode);
-        var contactDetails = ContactDetails.Create(email, phone, contactPreference);
-        
+    public static Learner Create(string forename, string surname, DateOnly dateOfBirth, Address address, ContactDetails contactDetails)
+    {   
         var learner = new Learner(Guid.NewGuid(), forename, surname, dateOfBirth, address, contactDetails);
         
         learner.AddDomainEvent(new LearnerCreated(learner));

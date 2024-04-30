@@ -16,10 +16,7 @@ public class CreateCommandHandler : IRequestHandler<CreateCommand, ErrorOr<Learn
 
     public async Task<ErrorOr<Learner>> Handle(CreateCommand command, CancellationToken cancellationToken)
     {
-        var learner = Learner.Create(
-            command.Forename, command.Surname, command.DateOfBirth,
-            command.Address.Line1, command.Address.Line2, command.Address.City, command.Address.County, command.Address.Postcode,
-            command.ContactDetails.Email, command.ContactDetails.Phone, command.ContactDetails.ContactPreference);
+        var learner = Learner.Create(command.Forename, command.Surname, command.DateOfBirth, command.Address, command.ContactDetails);
 
         var created = await _learnerRepository.CreateAsync(learner);
 
