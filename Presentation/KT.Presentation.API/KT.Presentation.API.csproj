@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <InvariantGlobalization>false</InvariantGlobalization>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="MediatR" Version="12.2.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Common/" />
+      <Folder Include="Common/Errors/" />
+      <Folder Include="Common/Http/" />
+      <Folder Include="Middleware/" />
+      <Folder Include="V1/Controllers/" />
+      <Folder Include="V1/HttpRequests/" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Application\KT.Application\KT.Application.csproj" />
+      <ProjectReference Include="..\..\Infrastructure\KT.Infrastructure\KT.Infrastructure.csproj" />
+      <ProjectReference Include="..\KT.Presentation.Contracts\KT.Presentation.Contracts.csproj" />
+    </ItemGroup>
+
+</Project>

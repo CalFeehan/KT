@@ -1,0 +1,42 @@
+@host = http://localhost:5130
+
+// ListAsync
+GET {{host}}/learners/
+Accept: application/json
+
+###
+
+// GetAsync
+GET {{host}}/learners/2bf954eb-b3e7-4e53-b535-4ecedee53d7e
+Accept: application/json
+
+###
+
+// CreateAsync
+POST {{host}}/learners/
+Accept: application/json
+
+{
+  "forename": "John",
+  "surname": "Doe",
+  "dateOfBirth": "1990-01-01",
+  "address": {
+    "line1": "1 The Street",
+    "line2": "The Town",
+    "city": "The City",
+    "postcode": "AB1 2CD",
+    "county": "The County"
+  },
+  "contactDetails": {
+    "email": "email@email.com",
+    "phone": "01234567890",
+    "contactPreference": 0
+  }
+}
+
+###
+
+// DeleteAsync
+DELETE {{host}}/learners/2bf954eb-b3e7-4e53-b535-4ecedee53d7e
+Accept: application/json
+

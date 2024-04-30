@@ -3,9 +3,9 @@ using KT.Application.Learners.Commands;
 using Moq;
 using FluentAssertions;
 using KT.Domain.LearnerAggregate;
-using KT.Domain.Common.Enums;
 using KT.Domain.Common.ValueObjects;
 using NUnit.Framework;
+using KT.Common.Enums;
 
 namespace KT.Application.Tests.Learners.Commands;
 
@@ -25,7 +25,7 @@ public class CreateCommandHandlerTests
     public async Task Handle_WhenLearnerIsCreated_ShouldReturnLearner()
     {
         // Arrange
-        var address = Address.Create("123 Fake Street", "Fake Road", "Fake City", County.Clwyd, "AA11 1AA");
+        var address = Address.Create("123 Fake Street", "Fake Road", "Fake City", "Fake County", "AA11 1AA");
         var contactDetails = ContactDetails.Create("email@email.com", "1234567890", ContactPreference.Email);
 
         var command = new CreateCommand(

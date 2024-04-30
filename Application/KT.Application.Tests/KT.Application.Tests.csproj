@@ -18,14 +18,15 @@
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
     <PackageReference Include="nunit" Version="4.1.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\KT.Application\KT.Application.csproj" />
-  </ItemGroup>
-
+  
     <ItemGroup>
       <Folder Include="Learners/" />
       <Folder Include="Learners/Commands/" />
+    </ItemGroup>
+  
+    <ItemGroup>
+      <ProjectReference Include="..\..\Domain\KT.Domain\KT.Domain.csproj" />
+      <ProjectReference Include="..\KT.Application\KT.Application.csproj" />
     </ItemGroup>
 
 </Project>
