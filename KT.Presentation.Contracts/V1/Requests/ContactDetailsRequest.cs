@@ -1,4 +1,4 @@
-﻿using KT.Domain.Common.ValueObjects;
+﻿using KT.Domain.Common.Enums;
 
 namespace KT.Presentation.Contracts.V1.Requests;
 

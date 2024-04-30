@@ -1,6 +1,7 @@
 using AutoMapper;
 using KT.Application.Students.Commands;
 using KT.Application.Students.Queries.GetStudents;
+using KT.Domain.Common.ValueObjects;
 using KT.Presentation.Contracts.V1.Requests;
 using KT.Presentation.Contracts.V1.Responses;
 using MediatR;
@@ -41,7 +42,10 @@ public class StudentController(ISender mediatr,  IMapper mapper) : ApiController
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAsync([FromBody] CreateStudentRequest request)
     {
-        var command = new CreateCommand(request.Forename, request.Surname, request.DateOfBirth);
+        var command = new CreateCommand(request.Forename, request.Surname, request.DateOfBirth, 
+            Address.Create(request.Address.Line1, request.Address.Line2, request.Address.City, request.Address.County, request.Address.Postcode),
+            ContactDetails.Create(request.ContactDetails.Email, request.ContactDetails.PhoneNumber, request.ContactDetails.ContactPreference));
+
         var created = await mediatr.Send(command);
         
         return created.Match(

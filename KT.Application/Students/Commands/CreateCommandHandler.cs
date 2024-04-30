@@ -16,7 +16,10 @@ public class CreateCommandHandler : IRequestHandler<CreateCommand, ErrorOr<Stude
 
     public async Task<ErrorOr<Student>> Handle(CreateCommand command, CancellationToken cancellationToken)
     {
-        var student = Student.Create(command.Forename, command.Surname, command.DateOfBirth);
+        var student = Student.Create(
+            command.Forename, command.Surname, command.DateOfBirth,
+            command.Address.Line1, command.Address.Line2, command.Address.City, command.Address.County, command.Address.Postcode,
+            command.ContactDetails.Email, command.ContactDetails.Phone, command.ContactDetails.ContactPreference);
 
         var created = await _studentRepository.CreateAsync(student);
 

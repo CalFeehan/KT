@@ -1,3 +1,5 @@
+using System.Text.Json;
+using KT.Domain.Common.ValueObjects;
 using KT.Domain.StudentAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -32,40 +34,20 @@ public class StudentConfigurations : IEntityTypeConfiguration<Student>
         builder.Property(s => s.DateOfBirth)
             .IsRequired();
 
-        builder.OwnsOne(s => s.ContactDetails, cd =>
-        {
-            cd.Property(c => c.Email)
-                .HasMaxLength(100)
-                .IsRequired();
-
-            cd.Property(c => c.Phone)
-                .HasMaxLength(20)
-                .IsRequired();
-
-            cd.Property(c => c.ContactPreference)
-                .IsRequired();
-        });
-
-        builder.OwnsOne(s => s.Address, a =>
-        {
-            a.Property(ad => ad.Line1)
-                .HasMaxLength(100)
-                .IsRequired();
-
-            a.Property(ad => ad.Line2)
-                .HasMaxLength(100);
-
-            a.Property(ad => ad.City)
-                .HasMaxLength(100);
-
-            a.Property(ad => ad.County)
-                .IsRequired();
-
-            a.Property(ad => ad.Postcode)
-                .HasMaxLength(10)
-                .IsRequired();
-        });
-
+        builder.Property(s => s.Address)
+            .IsRequired()
+            .HasConversion(
+                a => JsonSerializer.Serialize(a, new JsonSerializerOptions()),
+                a => JsonSerializer.Deserialize<Address>(a, new JsonSerializerOptions())
+            );
+        
+        builder.Property(s => s.ContactDetails)
+            .IsRequired()
+            .HasConversion(
+                cd => JsonSerializer.Serialize(cd, new JsonSerializerOptions()),
+                cd => JsonSerializer.Deserialize<ContactDetails>(cd, new JsonSerializerOptions())
+            );
+        
         // Configure relationships (if any)
 
         // Configure indexes (if any)

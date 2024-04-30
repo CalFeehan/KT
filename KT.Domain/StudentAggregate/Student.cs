@@ -18,30 +18,38 @@ public class Student : AggregateRoot
 
     public Address Address { get; private set; }
 
-    private Student(Guid id, string forename, string surname, DateOnly dateOfBirth)
+    private Student(Guid id, string forename, string surname, DateOnly dateOfBirth, Address address, ContactDetails contactDetails)
         : base(id)
     {
         Forename = forename;
         Surname = surname;
         DateOfBirth = dateOfBirth;
-        ContactDetails = new ContactDetails("", "", ContactPreference.Email);
-        Address = new Address(string.Empty, string.Empty, string.Empty, County.Clwyd, string.Empty);
-    }
-
-    public void UpdateContactDetails(ContactDetails contactDetails)
-    {
+        Address = address;
         ContactDetails = contactDetails;
     }
 
-    public void UpdateAddress(Address address)
+    public void UpdateContactDetails(string email, string phone, ContactPreference contactPreference)
     {
-        Address = address;
+        ContactDetails = ContactDetails.Create(email, phone, contactPreference);
     }
 
-    public static Student Create(string forename, string surname, DateOnly dateOfBirth)
+    public void UpdateAddress(string addressLine1, string addressLine2, string city, County county, string postcode)
     {
-        var student = new Student(Guid.NewGuid(), forename, surname, dateOfBirth);
+        Address = Address.Create(addressLine1, addressLine2, city, county, postcode);
+    }
+
+    public static Student Create(
+        string forename, string surname, DateOnly dateOfBirth, 
+        string addressLine1, string addressLine2, string city, County county, string postcode, 
+        string email, string phone, ContactPreference contactPreference)
+    {
+        var address = Address.Create(addressLine1, addressLine2, city, county, postcode);
+        var contactDetails = ContactDetails.Create(email, phone, contactPreference);
+        
+        var student = new Student(Guid.NewGuid(), forename, surname, dateOfBirth, address, contactDetails);
+        
         student.AddDomainEvent(new StudentCreated(student));
+        
         return student;
     }
 }

@@ -1,15 +1,29 @@
-﻿using KT.Domain.Common.Models;
+﻿using System.Text.Json.Serialization;
+using KT.Domain.Common.Enums;
+using KT.Domain.Common.Models;
 
 namespace KT.Domain.Common.ValueObjects;
 
-public class ContactDetails(string email, string phone, ContactPreference contactPreference)
-    : ValueObject
+public class ContactDetails : ValueObject
 {
-    public string Email { get; set; } = email;
+    public string Email { get; }
 
-    public string Phone { get; set; } = phone;
+    public string Phone { get; }
 
-    public ContactPreference ContactPreference { get; set; } = contactPreference;
+    public ContactPreference ContactPreference { get; }
+
+    [JsonConstructor]
+    private ContactDetails(string email, string phone, ContactPreference contactPreference)
+    {
+        Email = email;
+        Phone = phone;
+        ContactPreference = contactPreference;
+    }
+
+    public static ContactDetails Create(string email, string phone, ContactPreference contactPreference)
+    {
+        return new ContactDetails(email, phone, contactPreference);
+    }
 
     public override IEnumerable<object> GetEqualityComponents()
     {
@@ -17,10 +31,4 @@ public class ContactDetails(string email, string phone, ContactPreference contac
         yield return Phone;
         yield return ContactPreference;
     }
-}
-
-public enum ContactPreference
-{
-    Email,
-    Phone
 }

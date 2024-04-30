@@ -4,4 +4,6 @@ public record StudentResponse(
     Guid Id, 
     string Forename, 
     string Surname,
-    DateOnly DateOfBirth);
+    DateOnly DateOfBirth,
+    AddressResponse Address,
+    ContactDetailsResponse ContactDetails);

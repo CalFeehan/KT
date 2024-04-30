@@ -23,14 +23,8 @@ namespace KT.Infrastructure.Migrations
                     Forename = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     DateOfBirth = table.Column<DateOnly>(type: "date", nullable: false),
-                    ContactDetails_Email = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    ContactDetails_Phone = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    ContactDetails_ContactPreference = table.Column<int>(type: "int", nullable: false),
-                    Address_Line1 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Address_Line2 = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Address_City = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Address_County = table.Column<int>(type: "int", nullable: false),
-                    Address_Postcode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false)
+                    ContactDetails = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
