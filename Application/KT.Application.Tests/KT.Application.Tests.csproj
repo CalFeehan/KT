@@ -10,10 +10,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="fluentassertions" Version="6.12.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.0" />
+    <PackageReference Include="moq" Version="4.20.70" />
     <PackageReference Include="MSTest.TestAdapter" Version="3.0.4" />
     <PackageReference Include="MSTest.TestFramework" Version="3.0.4" />
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="nunit" Version="4.1.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\KT.Application\KT.Application.csproj" />
+  </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Learners/" />
+      <Folder Include="Learners/Commands/" />
+    </ItemGroup>
 
 </Project>

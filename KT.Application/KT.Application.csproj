@@ -7,7 +7,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Folder Include="Learners\Events\" />
+      <Folder Include="Common/" />
+      <Folder Include="Common/Behaviours/" />
+      <Folder Include="Common/Interfaces/" />
+      <Folder Include="Common/Interfaces/Persistence/" />
+      <Folder Include="Common/Validators/" />
+      <Folder Include="Learners/" />
+      <Folder Include="Learners/Commands/" />
+      <Folder Include="Learners/Events/" />
+      <Folder Include="Learners/Queries/" />
+      <Folder Include="Learners/Queries/GetLearners" />
     </ItemGroup>
 
     <ItemGroup>

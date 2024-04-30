@@ -1,5 +1,3 @@
-﻿using KT.Domain.LearnerAggregate;
-
-namespace KT.Domain;
+﻿namespace KT.Domain.LearnerAggregate.Events;
 
 public record LearnerCreated(Learner Learner) : IDomainEvent;

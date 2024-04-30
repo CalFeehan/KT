@@ -20,4 +20,14 @@
       <ProjectReference Include="..\KT.Application\KT.Application.csproj" />
     </ItemGroup>
 
+
+    <ItemGroup>
+      <Folder Include="Migrations/" />
+      <Folder Include="Persistence/" />
+      <Folder Include="Persistence/Configurations/" />
+      <Folder Include="Persistence/Interceptors/" />
+      <Folder Include="Persistence/Repositories/" />
+    </ItemGroup>
+
+
 </Project>

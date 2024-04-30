@@ -1,6 +1,7 @@
 ﻿using KT.Domain.Common.Enums;
 using KT.Domain.Common.Models;
 using KT.Domain.Common.ValueObjects;
+using KT.Domain.LearnerAggregate.Events;
 
 namespace KT.Domain.LearnerAggregate;
 

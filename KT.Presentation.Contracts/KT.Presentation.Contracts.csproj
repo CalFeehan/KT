@@ -14,4 +14,11 @@
       <ProjectReference Include="..\KT.Domain\KT.Domain.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="V1/" />
+      <Folder Include="V1/Mappings" />
+      <Folder Include="V1/Requests" />
+      <Folder Include="V1/Responses" />
+    </ItemGroup>
+
 </Project>

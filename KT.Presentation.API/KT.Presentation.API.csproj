@@ -24,4 +24,15 @@
       <ProjectReference Include="..\KT.Presentation.Contracts\KT.Presentation.Contracts.csproj" />
     </ItemGroup>
 
+
+    <ItemGroup>
+      <Folder Include="Common/" />
+      <Folder Include="Common/Errors/" />
+      <Folder Include="Common/Http/" />
+      <Folder Include="Middleware/" />
+      <Folder Include="V1/" />
+      <Folder Include="V1/Controllers/" />
+      <Folder Include="V1/HttpRequests/" />
+    </ItemGroup>
+
 </Project>
