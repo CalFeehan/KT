@@ -56,7 +56,7 @@ namespace KT.Infrastructure.Migrations
 
             modelBuilder.Entity("KT.Domain.LearnerAggregate.Learner", b =>
                 {
-                    b.OwnsMany("KT.Domain.LearningPlan", "LearningPlans", b1 =>
+                    b.OwnsMany("KT.Domain.LearnerAggregate.Entities.LearningPlan", "LearningPlans", b1 =>
                         {
                             b1.Property<Guid>("Id")
                                 .HasColumnType("uniqueidentifier");

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KT.Infrastructure.Migrations
 {
     [DbContext(typeof(KTDbContext))]
-    [Migration("20240430192011_InitialCreate")]
+    [Migration("20240501082817_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -55,6 +55,45 @@ namespace KT.Infrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Learners", "Learner");
+                });
+
+            modelBuilder.Entity("KT.Domain.LearnerAggregate.Learner", b =>
+                {
+                    b.OwnsMany("KT.Domain.LearnerAggregate.Entities.LearningPlan", "LearningPlans", b1 =>
+                        {
+                            b1.Property<Guid>("Id")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<string>("Description")
+                                .IsRequired()
+                                .HasMaxLength(500)
+                                .HasColumnType("nvarchar(500)");
+
+                            b1.Property<DateOnly>("ExpectedEndDate")
+                                .HasColumnType("date");
+
+                            b1.Property<Guid>("LearnerId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<DateOnly>("StartDate")
+                                .HasColumnType("date");
+
+                            b1.Property<string>("Title")
+                                .IsRequired()
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)");
+
+                            b1.HasKey("Id");
+
+                            b1.HasIndex("LearnerId");
+
+                            b1.ToTable("LearningPlans", "Learner");
+
+                            b1.WithOwner()
+                                .HasForeignKey("LearnerId");
+                        });
+
+                    b.Navigation("LearningPlans");
                 });
 #pragma warning restore 612, 618
         }
