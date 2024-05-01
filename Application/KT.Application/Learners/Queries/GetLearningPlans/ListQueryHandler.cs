@@ -1,7 +1,6 @@
 ﻿using ErrorOr;
 using KT.Application.Common.Interfaces.Persistence;
 using KT.Domain.Common.Errors;
-using KT.Domain.LearnerAggregate;
 using KT.Domain.LearnerAggregate.Entities;
 using MediatR;
 

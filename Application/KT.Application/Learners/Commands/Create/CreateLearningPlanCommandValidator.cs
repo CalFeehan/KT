@@ -14,12 +14,5 @@ public class CreateLearningPlanCommandValidator : AbstractValidator<CreateLearni
         RuleFor(x => x.Description)
             .NotEmpty()
             .MaximumLength(500);
-
-        RuleFor(x => x.StartDate)
-            .NotEmpty();
-
-        RuleFor(x => x.ExpectedEndDate)
-            .NotEmpty()
-            .GreaterThan(x => x.StartDate);
     }
 }

@@ -2,6 +2,7 @@
 using KT.Domain.Common.ValueObjects;
 using KT.Domain.LearnerAggregate;
 using KT.Domain.LearnerAggregate.Entities;
+using KT.Domain.LibraryAggregate;
 using KT.Presentation.Contracts.V1.Requests;
 
 namespace KT.Presentation.API;
@@ -14,6 +15,7 @@ public class RequestToDomainMappingProfile : Profile
         CreateMap<CreateLearningPlanRequest, LearningPlan>();
         CreateMap<AddressRequest, Address>();
         CreateMap<ContactDetailsRequest, ContactDetails>();
+        CreateMap<CreateLibraryRequest, Library>();
     }
 }
     

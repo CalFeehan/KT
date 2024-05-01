@@ -20,29 +20,29 @@ public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
         builder.ToTable("Learners", "Learner");
 
         // Configure the primary key
-        builder.HasKey(s => s.Id);
-        builder.Property(p => p.Id).ValueGeneratedNever();
+        builder.HasKey(l => l.Id);
+        builder.Property(l => l.Id).ValueGeneratedNever();
         
         // Configure other properties
-        builder.Property(s => s.Forename)
+        builder.Property(l => l.Forename)
             .HasMaxLength(50)
             .IsRequired();
 
-        builder.Property(s => s.Surname)
+        builder.Property(l => l.Surname)
             .HasMaxLength(50)
             .IsRequired();
 
-        builder.Property(s => s.DateOfBirth)
+        builder.Property(l => l.DateOfBirth)
             .IsRequired();
 
-        builder.Property(s => s.Address)
+        builder.Property(l => l.Address)
             .IsRequired()
             .HasConversion(
                 a => JsonSerializer.Serialize(a, new JsonSerializerOptions()),
                 a => JsonSerializer.Deserialize<Address>(a, new JsonSerializerOptions())!
             );
         
-        builder.Property(s => s.ContactDetails)
+        builder.Property(l => l.ContactDetails)
             .IsRequired()
             .HasConversion(
                 cd => JsonSerializer.Serialize(cd, new JsonSerializerOptions()),
@@ -56,7 +56,7 @@ public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
 
     private static void ConfigureLearningPlanTable(EntityTypeBuilder<Learner> builder)
     {
-        builder.OwnsMany(s => s.LearningPlans, learningPlan =>
+        builder.OwnsMany(l => l.LearningPlans, learningPlan =>
         {
             learningPlan.ToTable("LearningPlans", "Learner");
             
@@ -66,18 +66,15 @@ public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
             learningPlan.Property(lp => lp.Title)
                 .HasMaxLength(100)
                 .IsRequired();
+                
             learningPlan.Property(lp => lp.Description)
                 .HasMaxLength(500)
-                .IsRequired();
-            learningPlan.Property(lp => lp.StartDate)
-                .IsRequired();
-            learningPlan.Property(lp => lp.ExpectedEndDate)
                 .IsRequired();
 
             learningPlan.WithOwner().HasForeignKey("LearnerId");
         });
 
-        builder.Navigation(s => s.LearningPlans)
+        builder.Navigation(l => l.LearningPlans)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
             .AutoInclude(false);
     }

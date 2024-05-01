@@ -1,3 +1,5 @@
+
+
 using KT.Application.Common.Interfaces.Persistence;
 using KT.Infrastructure.Persistence;
 using KT.Infrastructure.Persistence.Repositories;
@@ -18,6 +20,9 @@ public static class DependencyInjection
         services.AddScoped<PublishDomainEventsInterceptor>();
         
         services.AddScoped<ILearnerRepository, LearnerRepository>();
+        services.AddScoped<ICourseRepository, CourseRepository>();
+        services.AddScoped<ILibraryRepository, LibraryRepository>();
+        services.AddScoped<ISessionRepository, SessionRepository>();
 
         return services;
     }

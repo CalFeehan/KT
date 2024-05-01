@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using KT.Application.Learners.Commands.Delete;
 
-namespace KT.Presentation.API.V1.Controllers;
+namespace KT.Presentation.API.V1.Controllers.Learners;
 
 [Route("learners/{learnerId:guid}/[controller]s")]
 public class LearningPlanController(ISender mediatr,  IMapper mapper) : ApiController
@@ -43,8 +43,7 @@ public class LearningPlanController(ISender mediatr,  IMapper mapper) : ApiContr
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAsync([FromRoute] Guid learnerId, [FromBody] CreateLearningPlanRequest request)
     {
-        var command = new CreateLearningPlanCommand(
-            learnerId, request.Title, request.Description, request.StartDate, request.ExpectedEndDate);
+        var command = new CreateLearningPlanCommand(learnerId, request.Title, request.Description);
 
         var created = await mediatr.Send(command);
         

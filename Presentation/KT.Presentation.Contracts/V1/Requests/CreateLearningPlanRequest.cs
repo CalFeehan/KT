@@ -2,6 +2,4 @@
 
 public record CreateLearningPlanRequest(
     string Title,
-    string Description,
-    DateOnly StartDate,
-    DateOnly ExpectedEndDate);
+    string Description);

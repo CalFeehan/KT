@@ -24,11 +24,11 @@ public class CreateLearningPlanCommandHandler : IRequestHandler<CreateLearningPl
             return Errors.Learner.NotFound;
         }
 
-        learner.AddLearningPlan(request.Title, request.Description, request.StartDate, request.ExpectedEndDate);
+        learner.AddLearningPlan(request.Title, request.Description);
 
         await _learnerRepository.UpdateAsync(learner);
 
-        var learningPlan = learner.LearningPlans.Last();
+        var learningPlan = learner.LearningPlans[learner.LearningPlans.Count - 1];
 
         return learningPlan;
     }

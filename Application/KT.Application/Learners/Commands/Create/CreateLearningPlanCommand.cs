@@ -7,8 +7,6 @@ namespace KT.Application.Learners.Commands.Create;
 public record CreateLearningPlanCommand(
     Guid LearnerId, 
     string Title,
-    string Description,
-    DateOnly StartDate,
-    DateOnly ExpectedEndDate) 
+    string Description) 
     : IRequest<ErrorOr<LearningPlan>>;
 

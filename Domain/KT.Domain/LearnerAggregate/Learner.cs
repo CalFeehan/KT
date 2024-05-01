@@ -8,8 +8,11 @@ namespace KT.Domain.LearnerAggregate;
 
 public class Learner : AggregateRoot
 {
-    private readonly List<LearningPlan> _learningPlans = new();
+    // Entities
+    private readonly List<LearningPlan> _learningPlans = [];
+    public IReadOnlyList<LearningPlan> LearningPlans => _learningPlans.AsReadOnly();
 
+    // Properties
     public string Forename { get; private set; }
 
     public string Surname { get; private set; }
@@ -22,7 +25,6 @@ public class Learner : AggregateRoot
 
     public Address Address { get; private set; }
 
-    public IReadOnlyList<LearningPlan> LearningPlans => _learningPlans.AsReadOnly();
 
     private Learner(Guid id, string forename, string surname, DateOnly dateOfBirth, Address address, ContactDetails contactDetails)
         : base(id)
@@ -53,12 +55,12 @@ public class Learner : AggregateRoot
         Address = Address.Create(addressLine1, addressLine2, city, county, postcode);
     }
 
-    public LearningPlan AddLearningPlan(string title, string description, DateOnly startDate, DateOnly expectedEndDate)
+    public LearningPlan AddLearningPlan(string title, string description)
     {
-        var learningPlan = LearningPlan.Create(Id, title, description, startDate, expectedEndDate);
+        var learningPlan = LearningPlan.Create(Id, title, description);
         _learningPlans.Add(learningPlan);
 
-        AddDomainEvent(new LearningPlanCreated(Id, learningPlan));
+        AddDomainEvent(new LearningPlanAdded(Id, learningPlan));
 
         return learningPlan;
     }
@@ -72,4 +74,14 @@ public class Learner : AggregateRoot
 
         AddDomainEvent(new LearningPlanRemoved(Id, learningPlan));
     }
+
+
+
+    #region EF Core Constructor
+
+    #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    private Learner(Guid id) : base(id) { }
+    #pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    
+    #endregion
 }

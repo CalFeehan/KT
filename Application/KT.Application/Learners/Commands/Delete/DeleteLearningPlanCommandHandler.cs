@@ -5,9 +5,15 @@ using MediatR;
 
 namespace KT.Application.Learners.Commands.Delete;
 
-public class DeleteLearningPlanCommandHandler(ILearnerRepository learnerRepository)
-    : IRequestHandler<DeleteLearningPlanCommand, ErrorOr<Task>>
+public class DeleteLearningPlanCommandHandler : IRequestHandler<DeleteLearningPlanCommand, ErrorOr<Task>>
 {
+    private readonly ILearnerRepository learnerRepository;
+
+    public DeleteLearningPlanCommandHandler(ILearnerRepository learnerRepository)
+    {
+        this.learnerRepository = learnerRepository;
+    }
+
     public async Task<ErrorOr<Task>> Handle(DeleteLearningPlanCommand command, CancellationToken cancellationToken)
     {
         // get learner

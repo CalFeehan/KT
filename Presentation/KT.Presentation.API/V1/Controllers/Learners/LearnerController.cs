@@ -8,7 +8,7 @@ using KT.Presentation.Contracts.V1.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
-namespace KT.Presentation.API.V1.Controllers;
+namespace KT.Presentation.API.V1.Controllers.Learners;
 
 [Route("[controller]s")]
 public class LearnerController(ISender mediatr,  IMapper mapper) : ApiController

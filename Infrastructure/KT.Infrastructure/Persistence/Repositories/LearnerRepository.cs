@@ -4,9 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KT.Infrastructure.Persistence.Repositories;
 
-public class LearnerRepository(KTDbContext dbContext) : ILearnerRepository
+public class LearnerRepository : ILearnerRepository
 {
-    private readonly KTDbContext _dbContext = dbContext;
+    private readonly KTDbContext _dbContext;
+
+    public LearnerRepository(KTDbContext dbContext)
+    {
+        _dbContext = dbContext;
+    }
 
     public async Task<Learner> CreateAsync(Learner entity)
     {

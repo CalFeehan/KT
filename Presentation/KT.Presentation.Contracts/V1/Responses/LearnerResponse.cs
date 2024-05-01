@@ -7,3 +7,9 @@ public record LearnerResponse(
     DateOnly DateOfBirth,
     AddressResponse Address,
     ContactDetailsResponse ContactDetails);
+
+public record LearningPlanResponse(
+    Guid Id,
+    Guid LearnerId,
+    string Title,
+    string Description);
