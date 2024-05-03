@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KT.Presentation.API.V1.Controllers.Libraries;
 
-[Route("libraries")]
-public class LibraryController(ISender mediatr,  IMapper mapper) : ApiController
+[Route("[controller]")]
+public class LibrariesController(ISender mediatr,  IMapper mapper) : ApiController
 {
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<LibraryResponse>), StatusCodes.Status200OK)]

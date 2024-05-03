@@ -9,8 +9,8 @@ using KT.Application.Learners.Commands.Delete;
 
 namespace KT.Presentation.API.V1.Controllers.Learners;
 
-[Route("learners/{learnerId:guid}/[controller]s")]
-public class LearningPlanController(ISender mediatr,  IMapper mapper) : ApiController
+[Route("learners/{learnerId:guid}/[controller]")]
+public class LearningPlansController(ISender mediatr,  IMapper mapper) : ApiController
 {
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<LearningPlanResponse>), StatusCodes.Status200OK)]

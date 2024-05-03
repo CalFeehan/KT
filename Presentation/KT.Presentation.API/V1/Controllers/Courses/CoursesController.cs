@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KT.Presentation.API.V1.Controllers.Courses;
 
-[Route("[controller]s")]
-public class CourseController(ISender mediatr,  IMapper mapper) : ApiController
+[Route("[controller]")]
+public class CoursesController(ISender mediatr,  IMapper mapper) : ApiController
 {
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<CourseResponse>), StatusCodes.Status200OK)]

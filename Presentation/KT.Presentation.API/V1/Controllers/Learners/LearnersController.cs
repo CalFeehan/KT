@@ -10,8 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KT.Presentation.API.V1.Controllers.Learners;
 
-[Route("[controller]s")]
-public class LearnerController(ISender mediatr,  IMapper mapper) : ApiController
+[Route("[controller]")]
+public class LearnersController(ISender mediatr,  IMapper mapper) : ApiController
 {
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<LearnerResponse>), StatusCodes.Status200OK)]

@@ -9,8 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KT.Presentation.API.V1.Controllers.Sessions;
 
-[Route("[controller]s")]
-public class SessionController(ISender mediatr,  IMapper mapper) : ApiController
+[Route("[controller]")]
+public class SessionsControllers(ISender mediatr,  IMapper mapper) : ApiController
 {
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<SessionResponse>), StatusCodes.Status200OK)]
