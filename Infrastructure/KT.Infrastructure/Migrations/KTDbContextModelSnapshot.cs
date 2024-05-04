@@ -104,6 +104,9 @@ namespace KT.Infrastructure.Migrations
                     b.Property<Guid>("Id")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("LibraryType")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Libraries", "Library");
@@ -281,6 +284,65 @@ namespace KT.Infrastructure.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("LibraryId");
 
+                            b1.OwnsOne("KT.Domain.ActivityPlanTemplate", "ActivityPlanTemplate", b2 =>
+                                {
+                                    b2.Property<Guid>("Id")
+                                        .HasColumnType("uniqueidentifier");
+
+                                    b2.Property<Guid>("CourseTemplateId")
+                                        .HasColumnType("uniqueidentifier");
+
+                                    b2.HasKey("Id");
+
+                                    b2.HasIndex("CourseTemplateId")
+                                        .IsUnique();
+
+                                    b2.ToTable("ActivityPlanTemplates", "Library");
+
+                                    b2.WithOwner()
+                                        .HasForeignKey("CourseTemplateId");
+
+                                    b2.OwnsMany("KT.Domain.ActivityTemplate", "ActivityTemplates", b3 =>
+                                        {
+                                            b3.Property<Guid>("Id")
+                                                .HasColumnType("uniqueidentifier");
+
+                                            b3.Property<Guid>("ActivityPlanTemplateId")
+                                                .HasColumnType("uniqueidentifier");
+
+                                            b3.Property<string>("Description")
+                                                .IsRequired()
+                                                .HasColumnType("nvarchar(max)");
+
+                                            b3.Property<string>("DocumentIds")
+                                                .IsRequired()
+                                                .HasColumnType("nvarchar(max)");
+
+                                            b3.Property<TimeSpan>("Duration")
+                                                .HasColumnType("time");
+
+                                            b3.Property<string>("ModuleTemplateIds")
+                                                .IsRequired()
+                                                .HasColumnType("nvarchar(max)");
+
+                                            b3.Property<string>("Title")
+                                                .IsRequired()
+                                                .HasMaxLength(100)
+                                                .HasColumnType("nvarchar(100)");
+
+                                            b3.HasKey("Id");
+
+                                            b3.HasIndex("ActivityPlanTemplateId");
+
+                                            b3.ToTable("ActivityTemplates", "Library");
+
+                                            b3.WithOwner()
+                                                .HasForeignKey("ActivityPlanTemplateId");
+                                        });
+
+                                    b2.Navigation("ActivityTemplates");
+                                });
+
                             b1.OwnsMany("KT.Domain.LibraryAggregate.Entities.ModuleTemplate", "ModuleTemplates", b2 =>
                                 {
                                     b2.Property<Guid>("Id")
@@ -398,6 +460,9 @@ namespace KT.Infrastructure.Migrations
 
                                     b2.Navigation("SessionTemplates");
                                 });
+
+                            b1.Navigation("ActivityPlanTemplate")
+                                .IsRequired();
 
                             b1.Navigation("ModuleTemplates");
 

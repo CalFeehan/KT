@@ -14,6 +14,8 @@ public class CourseTemplate : Entity
     private readonly List<ModuleTemplate> _moduleTemplates = [];
     public IReadOnlyCollection<ModuleTemplate> ModuleTemplates => _moduleTemplates.AsReadOnly();
 
+    public ActivityPlanTemplate ActivityPlanTemplate { get; private set; }
+
     public SessionPlanTemplate SessionPlanTemplate { get; private set; }
 
 
@@ -34,6 +36,7 @@ public class CourseTemplate : Entity
     {
         LibraryId = libraryId;
         SessionPlanTemplate = SessionPlanTemplate.Create(id);
+        ActivityPlanTemplate = ActivityPlanTemplate.Create(id);
         CourseTemplateStatus = CourseTemplateStatus.Draft;
         Title = title;
         Description = description;

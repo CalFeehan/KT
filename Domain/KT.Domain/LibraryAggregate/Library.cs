@@ -1,4 +1,5 @@
-﻿using KT.Domain.Common.Models;
+﻿using KT.Common.Enums;
+using KT.Domain.Common.Models;
 using KT.Domain.LibraryAggregate.Entities;
 
 namespace KT.Domain.LibraryAggregate;
@@ -10,6 +11,7 @@ public class Library : AggregateRoot
     public IReadOnlyCollection<CourseTemplate> CourseTemplates => _courseTemplates.AsReadOnly();
 
     // value objects
+    public LibraryType LibraryType { get; private set; }
 
     public static Library Create()
     {

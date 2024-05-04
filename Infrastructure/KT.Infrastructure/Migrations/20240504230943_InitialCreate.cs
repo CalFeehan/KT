@@ -12,10 +12,10 @@ namespace KT.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Course");
+                name: "Library");
 
             migrationBuilder.EnsureSchema(
-                name: "Library");
+                name: "Course");
 
             migrationBuilder.EnsureSchema(
                 name: "Learner");
@@ -45,7 +45,8 @@ namespace KT.Infrastructure.Migrations
                 schema: "Library",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    LibraryType = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -182,6 +183,26 @@ namespace KT.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ActivityPlanTemplates",
+                schema: "Library",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CourseTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ActivityPlanTemplates", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ActivityPlanTemplates_CourseTemplates_CourseTemplateId",
+                        column: x => x.CourseTemplateId,
+                        principalSchema: "Library",
+                        principalTable: "CourseTemplates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ModuleTemplates",
                 schema: "Library",
                 columns: table => new
@@ -231,6 +252,31 @@ namespace KT.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ActivityTemplates",
+                schema: "Library",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ActivityPlanTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Duration = table.Column<TimeSpan>(type: "time", nullable: false),
+                    DocumentIds = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModuleTemplateIds = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ActivityTemplates", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ActivityTemplates_ActivityPlanTemplates_ActivityPlanTemplateId",
+                        column: x => x.ActivityPlanTemplateId,
+                        principalSchema: "Library",
+                        principalTable: "ActivityPlanTemplates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SessionTemplates",
                 schema: "Library",
                 columns: table => new
@@ -256,6 +302,19 @@ namespace KT.Infrastructure.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ActivityPlanTemplates_CourseTemplateId",
+                schema: "Library",
+                table: "ActivityPlanTemplates",
+                column: "CourseTemplateId",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ActivityTemplates_ActivityPlanTemplateId",
+                schema: "Library",
+                table: "ActivityTemplates",
+                column: "ActivityPlanTemplateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Courses_LearnerId",
@@ -311,6 +370,10 @@ namespace KT.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "ActivityTemplates",
+                schema: "Library");
+
+            migrationBuilder.DropTable(
                 name: "LearningPlans",
                 schema: "Learner");
 
@@ -328,6 +391,10 @@ namespace KT.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "SessionTemplates",
+                schema: "Library");
+
+            migrationBuilder.DropTable(
+                name: "ActivityPlanTemplates",
                 schema: "Library");
 
             migrationBuilder.DropTable(

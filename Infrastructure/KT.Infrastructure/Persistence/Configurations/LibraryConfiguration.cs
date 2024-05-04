@@ -13,6 +13,8 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
         ConfigureLibraryTable(builder);
         ConfigureCourseTemplateTable(builder);
         ConfigureModuleTemplateTable(builder);
+        ConfigureActivityPlanTemplateTable(builder);
+        ConfigureActivityTemplateTable(builder);
         ConfigureSessionPlanTemplateTable(builder);
         ConfigureSessionTemplateTable(builder);
     }
@@ -40,8 +42,7 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
             courseTemplate.HasKey(ct => ct.Id);
             courseTemplate.Property(ct => ct.Id).ValueGeneratedNever();
 
-            courseTemplate.Property(ct => ct.LibraryId)
-                .IsRequired();
+            courseTemplate.Property(ct => ct.LibraryId).IsRequired();
             courseTemplate.WithOwner().HasForeignKey("LibraryId");
 
             courseTemplate.Property(ct => ct.CourseTemplateStatus)
@@ -77,15 +78,14 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
             {
                 moduleTemplate.ToTable("ModuleTemplates", "Library");
 
-                moduleTemplate.Property(mt => mt.ModuleType)
-                    .IsRequired();
-
                 moduleTemplate.HasKey(mt => mt.Id);
                 moduleTemplate.Property(mt => mt.Id).ValueGeneratedNever();
 
-                moduleTemplate.Property(mt => mt.CourseTemplateId)
-                    .IsRequired();
+                moduleTemplate.Property(mt => mt.CourseTemplateId).IsRequired();
                 moduleTemplate.WithOwner().HasForeignKey("CourseTemplateId");
+
+                moduleTemplate.Property(mt => mt.ModuleType)
+                .IsRequired();
 
                 moduleTemplate.Property(mt => mt.Title)
                     .HasMaxLength(100)
@@ -137,8 +137,7 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
                 sessionPlanTemplate.HasKey(spt => spt.Id);
                 sessionPlanTemplate.Property(spt => spt.Id).ValueGeneratedNever();
 
-                sessionPlanTemplate.Property(spt => spt.CourseTemplateId)
-                    .IsRequired();
+                sessionPlanTemplate.Property(spt => spt.CourseTemplateId).IsRequired();
                 sessionPlanTemplate.WithOwner().HasForeignKey("CourseTemplateId");
             });
 
@@ -161,8 +160,7 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
                     sessionTemplate.HasKey(st => st.Id);
                     sessionTemplate.Property(st => st.Id).ValueGeneratedNever();
 
-                    sessionTemplate.Property(st => st.SessionPlanTemplateId)
-                        .IsRequired();
+                    sessionTemplate.Property(st => st.SessionPlanTemplateId).IsRequired();
                     sessionTemplate.WithOwner().HasForeignKey("SessionPlanTemplateId");
 
                     sessionTemplate.Property(st => st.SessionType)
@@ -191,6 +189,77 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
                 });
 
                 sessionPlanTemplate.Navigation(spt => spt.SessionTemplates)
+                    .UsePropertyAccessMode(PropertyAccessMode.Field)
+                    .AutoInclude(true);
+            });
+        });
+    }
+
+    private void ConfigureActivityPlanTemplateTable(EntityTypeBuilder<Library> builder)
+    {
+        builder.OwnsMany(l => l.CourseTemplates, courseTemplate =>
+        {
+            courseTemplate.OwnsOne(ct => ct.ActivityPlanTemplate, activityPlanTemplate =>
+            {
+                activityPlanTemplate.ToTable("ActivityPlanTemplates", "Library");
+
+                activityPlanTemplate.HasKey(apt => apt.Id);
+                activityPlanTemplate.Property(apt => apt.Id).ValueGeneratedNever();
+
+                activityPlanTemplate.Property(apt => apt.CourseTemplateId).IsRequired();
+                activityPlanTemplate.WithOwner().HasForeignKey("CourseTemplateId");
+            });
+
+            courseTemplate.Navigation(ct => ct.ActivityPlanTemplate)
+                .UsePropertyAccessMode(PropertyAccessMode.Field)
+                .AutoInclude(true);
+        });
+    }
+
+    private void ConfigureActivityTemplateTable(EntityTypeBuilder<Library> builder)
+    {
+        builder.OwnsMany(l => l.CourseTemplates, courseTemplate =>
+        {
+            courseTemplate.OwnsOne(ct => ct.ActivityPlanTemplate, activityPlanTemplate =>
+            {
+                activityPlanTemplate.OwnsMany(apt => apt.ActivityTemplates, activityTemplate =>
+                {
+                    activityTemplate.ToTable("ActivityTemplates", "Library");
+
+                    activityTemplate.HasKey(at => at.Id);
+                    activityTemplate.Property(at => at.Id).ValueGeneratedNever();
+
+                    activityTemplate.Property(at => at.ActivityPlanTemplateId).IsRequired();
+                    activityTemplate.WithOwner().HasForeignKey("ActivityPlanTemplateId");
+
+                    activityTemplate.Property(at => at.Title)
+                        .HasMaxLength(100)
+                        .IsRequired();
+
+                    activityTemplate.Property(at => at.Description)
+                        .IsRequired();
+
+                    activityTemplate.Property(at => at.Duration)
+                        .IsRequired();
+
+                    // list of DocumentIds, serialized as JSON
+                    activityTemplate.Property(at => at.DocumentIds)
+                        .IsRequired()
+                        .HasConversion(
+                            di => JsonSerializer.Serialize(di, new JsonSerializerOptions()),
+                            di => JsonSerializer.Deserialize<List<Guid>>(di, new JsonSerializerOptions())!
+                        );
+
+                    // list of ModuleTemplateIds, serialized as JSON
+                    activityTemplate.Property(at => at.ModuleTemplateIds)
+                        .IsRequired()
+                        .HasConversion(
+                            mti => JsonSerializer.Serialize(mti, new JsonSerializerOptions()),
+                            mti => JsonSerializer.Deserialize<List<Guid>>(mti, new JsonSerializerOptions())!
+                        );
+                });
+
+                activityPlanTemplate.Navigation(apt => apt.ActivityTemplates)
                     .UsePropertyAccessMode(PropertyAccessMode.Field)
                     .AutoInclude(true);
             });
