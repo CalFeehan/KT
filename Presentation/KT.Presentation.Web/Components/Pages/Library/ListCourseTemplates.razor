@@ -21,7 +21,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var libraries = await LibraryService.LibrariesAllAsync() ?? new List<LibraryResponse>();
-        library = libraries.FirstOrDefault();
+        var libraries = await LibraryService.LibrariesAllAsync();
+        library = libraries.FirstOrDefault() ?? new LibraryResponse();
     }
 }
