@@ -76,6 +76,6 @@ public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
 
         builder.Navigation(l => l.LearningPlans)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
-            .AutoInclude(false);
+            .AutoInclude(true);
     }
 }

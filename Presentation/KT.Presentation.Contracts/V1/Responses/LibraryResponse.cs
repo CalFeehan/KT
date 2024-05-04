@@ -2,7 +2,7 @@
 
 namespace KT.Presentation.Contracts.V1.Responses;
 
-public record LibraryResponse(Guid Id);
+public record LibraryResponse(Guid Id, List<CourseTemplateResponse> CourseTemplates);
 
 public record CourseTemplateResponse(
     Guid Id,

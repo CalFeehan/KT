@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KT.Infrastructure.Migrations
 {
     [DbContext(typeof(KTDbContext))]
-    [Migration("20240501213925_InitialCreate")]
+    [Migration("20240504160013_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

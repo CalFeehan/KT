@@ -1,6 +1,5 @@
 ﻿using System.Text.Json;
 using KT.Domain.CourseAggregate;
-using KT.Domain.CourseAggregate.Entities;
 using KT.Domain.CourseAggregate.ValueObjects;
 using KT.Domain.LearnerAggregate;
 using KT.Domain.SessionAggregate;
@@ -75,6 +74,6 @@ public class CourseConfigurations : IEntityTypeConfiguration<Course>
 
         builder.Navigation(c => c.Modules)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
-            .AutoInclude(false);
+            .AutoInclude(true);
     }
 }

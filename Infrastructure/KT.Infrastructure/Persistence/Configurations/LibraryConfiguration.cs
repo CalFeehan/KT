@@ -65,7 +65,7 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
 
         builder.Navigation(l => l.CourseTemplates)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
-            .AutoInclude(false);
+            .AutoInclude(true);
     }
     
     private void ConfigureModuleTemplateTable(EntityTypeBuilder<Library> builder)
@@ -122,7 +122,7 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
 
             courseTemplate.Navigation(ct => ct.ModuleTemplates)
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
-                .AutoInclude(false);
+                .AutoInclude(true);
         });
     }
 
@@ -144,7 +144,7 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
 
             courseTemplate.Navigation(ct => ct.SessionPlanTemplate)
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
-                .AutoInclude(false);
+                .AutoInclude(true);
         });
     }
 
@@ -189,6 +189,10 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
                         .HasMaxLength(500)
                         .IsRequired();
                 });
+
+                sessionPlanTemplate.Navigation(spt => spt.SessionTemplates)
+                    .UsePropertyAccessMode(PropertyAccessMode.Field)
+                    .AutoInclude(true);
             });
         });
     }
