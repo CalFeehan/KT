@@ -4,7 +4,7 @@ public record LearnerResponse(
     Guid Id, 
     string Forename, 
     string Surname,
-    DateOnly DateOfBirth,
+    DateTime DateOfBirth,
     AddressResponse Address,
     ContactDetailsResponse ContactDetails);
 

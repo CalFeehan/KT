@@ -9,9 +9,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KT.Presentation.API.V1.Controllers.Courses;
 
-[Route("[controller]")]
+/// <summary>
+/// Courses controller.
+/// </summary>
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class CoursesController(ISender mediatr,  IMapper mapper) : ApiController
 {
+    /// <summary>
+    /// Get a list of courses.
+    /// </summary>
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<CourseResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ListAsync()
@@ -22,6 +29,9 @@ public class CoursesController(ISender mediatr,  IMapper mapper) : ApiController
         return Ok(mapper.Map<IList<CourseResponse>>(courses));
     }
     
+    /// <summary>
+    /// Get a course by id.
+    /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(CourseResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
@@ -36,6 +46,9 @@ public class CoursesController(ISender mediatr,  IMapper mapper) : ApiController
         );
     }
 
+    /// <summary>
+    /// Create a course.
+    /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(CourseResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
@@ -58,6 +71,9 @@ public class CoursesController(ISender mediatr,  IMapper mapper) : ApiController
             Problem);
     }
 
+    /// <summary>
+    /// Delete a course.
+    /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]

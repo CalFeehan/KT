@@ -4,5 +4,5 @@ namespace KT.Presentation.Contracts.V1.Requests;
 
 public record ContactDetailsRequest(
     string Email,
-    string PhoneNumber,
+    string Phone,
     ContactPreference ContactPreference);

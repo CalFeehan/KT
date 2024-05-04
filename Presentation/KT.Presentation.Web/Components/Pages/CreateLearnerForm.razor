@@ -1,0 +1,71 @@
+﻿@page "/create-learner"
+
+@inject ILearnerService LearnerService
+@rendermode InteractiveServer
+
+<h3>Create Learner</h3>
+
+<EditForm Model="@createLearnerRequest" OnValidSubmit="CreateLearner" FormName="CreateLearnerForm">
+
+    <div class="form-group">
+        <label for="Forename">Forename</label>
+        <InputText id="Forename" class="form-control" @bind-Value="createLearnerRequest.Forename" />
+    </div>
+
+    <div class="form-group">
+        <label for="Surname">Surname</label>
+        <InputText id="Surname" class="form-control" @bind-Value="createLearnerRequest.Surname" />
+    </div>
+
+    <div class="form-group">
+        <label for="DateOfBirth">Date of Birth</label>
+        <InputDate id="DateOfBirth" class="form-control" @bind-Value="createLearnerRequest.DateOfBirth" />
+    </div>
+
+    <div class="form-group">
+        <label for="Line1">Line 1</label>
+        <InputText id="Line1" class="form-control" @bind-Value="createLearnerRequest.Address.Line1" />
+    </div>
+
+    <div class="form-group">
+        <label for="Line2">Line 2</label>
+        <InputText id="Line2" class="form-control" @bind-Value="createLearnerRequest.Address.Line2" />
+    </div>
+
+    <div class="form-group">
+        <label for="City">City</label>
+        <InputText id="City" class="form-control" @bind-Value="createLearnerRequest.Address.City" />
+    </div>
+
+    <div class="form-group">
+        <label for="County">County</label>
+        <InputText id="County" class="form-control" @bind-Value="createLearnerRequest.Address.County" />
+    </div>
+
+    <div class="form-group">
+        <label for="Postcode">Postcode</label>
+        <InputText id="Postcode" class="form-control" @bind-Value="createLearnerRequest.Address.Postcode" />
+    </div>
+
+    <div class="form-group">
+        <label for="Email">Email</label>
+        <InputText id="Email" class="form-control" @bind-Value="createLearnerRequest.ContactDetails.Email" />
+    </div>
+
+    <div class="form-group">
+        <label for="Phone">Phone Number</label>
+        <InputText id="Phone" class="form-control" @bind-Value="createLearnerRequest.ContactDetails.Phone" />
+    </div>
+    <button type="submit" class="btn btn-primary">Create Learner</button>
+
+</EditForm>
+
+
+@code {
+    public CreateLearnerRequest createLearnerRequest { get; set; } = new CreateLearnerRequest(){ Address = new AddressRequest(), ContactDetails = new ContactDetailsRequest() };
+
+    private async Task CreateLearner()
+    {
+        await LearnerService.LearnersPOSTAsync(createLearnerRequest);
+    }
+}

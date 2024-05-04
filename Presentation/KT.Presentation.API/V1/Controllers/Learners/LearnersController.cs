@@ -10,9 +10,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KT.Presentation.API.V1.Controllers.Learners;
 
-[Route("[controller]")]
+/// <summary>
+/// Learners controller.
+/// </summary>
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class LearnersController(ISender mediatr,  IMapper mapper) : ApiController
 {
+    /// <summary>
+    /// Get a list of learners.
+    /// </summary>
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<LearnerResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ListAsync()
@@ -24,6 +31,9 @@ public class LearnersController(ISender mediatr,  IMapper mapper) : ApiControlle
         return Ok(response);
     }
     
+    /// <summary>
+    /// Get a learner by id.
+    /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(LearnerResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
@@ -38,14 +48,17 @@ public class LearnersController(ISender mediatr,  IMapper mapper) : ApiControlle
         );
     }
 
+    /// <summary>
+    /// Create a learner.
+    /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(LearnerResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> CreateAsync([FromBody] CreateLearnerRequest request)
     {
-        var command = new CreateCommand(request.Forename, request.Surname, request.DateOfBirth, 
+        var command = new CreateCommand(request.Forename, request.Surname, DateOnly.FromDateTime(request.DateOfBirth), 
             Address.Create(request.Address.Line1, request.Address.Line2, request.Address.City, request.Address.County, request.Address.Postcode),
-            ContactDetails.Create(request.ContactDetails.Email, request.ContactDetails.PhoneNumber, request.ContactDetails.ContactPreference));
+            ContactDetails.Create(request.ContactDetails.Email, request.ContactDetails.Phone, request.ContactDetails.ContactPreference));
 
         var created = await mediatr.Send(command);
         
@@ -54,6 +67,9 @@ public class LearnersController(ISender mediatr,  IMapper mapper) : ApiControlle
             Problem);
     }
 
+    /// <summary>
+    /// Delete a learner by id.
+    /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]

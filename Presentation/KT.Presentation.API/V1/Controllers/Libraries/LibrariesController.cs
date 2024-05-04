@@ -9,9 +9,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KT.Presentation.API.V1.Controllers.Libraries;
 
-[Route("[controller]")]
+/// <summary>
+/// Libraries controller.
+/// </summary>
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class LibrariesController(ISender mediatr,  IMapper mapper) : ApiController
 {
+    /// <summary>
+    /// Get a list of libraries.
+    /// </summary>
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<LibraryResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ListAsync()
@@ -22,6 +29,9 @@ public class LibrariesController(ISender mediatr,  IMapper mapper) : ApiControll
         return Ok(mapper.Map<IList<LibraryResponse>>(libraries));
     }
     
+    /// <summary>
+    /// Get a library by id.
+    /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(LibraryResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
@@ -36,6 +46,9 @@ public class LibrariesController(ISender mediatr,  IMapper mapper) : ApiControll
         );
     }
 
+    /// <summary>
+    /// Create a library.
+    /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(LibraryResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
@@ -50,6 +63,9 @@ public class LibrariesController(ISender mediatr,  IMapper mapper) : ApiControll
             Problem);
     }
 
+    /// <summary>
+    /// Delete a library by id.
+    /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]

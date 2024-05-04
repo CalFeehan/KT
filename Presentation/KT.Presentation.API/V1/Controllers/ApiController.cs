@@ -5,9 +5,15 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace KT.Presentation.API.V1.Controllers;
 
+/// <summary>
+/// Base class for API controllers.
+/// </summary>
 [ApiController]
 public abstract class ApiController : ControllerBase
 {
+    /// <summary>
+    /// Create a ProblemDetails object.
+    /// </summary>
     protected IActionResult Problem(List<Error> errors)
     {
         if (errors.Count is 0)

@@ -9,9 +9,16 @@ using KT.Application.Learners.Commands.Delete;
 
 namespace KT.Presentation.API.V1.Controllers.Learners;
 
-[Route("learners/{learnerId:guid}/[controller]")]
+/// <summary>
+/// Learning plans controller.
+/// </summary>
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/learners/{learnerId:guid}/[controller]")]
 public class LearningPlansController(ISender mediatr,  IMapper mapper) : ApiController
 {
+    /// <summary>
+    /// Get a list of learning plans.
+    /// </summary>
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<LearningPlanResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ListAsync([FromRoute] Guid learnerId)
@@ -24,6 +31,9 @@ public class LearningPlansController(ISender mediatr,  IMapper mapper) : ApiCont
             Problem);
     }
     
+    /// <summary>
+    /// Get a learning plan by id.
+    /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(LearningPlanResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
@@ -38,6 +48,9 @@ public class LearningPlansController(ISender mediatr,  IMapper mapper) : ApiCont
         );
     }
 
+    /// <summary>
+    /// Create a learning plan.
+    /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(LearningPlanResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
@@ -52,6 +65,9 @@ public class LearningPlansController(ISender mediatr,  IMapper mapper) : ApiCont
             Problem);
     }
 
+    /// <summary>
+    /// Delete a learning plan.
+    /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]

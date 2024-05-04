@@ -9,9 +9,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KT.Presentation.API.V1.Controllers.Sessions;
 
-[Route("[controller]")]
+/// <summary>
+/// Sessions controller.
+/// </summary>
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/[controller]")]
 public class SessionsControllers(ISender mediatr,  IMapper mapper) : ApiController
 {
+    /// <summary>
+    /// Get a list of sessions.
+    /// </summary>
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<SessionResponse>), StatusCodes.Status200OK)]
     public async Task<IActionResult> ListAsync()
@@ -22,6 +29,9 @@ public class SessionsControllers(ISender mediatr,  IMapper mapper) : ApiControll
         return Ok(mapper.Map<IList<SessionResponse>>(sessions));
     }
     
+    /// <summary>
+    /// Get a session by id.
+    /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(SessionResponse), StatusCodes.Status200OK)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
@@ -36,6 +46,9 @@ public class SessionsControllers(ISender mediatr,  IMapper mapper) : ApiControll
         );
     }
 
+    /// <summary>
+    /// Create a session.
+    /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(SessionResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
@@ -58,6 +71,9 @@ public class SessionsControllers(ISender mediatr,  IMapper mapper) : ApiControll
             Problem);
     }
 
+    /// <summary>
+    /// Delete a session by id.
+    /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]

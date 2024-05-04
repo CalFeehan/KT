@@ -8,10 +8,16 @@ using System.Diagnostics;
 
 namespace KT.Presentation.API.Common.Errors;
 
+/// <summary>
+/// Factory for creating ProblemDetails and ValidationProblemDetails
+/// </summary>
 public class KTProblemDetailsFactory(IOptions<ApiBehaviorOptions> options) : ProblemDetailsFactory
 {
     private readonly ApiBehaviorOptions _options = options?.Value ?? throw new ArgumentNullException(nameof(options));
 
+    /// <summary>
+    /// Create a ProblemDetails object.
+    /// </summary>
     public override ProblemDetails CreateProblemDetails(
         HttpContext httpContext,
         int? statusCode = null,
@@ -36,6 +42,9 @@ public class KTProblemDetailsFactory(IOptions<ApiBehaviorOptions> options) : Pro
         return problemDetails;
     }
 
+    /// <summary>
+    /// Create a ValidationProblemDetails object.
+    /// </summary>
     public override ValidationProblemDetails CreateValidationProblemDetails(HttpContext httpContext, ModelStateDictionary modelStateDictionary, int? statusCode = null, string? title = null, string? type = null, string? detail = null, string? instance = null)
     {
         statusCode ??= StatusCodes.Status400BadRequest;

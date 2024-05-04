@@ -1,0 +1,60 @@
+﻿@page "/learners"
+
+@inject ILearnerService LearnerService
+
+<div style="margin-top: 10px; margin-bottom: 10px; text-align: right;">
+    <a href="create-learner" class="btn btn-primary">Create Learner</a>
+</div>
+
+<h3>Learners</h3>
+@if (learners == null)
+{
+    <p>Loading learners...</p>
+}
+else if (learners.Count == 0)
+{
+    <p>No learners found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Forename</th>
+                <th>Surname</th>
+                <th>Date of Birth</th>
+                <th>Address Line 1</th>
+                <th>Postcode</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Contact Preference</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var learner in learners)
+            {
+                <tr>
+                    <td>@learner.Forename</td>
+                    <td>@learner.Surname</td>
+                    <td>@learner.DateOfBirth.Date</td>
+                    <td>@learner.Address.Line1</td>
+                    <td>@learner.Address.PostCode</td>
+                    <td>@learner.ContactDetails.Email</td>
+                    <td>@learner.ContactDetails.Phone</td>
+                    <td>@learner.ContactDetails.ContactPreference</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+
+@code {
+    List<LearnerResponse> learners = [];
+
+    protected override async Task OnInitializedAsync()
+    {
+        learners = await LearnerService.LearnersAllAsync();
+    }
+}
