@@ -1,4 +1,5 @@
-﻿using KT.Presentation.API.Common.Errors;
+﻿using System.Text.Json.Serialization;
+using KT.Presentation.API.Common.Errors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.Versioning;
@@ -34,7 +35,9 @@ public static class DependencyInjection
         services.AddLogging();
         services.AddHealthChecks();
         services.AddMemoryCache();
-        services.AddControllers(options => options.SuppressAsyncSuffixInActionNames = true);
+        services.AddControllers(options => options.SuppressAsyncSuffixInActionNames = true)
+        .AddJsonOptions(options =>
+            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         services.AddRouting(options => options.LowercaseUrls = true);
         services.AddAutoMapper(typeof(DependencyInjection).Assembly);
 

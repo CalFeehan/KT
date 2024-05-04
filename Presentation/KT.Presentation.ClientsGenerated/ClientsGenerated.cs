@@ -1887,15 +1887,20 @@ namespace KT.Presentation.ClientsGenerated
     public enum AwardingOrganisation
     {
 
-        _0 = 0,
+        [System.Runtime.Serialization.EnumMember(Value = @"None")]
+        None = 0,
 
-        _1 = 1,
+        [System.Runtime.Serialization.EnumMember(Value = @"Other")]
+        Other = 1,
 
-        _2 = 2,
+        [System.Runtime.Serialization.EnumMember(Value = @"Pearson")]
+        Pearson = 2,
 
-        _3 = 3,
+        [System.Runtime.Serialization.EnumMember(Value = @"CityAndGuilds")]
+        CityAndGuilds = 3,
 
-        _4 = 4,
+        [System.Runtime.Serialization.EnumMember(Value = @"NCFE")]
+        NCFE = 4,
 
     }
 
@@ -1909,6 +1914,7 @@ namespace KT.Presentation.ClientsGenerated
         public string Phone { get; set; }
 
         [Newtonsoft.Json.JsonProperty("contactPreference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public ContactPreference ContactPreference { get; set; }
 
     }
@@ -1923,6 +1929,7 @@ namespace KT.Presentation.ClientsGenerated
         public string Phone { get; set; }
 
         [Newtonsoft.Json.JsonProperty("contactPreference", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public ContactPreference ContactPreference { get; set; }
 
     }
@@ -1931,9 +1938,11 @@ namespace KT.Presentation.ClientsGenerated
     public enum ContactPreference
     {
 
-        _0 = 0,
+        [System.Runtime.Serialization.EnumMember(Value = @"Email")]
+        Email = 0,
 
-        _1 = 1,
+        [System.Runtime.Serialization.EnumMember(Value = @"Phone")]
+        Phone = 1,
 
     }
 
@@ -1947,6 +1956,7 @@ namespace KT.Presentation.ClientsGenerated
         public System.Guid LearnerId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("courseStatus", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public CourseStatus CourseStatus { get; set; }
 
         [Newtonsoft.Json.JsonProperty("code", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -1979,17 +1989,23 @@ namespace KT.Presentation.ClientsGenerated
     public enum CourseStatus
     {
 
-        _0 = 0,
+        [System.Runtime.Serialization.EnumMember(Value = @"NotStarted")]
+        NotStarted = 0,
 
-        _1 = 1,
+        [System.Runtime.Serialization.EnumMember(Value = @"InProgress")]
+        InProgress = 1,
 
-        _2 = 2,
+        [System.Runtime.Serialization.EnumMember(Value = @"Completed")]
+        Completed = 2,
 
-        _3 = 3,
+        [System.Runtime.Serialization.EnumMember(Value = @"Failed")]
+        Failed = 3,
 
-        _4 = 4,
+        [System.Runtime.Serialization.EnumMember(Value = @"Withdrawn")]
+        Withdrawn = 4,
 
-        _5 = 5,
+        [System.Runtime.Serialization.EnumMember(Value = @"Suspended")]
+        Suspended = 5,
 
     }
 
@@ -2072,6 +2088,7 @@ namespace KT.Presentation.ClientsGenerated
         public System.Guid CourseId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("sessionType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public SessionType SessionType { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -2183,6 +2200,7 @@ namespace KT.Presentation.ClientsGenerated
         public System.Guid CourseId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("moduleStatus", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public ModuleStatus ModuleStatus { get; set; }
 
         [Newtonsoft.Json.JsonProperty("code", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -2198,6 +2216,7 @@ namespace KT.Presentation.ClientsGenerated
         public int Level { get; set; }
 
         [Newtonsoft.Json.JsonProperty("awardingOrganisation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public AwardingOrganisation AwardingOrganisation { get; set; }
 
         [Newtonsoft.Json.JsonProperty("criteria", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -2215,6 +2234,7 @@ namespace KT.Presentation.ClientsGenerated
         public System.Guid CourseId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("moduleStatus", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public ModuleStatus ModuleStatus { get; set; }
 
         [Newtonsoft.Json.JsonProperty("title", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -2230,6 +2250,7 @@ namespace KT.Presentation.ClientsGenerated
         public int Level { get; set; }
 
         [Newtonsoft.Json.JsonProperty("awardingOrganisation", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public AwardingOrganisation AwardingOrganisation { get; set; }
 
         [Newtonsoft.Json.JsonProperty("criteria", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -2241,13 +2262,17 @@ namespace KT.Presentation.ClientsGenerated
     public enum ModuleStatus
     {
 
-        _0 = 0,
+        [System.Runtime.Serialization.EnumMember(Value = @"NotStarted")]
+        NotStarted = 0,
 
-        _1 = 1,
+        [System.Runtime.Serialization.EnumMember(Value = @"InProgress")]
+        InProgress = 1,
 
-        _2 = 2,
+        [System.Runtime.Serialization.EnumMember(Value = @"Completed")]
+        Completed = 2,
 
-        _3 = 3,
+        [System.Runtime.Serialization.EnumMember(Value = @"Failed")]
+        Failed = 3,
 
     }
 
@@ -2261,6 +2286,7 @@ namespace KT.Presentation.ClientsGenerated
         public System.Guid CourseId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("sessionType", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [Newtonsoft.Json.JsonConverter(typeof(Newtonsoft.Json.Converters.StringEnumConverter))]
         public SessionType SessionType { get; set; }
 
         [Newtonsoft.Json.JsonProperty("startTime", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
@@ -2293,15 +2319,20 @@ namespace KT.Presentation.ClientsGenerated
     public enum SessionType
     {
 
-        _0 = 0,
+        [System.Runtime.Serialization.EnumMember(Value = @"Other")]
+        Other = 0,
 
-        _1 = 1,
+        [System.Runtime.Serialization.EnumMember(Value = @"Review")]
+        Review = 1,
 
-        _2 = 2,
+        [System.Runtime.Serialization.EnumMember(Value = @"TeachingAndLearning")]
+        TeachingAndLearning = 2,
 
-        _3 = 3,
+        [System.Runtime.Serialization.EnumMember(Value = @"Assessment")]
+        Assessment = 3,
 
-        _4 = 4,
+        [System.Runtime.Serialization.EnumMember(Value = @"Exam")]
+        Exam = 4,
 
     }
 

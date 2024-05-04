@@ -9,6 +9,7 @@ builder.Services.AddRazorComponents()
 
 // add services
 builder.Services.AddScoped<ILearnerService, LearnerService>();
+builder.Services.AddScoped<ILibraryService, LibraryService>();
 
 var app = builder.Build();
 

@@ -1,9 +1,12 @@
 ﻿@page "/create-learner"
 
 @inject ILearnerService LearnerService
+@inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
-<h3>Create Learner</h3>
+<PageTitle>Create Learner</PageTitle>
+
+<h3>Create a Learner</h3>
 
 <EditForm Model="@createLearnerRequest" OnValidSubmit="CreateLearner" FormName="CreateLearnerForm">
 
@@ -56,16 +59,33 @@
         <label for="Phone">Phone Number</label>
         <InputText id="Phone" class="form-control" @bind-Value="createLearnerRequest.ContactDetails.Phone" />
     </div>
-    <button type="submit" class="btn btn-primary">Create Learner</button>
+
+    <div class="form-group">
+        <label for="ContactPreference">Contact Preference</label>
+        <InputSelect id="ContactPreference" class="form-control" @bind-Value="createLearnerRequest.ContactDetails.ContactPreference">
+            <option value="Email">Email</option>
+            <option value="Phone">Phone</option>
+        </InputSelect>
+    </div>
+
+    <div class="d-flex justify-content-between">
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Create</button>
+        <button type="button" class="btn btn-secondary" style="margin-top: 10px;" @onclick="ListLearners">Cancel</button>
+    </div>
 
 </EditForm>
 
 
 @code {
-    public CreateLearnerRequest createLearnerRequest { get; set; } = new CreateLearnerRequest(){ Address = new AddressRequest(), ContactDetails = new ContactDetailsRequest() };
+    CreateLearnerRequest createLearnerRequest = new CreateLearnerRequest(){ Address = new AddressRequest(), ContactDetails = new ContactDetailsRequest() };
 
     private async Task CreateLearner()
     {
         await LearnerService.LearnersPOSTAsync(createLearnerRequest);
+    }
+
+    private void ListLearners()
+    {
+        NavigationManager.NavigateTo("list-learners");
     }
 }

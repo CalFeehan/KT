@@ -1,15 +1,18 @@
-﻿@page "/learners"
+﻿@page "/list-learners"
+@rendermode InteractiveServer
 
 @inject ILearnerService LearnerService
+@inject NavigationManager NavigationManager
 
-<div style="margin-top: 10px; margin-bottom: 10px; text-align: right;">
-    <a href="create-learner" class="btn btn-primary">Create Learner</a>
+<PageTitle>Learners</PageTitle>
+<div class="container d-flex justify-content-between">
+    <h3>Learners</h3>
+    <button class="btn btn-primary" style="margin: 10px;" @onclick="CreateLearner">Create a Learner</button>
 </div>
 
-<h3>Learners</h3>
 @if (learners == null)
 {
-    <p>Loading learners...</p>
+    <p>Loading...</p>
 }
 else if (learners.Count == 0)
 {
@@ -17,14 +20,14 @@ else if (learners.Count == 0)
 }
 else
 {
-    <table class="table">
+    <table class="table table-striped">
         <thead>
             <tr>
                 <th>Forename</th>
                 <th>Surname</th>
                 <th>Date of Birth</th>
                 <th>Address Line 1</th>
-                <th>Postcode</th>
+                <th>Address Line 2</th>
                 <th>Email</th>
                 <th>Phone</th>
                 <th>Contact Preference</th>
@@ -36,9 +39,9 @@ else
                 <tr>
                     <td>@learner.Forename</td>
                     <td>@learner.Surname</td>
-                    <td>@learner.DateOfBirth.Date</td>
+                    <td>@learner.DateOfBirth.ToString("d")</td>
                     <td>@learner.Address.Line1</td>
-                    <td>@learner.Address.PostCode</td>
+                    <td>@learner.Address.Line2</td>
                     <td>@learner.ContactDetails.Email</td>
                     <td>@learner.ContactDetails.Phone</td>
                     <td>@learner.ContactDetails.ContactPreference</td>
@@ -47,14 +50,16 @@ else
         </tbody>
     </table>
 }
-
-
-
 @code {
-    List<LearnerResponse> learners = [];
+    List<LearnerResponse> learners = new List<LearnerResponse>();
 
     protected override async Task OnInitializedAsync()
     {
         learners = await LearnerService.LearnersAllAsync();
+    }
+
+    private void CreateLearner()
+    {
+        NavigationManager.NavigateTo("create-learner");
     }
 }
