@@ -3,6 +3,8 @@ using KT.Domain.Common.ValueObjects;
 using KT.Domain.LearnerAggregate;
 using KT.Domain.LearnerAggregate.Entities;
 using KT.Domain.LibraryAggregate;
+using KT.Domain.LibraryAggregate.Entities;
+using KT.Domain.SessionAggregate;
 using KT.Presentation.Contracts.V1.Responses;
 
 namespace KT.Presentation.API;
@@ -23,6 +25,13 @@ public class DomainToResponseProfile : Profile
         CreateMap<ContactDetails, ContactDetailsResponse>();
         CreateMap<LearningPlan, LearningPlanResponse>();
         CreateMap<Library, LibraryResponse>();
+        CreateMap<Session, SessionResponse>();
+        CreateMap<CourseTemplate, CourseTemplateResponse>();
+        CreateMap<SessionPlanTemplate, SessionPlanTemplateResponse>();
+        CreateMap<SessionTemplate, SessionTemplateResponse>();
+        CreateMap<ActivityPlanTemplate, ActivityPlanTemplateResponse>();
+        CreateMap<ActivityTemplate, ActivityTemplateResponse>();
+        CreateMap<ModuleTemplate, ModuleTemplateResponse>();
     }
 }
 

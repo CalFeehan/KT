@@ -12,6 +12,7 @@ public record CourseTemplateResponse(
     string Description,
     string Code,
     int Level,
+    ActivityPlanTemplateResponse ActivityPlanTemplate,
     SessionPlanTemplateResponse SessionPlanTemplate,
     List<ModuleTemplateResponse> ModuleTemplates);
 
@@ -30,6 +31,20 @@ public record SessionTemplateResponse(
     string Location,
     string Notes,
     string MeetingLink);
+
+public record ActivityPlanTemplateResponse(
+    Guid Id,
+    Guid CourseTemplateId,
+    List<ActivityTemplateResponse> ActivityTemplates);
+
+public record ActivityTemplateResponse(
+    Guid Id,
+    Guid ActivityPlanTemplateId,
+    string Title,
+    string Description,
+    TimeSpan Duration,
+    List<Guid> DocumentIds,
+    List<Guid> ModuleTemplateIds);
 
 
 public record ModuleTemplateResponse(

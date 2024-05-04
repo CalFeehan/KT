@@ -14,7 +14,7 @@ namespace KT.Presentation.API.V1.Controllers.Sessions;
 /// </summary>
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-public class SessionsControllers(ISender mediatr,  IMapper mapper) : ApiController
+public class SessionsController(ISender mediatr,  IMapper mapper) : ApiController
 {
     /// <summary>
     /// Get a list of sessions.

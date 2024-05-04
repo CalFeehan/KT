@@ -1,6 +1,6 @@
 ﻿using KT.Domain.Common.Models;
 
-namespace KT.Domain;
+namespace KT.Domain.LibraryAggregate.Entities;
 
 public class ActivityTemplate : Entity
 {

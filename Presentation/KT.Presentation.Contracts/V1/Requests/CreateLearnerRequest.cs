@@ -6,3 +6,7 @@ public record CreateLearnerRequest(
     DateTime DateOfBirth,
     AddressRequest Address,
     ContactDetailsRequest ContactDetails);
+
+public record CreateLearningPlanRequest(
+    string Title,
+    string Description);
