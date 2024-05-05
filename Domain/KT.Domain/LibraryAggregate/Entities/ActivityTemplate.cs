@@ -1,4 +1,5 @@
 ﻿using KT.Domain.Common.Models;
+using KT.Domain.LibraryAggregate.ValueObjects;
 
 namespace KT.Domain.LibraryAggregate.Entities;
 
@@ -7,34 +8,48 @@ public class ActivityTemplate : Entity
     // parent id
     public Guid ActivityPlanTemplateId { get; private set; }
 
+
     // value objects
     public string Title { get; private set; }
 
     public string Description { get; private set; }
 
-    public TimeSpan Duration { get; private set; }
-
     public List<Guid> DocumentIds { get; private set; }
 
     public List<Guid> ModuleTemplateIds { get; private set; }
 
-    private ActivityTemplate(Guid id, Guid activityPlanTemplateId, string title, string description, TimeSpan duration, List<Guid> documentIds, List<Guid> moduleTemplateIds) 
+    public ScheduleDetails ScheduleDetails { get; private set; }
+
+
+    private ActivityTemplate(
+        Guid id, Guid activityPlanTemplateId, string title, string description, List<Guid> documentIds, List<Guid> moduleTemplateIds,
+        ScheduleDetails scheduleDetails) 
         : base(id)
     {
         ActivityPlanTemplateId = activityPlanTemplateId;
         Title = title;
         Description = description;
-        Duration = duration;
         DocumentIds = documentIds;
         ModuleTemplateIds = moduleTemplateIds;
+        ScheduleDetails = scheduleDetails;
     }
 
     public static ActivityTemplate Create(
-        Guid activityPlanTemplateId, string title, string description, TimeSpan duration, List<Guid> documentIds, List<Guid> moduleTemplateIds)
+        Guid activityPlanTemplateId, string title, string description, List<Guid> documentIds, List<Guid> moduleTemplateIds,
+        int startWeek, DayOfWeek dayOfWeek, TimeOnly startTime, TimeSpan expectedDuration)
     {
-        var activityTemplate = new ActivityTemplate(Guid.NewGuid(), activityPlanTemplateId, title, description, duration, documentIds, moduleTemplateIds);
+        var scheduleDetails = ScheduleDetails.Create(startWeek, dayOfWeek, startTime, expectedDuration);
+
+        var activityTemplate = new ActivityTemplate(
+            Guid.NewGuid(), activityPlanTemplateId, title, description, documentIds, moduleTemplateIds, scheduleDetails);
         
         return activityTemplate;
+    }
+
+    public ScheduleDetails ChangeScheduleDetails(int startWeek, DayOfWeek dayOfWeek, TimeOnly startTime, TimeSpan expectedDuration)
+    {
+        ScheduleDetails = ScheduleDetails.Create(startWeek, dayOfWeek, startTime, expectedDuration);
+        return ScheduleDetails;
     }
 
 

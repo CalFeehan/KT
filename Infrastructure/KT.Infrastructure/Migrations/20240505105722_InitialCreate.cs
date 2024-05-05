@@ -114,7 +114,8 @@ namespace KT.Infrastructure.Migrations
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Code = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Level = table.Column<int>(type: "int", nullable: false)
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    DurationInWeeks = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -215,9 +216,7 @@ namespace KT.Infrastructure.Migrations
                     Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Code = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
                     Level = table.Column<int>(type: "int", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ExpectedEndDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    ActualEndDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    DurationInWeeks = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -260,9 +259,9 @@ namespace KT.Infrastructure.Migrations
                     ActivityPlanTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Duration = table.Column<TimeSpan>(type: "time", nullable: false),
                     DocumentIds = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModuleTemplateIds = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    ModuleTemplateIds = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ScheduleDetails = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -284,8 +283,7 @@ namespace KT.Infrastructure.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SessionPlanTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     SessionType = table.Column<int>(type: "int", nullable: false),
-                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ScheduleDetails = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CohortId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Location = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Notes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),

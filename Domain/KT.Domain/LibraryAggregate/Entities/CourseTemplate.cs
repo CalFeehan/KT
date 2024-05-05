@@ -29,9 +29,11 @@ public class CourseTemplate : Entity
     public string Code { get; private set; }
 
     public int Level { get; private set; }
+
+    public int DurationInWeeks { get; private set; }
     
     
-    private CourseTemplate(Guid id, Guid libraryId, string title, string description, string code, int level) 
+    private CourseTemplate(Guid id, Guid libraryId, string title, string description, string code, int level, int durationInWeeks) 
         : base(id)
     {
         LibraryId = libraryId;
@@ -42,12 +44,13 @@ public class CourseTemplate : Entity
         Description = description;
         Code = code;
         Level = level;
+        DurationInWeeks = durationInWeeks;
     }
 
 
-    public static CourseTemplate Create(Guid libraryId, string title, string description, string code, int level)
+    public static CourseTemplate Create(Guid libraryId, string title, string description, string code, int level, int durationInWeeks)
     {
-        var courseTemplate = new CourseTemplate(Guid.NewGuid(), libraryId, title, description, code, level);
+        var courseTemplate = new CourseTemplate(Guid.NewGuid(), libraryId, title, description, code, level, durationInWeeks);
 
         courseTemplate.AddDomainEvent(new CourseTemplateCreated(courseTemplate));
 

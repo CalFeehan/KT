@@ -7,32 +7,33 @@ public record CreateLibraryRequest(LibraryType LibraryType, List<CreateCourseTem
 public record CreateCourseTemplateRequest(
     string Title,
     string Description,
+    string Code,
+    int Level,
+    int DurationInWeeks,
     List<CreateActivityPlanTemplateRequest> ActivityPlanTemplates,
     List<CreateSessionPlanTemplateRequest> SessionPlanTemplates,
-    List<CreateModuleTemplateRequest> ModuleTemplates
-);
+    List<CreateModuleTemplateRequest> ModuleTemplates);
 
-public record CreateSessionPlanTemplateRequest(List<CreateSessionTemplateRequest> SessionTemplates);
+public record CreateSessionPlanTemplateRequest(
+    List<CreateSessionTemplateRequest> SessionTemplates);
 
 public record CreateSessionTemplateRequest(
     SessionType SessionType,
-    DateTime StartTime,
-    DateTime EndTime,
     Guid? CohortId,
     string Location,
     string Notes,
-    string MeetingLink
-);
+    string MeetingLink,
+    SessionDetailsRequest SessionDetailsRequest);
 
-public record CreateActivityPlanTemplateRequest(List<CreateActivityTemplateRequest> ActivityTemplates);
+public record CreateActivityPlanTemplateRequest(
+    List<CreateActivityTemplateRequest> ActivityTemplates);
 
 public record CreateActivityTemplateRequest(
     string Title,
     string Description,
-    TimeSpan Duration,
     List<Guid> DocumentIds,
-    List<Guid> ModuleTemplateIds
-);
+    List<Guid> ModuleTemplateIds,
+    SessionDetailsRequest SessionDetailsRequest);
 
 public record CreateModuleTemplateRequest(
     ModuleType ModuleType,
@@ -40,8 +41,11 @@ public record CreateModuleTemplateRequest(
     string Description,
     string Code,
     int Level,
-    DateTime StartDate,
-    DateTime ExpectedEndDate,
-    DateTime? ActualEndDate
-);
+    int DurationInWeeks);
+
+public record SessionDetailsRequest(
+    int StartWeek,
+    DayOfWeek DayOfWeek,
+    TimeOnly StartTime,
+    TimeSpan ExpectedDuration);
 

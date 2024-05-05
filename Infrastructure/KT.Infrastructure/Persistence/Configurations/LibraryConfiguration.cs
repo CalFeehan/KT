@@ -62,6 +62,9 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
 
             courseTemplate.Property(ct => ct.Level)
                 .IsRequired();
+
+            courseTemplate.Property(ct => ct.DurationInWeeks)
+                .IsRequired();
         });
 
         builder.Navigation(l => l.CourseTemplates)
@@ -101,15 +104,9 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
 
                 moduleTemplate.Property(mt => mt.Level)
                     .IsRequired();
-                
-                moduleTemplate.Property(mt => mt.StartDate)
-                    .IsRequired();
 
-                moduleTemplate.Property(mt => mt.ExpectedEndDate)
+                moduleTemplate.Property(mt => mt.DurationInWeeks)
                     .IsRequired();
-
-                moduleTemplate.Property(mt => mt.ActualEndDate)
-                    .IsRequired(false);
 
                 // list of CriteriaTemplate value objects, serialized as JSON
                 moduleTemplate.Property(mt => mt.CriteriaTemplates)
@@ -166,12 +163,6 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
                     sessionTemplate.Property(st => st.SessionType)
                         .IsRequired();
 
-                    sessionTemplate.Property(st => st.StartTime)
-                        .IsRequired();
-
-                    sessionTemplate.Property(st => st.EndTime)
-                        .IsRequired();
-
                     sessionTemplate.Property(st => st.CohortId)
                         .IsRequired(false);
 
@@ -186,6 +177,13 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
                     sessionTemplate.Property(st => st.MeetingLink)
                         .HasMaxLength(500)
                         .IsRequired();
+
+                    sessionTemplate.Property(st => st.ScheduleDetails)
+                        .IsRequired()
+                        .HasConversion(
+                            sd => JsonSerializer.Serialize(sd, new JsonSerializerOptions()),
+                            sd => JsonSerializer.Deserialize<ScheduleDetails>(sd, new JsonSerializerOptions())!
+                        );
                 });
 
                 sessionPlanTemplate.Navigation(spt => spt.SessionTemplates)
@@ -239,9 +237,6 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
                     activityTemplate.Property(at => at.Description)
                         .IsRequired();
 
-                    activityTemplate.Property(at => at.Duration)
-                        .IsRequired();
-
                     // list of DocumentIds, serialized as JSON
                     activityTemplate.Property(at => at.DocumentIds)
                         .IsRequired()
@@ -256,6 +251,13 @@ public class LibraryConfiguration : IEntityTypeConfiguration<Library>
                         .HasConversion(
                             mti => JsonSerializer.Serialize(mti, new JsonSerializerOptions()),
                             mti => JsonSerializer.Deserialize<List<Guid>>(mti, new JsonSerializerOptions())!
+                        );
+
+                    activityTemplate.Property(at => at.ScheduleDetails)
+                        .IsRequired()
+                        .HasConversion(
+                            sd => JsonSerializer.Serialize(sd, new JsonSerializerOptions()),
+                            sd => JsonSerializer.Deserialize<ScheduleDetails>(sd, new JsonSerializerOptions())!
                         );
                 });
 

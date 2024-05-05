@@ -4,6 +4,7 @@ using KT.Domain.LearnerAggregate;
 using KT.Domain.LearnerAggregate.Entities;
 using KT.Domain.LibraryAggregate;
 using KT.Domain.LibraryAggregate.Entities;
+using KT.Domain.LibraryAggregate.ValueObjects;
 using KT.Domain.SessionAggregate;
 using KT.Presentation.Contracts.V1.Responses;
 
@@ -31,6 +32,7 @@ public class DomainToResponseProfile : Profile
         CreateMap<SessionTemplate, SessionTemplateResponse>();
         CreateMap<ActivityPlanTemplate, ActivityPlanTemplateResponse>();
         CreateMap<ActivityTemplate, ActivityTemplateResponse>();
+        CreateMap<ScheduleDetails, ScheduleDetailsResponse>();
         CreateMap<ModuleTemplate, ModuleTemplateResponse>();
     }
 }

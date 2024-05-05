@@ -24,14 +24,10 @@ public class ModuleTemplate : Entity
 
     public int Level { get; private set; }
 
-    public DateTime StartDate { get; private set; }
-
-    public DateTime ExpectedEndDate { get; private set; }
-
-    public DateTime? ActualEndDate { get; private set; }
+    public int DurationInWeeks { get; private set; }
 
     private ModuleTemplate(
-        Guid id, Guid courseTemplateId, string title, string description, string code, int level, DateTime startDate, DateTime expectedEndDate, DateTime? actualEndDate)
+        Guid id, Guid courseTemplateId, string title, string description, string code, int level, int durationInWeeks)
         : base(id)
     {
         CourseTemplateId = courseTemplateId;
@@ -39,16 +35,14 @@ public class ModuleTemplate : Entity
         Description = description;
         Code = code;
         Level = level;
-        StartDate = startDate;
-        ExpectedEndDate = expectedEndDate;
-        ActualEndDate = actualEndDate;
+        DurationInWeeks = durationInWeeks;
     }
 
     public static ModuleTemplate Create(
-        Guid courseTemplateId, string title, string description, string code, int level, DateTime startDate, DateTime expectedEndDate, DateTime? actualEndDate)
+        Guid courseTemplateId, string title, string description, string code, int level, int durationInWeeks)
     {
         var ModuleTemplate = new ModuleTemplate(
-            Guid.NewGuid(), courseTemplateId, title, description, code, level, startDate, expectedEndDate, actualEndDate);
+            Guid.NewGuid(), courseTemplateId, title, description, code, level, durationInWeeks);
 
         return ModuleTemplate;
     }

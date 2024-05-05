@@ -264,6 +264,9 @@ namespace KT.Infrastructure.Migrations
                                 .HasMaxLength(500)
                                 .HasColumnType("nvarchar(500)");
 
+                            b1.Property<int>("DurationInWeeks")
+                                .HasColumnType("int");
+
                             b1.Property<int>("Level")
                                 .HasColumnType("int");
 
@@ -284,7 +287,7 @@ namespace KT.Infrastructure.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("LibraryId");
 
-                            b1.OwnsOne("KT.Domain.ActivityPlanTemplate", "ActivityPlanTemplate", b2 =>
+                            b1.OwnsOne("KT.Domain.LibraryAggregate.Entities.ActivityPlanTemplate", "ActivityPlanTemplate", b2 =>
                                 {
                                     b2.Property<Guid>("Id")
                                         .HasColumnType("uniqueidentifier");
@@ -302,7 +305,7 @@ namespace KT.Infrastructure.Migrations
                                     b2.WithOwner()
                                         .HasForeignKey("CourseTemplateId");
 
-                                    b2.OwnsMany("KT.Domain.ActivityTemplate", "ActivityTemplates", b3 =>
+                                    b2.OwnsMany("KT.Domain.LibraryAggregate.Entities.ActivityTemplate", "ActivityTemplates", b3 =>
                                         {
                                             b3.Property<Guid>("Id")
                                                 .HasColumnType("uniqueidentifier");
@@ -318,10 +321,11 @@ namespace KT.Infrastructure.Migrations
                                                 .IsRequired()
                                                 .HasColumnType("nvarchar(max)");
 
-                                            b3.Property<TimeSpan>("Duration")
-                                                .HasColumnType("time");
-
                                             b3.Property<string>("ModuleTemplateIds")
+                                                .IsRequired()
+                                                .HasColumnType("nvarchar(max)");
+
+                                            b3.Property<string>("ScheduleDetails")
                                                 .IsRequired()
                                                 .HasColumnType("nvarchar(max)");
 
@@ -348,9 +352,6 @@ namespace KT.Infrastructure.Migrations
                                     b2.Property<Guid>("Id")
                                         .HasColumnType("uniqueidentifier");
 
-                                    b2.Property<DateTime?>("ActualEndDate")
-                                        .HasColumnType("datetime2");
-
                                     b2.Property<string>("Code")
                                         .IsRequired()
                                         .HasMaxLength(25)
@@ -368,17 +369,14 @@ namespace KT.Infrastructure.Migrations
                                         .HasMaxLength(500)
                                         .HasColumnType("nvarchar(500)");
 
-                                    b2.Property<DateTime>("ExpectedEndDate")
-                                        .HasColumnType("datetime2");
+                                    b2.Property<int>("DurationInWeeks")
+                                        .HasColumnType("int");
 
                                     b2.Property<int>("Level")
                                         .HasColumnType("int");
 
                                     b2.Property<int>("ModuleType")
                                         .HasColumnType("int");
-
-                                    b2.Property<DateTime>("StartDate")
-                                        .HasColumnType("datetime2");
 
                                     b2.Property<string>("Title")
                                         .IsRequired()
@@ -421,9 +419,6 @@ namespace KT.Infrastructure.Migrations
                                             b3.Property<Guid?>("CohortId")
                                                 .HasColumnType("uniqueidentifier");
 
-                                            b3.Property<DateTime>("EndTime")
-                                                .HasColumnType("datetime2");
-
                                             b3.Property<string>("Location")
                                                 .IsRequired()
                                                 .HasMaxLength(100)
@@ -439,14 +434,15 @@ namespace KT.Infrastructure.Migrations
                                                 .HasMaxLength(500)
                                                 .HasColumnType("nvarchar(500)");
 
+                                            b3.Property<string>("ScheduleDetails")
+                                                .IsRequired()
+                                                .HasColumnType("nvarchar(max)");
+
                                             b3.Property<Guid>("SessionPlanTemplateId")
                                                 .HasColumnType("uniqueidentifier");
 
                                             b3.Property<int>("SessionType")
                                                 .HasColumnType("int");
-
-                                            b3.Property<DateTime>("StartTime")
-                                                .HasColumnType("datetime2");
 
                                             b3.HasKey("Id");
 

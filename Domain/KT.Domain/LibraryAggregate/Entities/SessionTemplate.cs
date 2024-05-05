@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
-using KT.Common.Enums;
+﻿using KT.Common.Enums;
 using KT.Domain.Common.Models;
+using KT.Domain.LibraryAggregate.ValueObjects;
 
 namespace KT.Domain.LibraryAggregate.Entities;
 
@@ -14,9 +14,7 @@ public class SessionTemplate : Entity
     // value objects
     public SessionType SessionType { get; private set; }
 
-    public DateTime StartTime { get; private set; }
-
-    public DateTime EndTime { get; private set; }
+    public ScheduleDetails ScheduleDetails { get; private set; }
 
     public Guid? CohortId { get; private set; }
 
@@ -27,26 +25,34 @@ public class SessionTemplate : Entity
     public string MeetingLink { get; private set; } = string.Empty;
 
     private SessionTemplate(
-        Guid id, Guid sessionPlanTemplateId, SessionType sessionType, DateTime startTime, DateTime endTime, Guid? cohortId, string location, string notes, string meetingLink)
+        Guid id, Guid sessionPlanTemplateId, SessionType sessionType, Guid? cohortId, string location, string notes, string meetingLink, ScheduleDetails scheduleDetails)
         : base(id)
     {
         SessionPlanTemplateId = sessionPlanTemplateId;
         SessionType = sessionType;
-        StartTime = startTime;
-        EndTime = endTime;
         CohortId = cohortId;
         Location = location;
         Notes = notes;
         MeetingLink = meetingLink;
+        ScheduleDetails = scheduleDetails;
     }
 
     public static SessionTemplate Create(
-        Guid sessionPlanTemplateId, SessionType sessionType, DateTime startTime, DateTime endTime, Guid? cohortId, string location, string notes, string meetingLink)
+        Guid sessionPlanTemplateId, SessionType sessionType, Guid? cohortId, string location, string notes, string meetingLink, 
+        int startWeek, DayOfWeek dayOfWeek, TimeOnly startTime, TimeSpan expectedDuration)
     {
+        var scheduleDetails = ScheduleDetails.Create(startWeek, dayOfWeek, startTime, expectedDuration);
+        
         var sessionTemplate = new SessionTemplate(
-            Guid.NewGuid(), sessionPlanTemplateId, sessionType, startTime, endTime, cohortId, location, notes, meetingLink);
+            Guid.NewGuid(), sessionPlanTemplateId, sessionType, cohortId, location, notes, meetingLink, scheduleDetails);
 
         return sessionTemplate;
+    }
+
+    public ScheduleDetails ChangeScheduleDetails(int startWeek, DayOfWeek dayOfWeek, TimeOnly startTime, TimeSpan expectedDuration)
+    {
+        ScheduleDetails = ScheduleDetails.Create(startWeek, dayOfWeek, startTime, expectedDuration);
+        return ScheduleDetails;
     }
 
 
