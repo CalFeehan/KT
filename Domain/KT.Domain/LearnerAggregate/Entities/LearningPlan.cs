@@ -3,19 +3,30 @@ using KT.Domain.Common.Models;
 
 namespace KT.Domain.LearnerAggregate.Entities;
 
+/// <summary>
+/// A learning plan is used to define a specific plan that a learner will follow.
+/// It will track progress and completion of the plan.
+/// </summary>
 public class LearningPlan : Entity
 {
-    // parent id
+    /// <summary>
+    /// The ID of the learner that this learning plan belongs to.
+    /// </summary>
     public Guid LearnerId { get; private set; }
 
-    // entities
-
-    // value objects
+    /// <summary>
+    /// The title of the learning plan. E.g., "Software Development Plan"
+    /// </summary>
     public string Title { get; private set; }
 
+    /// <summary>
+    /// The description of the learning plan. E.g., "This plan will cover the basics of software development."
+    /// </summary>
     public string Description { get; private set; }
 
-
+    /// <summary>
+    /// Private constructor to ensure that the only way to create a learning plan is through the Create method.
+    /// </summary>
     private LearningPlan(Guid id, Guid learnerId, string title, string description)
         : base(id)
     {
@@ -24,7 +35,9 @@ public class LearningPlan : Entity
         Description = description;
     }
 
-
+    /// <summary>
+    /// Creates a new learning plan.
+    /// </summary>
     public static LearningPlan Create(Guid learnerId, string title, string description)
     {
         var learningPlan = new LearningPlan(Guid.NewGuid(), learnerId, title, description);

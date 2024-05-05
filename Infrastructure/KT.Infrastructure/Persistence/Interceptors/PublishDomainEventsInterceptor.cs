@@ -5,8 +5,15 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace KT.Infrastructure;
 
+/// <summary>
+/// An interceptor that publishes domain events when saving changes to the database.
+/// This will ensure that all subsequent actions are also part of the same transaction.
+/// </summary>
 public class PublishDomainEventsInterceptor : SaveChangesInterceptor
 {
+    /// <summary>
+    /// The publisher used to publish domain events.
+    /// </summary>
     private readonly IPublisher _publisher;
 
     public PublishDomainEventsInterceptor(IPublisher publisher)
@@ -24,7 +31,10 @@ public class PublishDomainEventsInterceptor : SaveChangesInterceptor
         await PublishDomainEvents(eventData.Context);
         return await base.SavingChangesAsync(eventData, result, cancellationToken);
     }
-    
+
+    /// <summary>
+    /// Publishes the domain events for the entities that have them, and clears the domain events.
+    /// </summary>
     private async Task PublishDomainEvents(DbContext? context)
     {
         var entitiesWithDomainEvents = context?.ChangeTracker.Entries<Entity>()

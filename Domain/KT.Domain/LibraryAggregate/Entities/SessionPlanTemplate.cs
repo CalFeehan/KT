@@ -2,26 +2,43 @@
 
 namespace KT.Domain.LibraryAggregate.Entities;
 
+/// <summary>
+/// A session plan template holds all of the details needed to create a series of sessions,
+/// including all details of those sessions.
+/// </summary>
 public class SessionPlanTemplate : Entity
 {
-    // parent id
+    /// <summary>
+    /// The course template that this session plan template belongs to.
+    /// </summary>
     public Guid CourseTemplateId { get; private set; }
 
 
-    // entities
+    /// <summary>
+    /// The inner collection of session templates.
+    /// Note: This is a private collection, so it can only be modified by the SessionPlanTemplate itself.
+    /// </summary>
     private readonly List<SessionTemplate> _sessionTemplates = [];
+
+    /// <summary>
+    /// The public accessor for the session templates.
+    /// This is read-only, so it can't be modified by external classes.
+    /// </summary>
     public IReadOnlyCollection<SessionTemplate> SessionTemplates => _sessionTemplates.AsReadOnly();
 
-
-    // value objects
-
-
+    /// <summary>
+    /// Creates a new session plan template.
+    /// Private constructor to ensure that the only way to create a session plan template is through the Create method.
+    /// </summary>
     private SessionPlanTemplate(Guid id, Guid courseTemplateId) : base(id)
     {
         CourseTemplateId = courseTemplateId;
     }
 
-
+    /// <summary>
+    /// Creates a new session plan template.
+    /// This should only be used once per course template.
+    /// </summary>
     public static SessionPlanTemplate Create(Guid courseTemplateId)
     {
         var sessionPlanTemplate = new SessionPlanTemplate(Guid.NewGuid(), courseTemplateId);
@@ -29,11 +46,17 @@ public class SessionPlanTemplate : Entity
         return sessionPlanTemplate;
     }
 
+    /// <summary>
+    /// Adds a session template to the session plan template.
+    /// </summary>
     public void AddSessionTemplate(SessionTemplate sessionTemplate)
     {
         _sessionTemplates.Add(sessionTemplate);
     }
 
+    /// <summary>
+    /// Removes a session template from the session plan template.
+    /// </summary>
     public void RemoveSessionTemplate(SessionTemplate sessionTemplate)
     {
         _sessionTemplates.Remove(sessionTemplate);

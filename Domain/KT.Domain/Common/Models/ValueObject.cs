@@ -1,5 +1,9 @@
 ﻿namespace KT.Domain.Common.Models;
 
+/// <summary>
+/// A value object is an object that is defined by its attributes.
+/// Value objects have no unique identity, and are considered equal if their attributes are equal.
+/// </summary>
 public abstract class ValueObject : IEquatable<ValueObject>
 {
     public static bool EqualOperator(ValueObject left, ValueObject right)

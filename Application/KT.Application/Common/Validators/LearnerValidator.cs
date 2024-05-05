@@ -19,5 +19,4 @@ public class LearnerValidator : AbstractValidator<Learner>
             .NotEmpty().WithMessage("Date of birth is required.")
             .LessThan(DateOnly.FromDateTime(DateTime.Now)).WithMessage("Date of birth must be in the past.");
     }
-
 }
