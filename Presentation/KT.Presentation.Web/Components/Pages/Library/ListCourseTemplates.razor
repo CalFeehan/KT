@@ -1,13 +1,13 @@
 ﻿@page "/list-course-templates"
 @rendermode InteractiveServer
 
-@inject ILibraryService LibraryService
+@inject ICourseTemplateService CourseTemplateService
 @inject NavigationManager NavigationManager
 
 <PageTitle>Course Templates</PageTitle>
     <h3>Course Templates</h3>
 
-@if (library == null)
+@if (courseTemplates == null)
 {
     <p>Loading...</p>
 }
@@ -17,11 +17,10 @@ else
     
 }
 @code {
-    LibraryResponse library  = new LibraryResponse();
+    List<CourseTemplateResponse> courseTemplates  = new List<CourseTemplateResponse>();
 
     protected override async Task OnInitializedAsync()
     {
-        var libraries = await LibraryService.LibrariesAllAsync();
-        library = libraries.FirstOrDefault() ?? new LibraryResponse();
+        var courseTemplates = await CourseTemplateService.CourseTemplatesAllAsync();
     }
 }

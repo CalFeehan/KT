@@ -1,7 +1,7 @@
 using KT.Domain;
 using KT.Domain.CourseAggregate;
+using KT.Domain.CourseTemplateAggregate;
 using KT.Domain.LearnerAggregate;
-using KT.Domain.LibraryAggregate;
 using KT.Domain.SessionAggregate;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,7 +15,7 @@ public class KTDbContext : DbContext
 
     public DbSet<Course> Courses { get; set; }
 
-    public DbSet<Library> Libraries { get; set; }
+    public DbSet<CourseTemplate> CourseTemplates { get; set; }
 
     public DbSet<Session> Sessions { get; set; }
 

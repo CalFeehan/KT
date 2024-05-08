@@ -14,6 +14,7 @@
     <ItemGroup>
       <Folder Include="ApplicantAggregate/" />
       <Folder Include="AssessmentAggregate/" />
+      <Folder Include="CourseTemplateAggregate/Events/" />
       <Folder Include="DocumentAggregate/" />
       <Folder Include="FormAggregate/" />
       <Folder Include="LearnerAggregate/ValueObjects/" />

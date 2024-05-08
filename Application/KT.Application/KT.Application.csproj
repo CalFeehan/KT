@@ -13,8 +13,8 @@
       <Folder Include="Learners/Commands/Update/" />
       <Folder Include="Learners/Events/" />
       <Folder Include="Learners/Queries/GetLearners" />
-      <Folder Include="Libraries/Commands/Update/" />
-      <Folder Include="Libraries/Events/" />
+      <Folder Include="CourseTemplates/Commands/Update/" />
+      <Folder Include="CourseTemplates/Events/" />
       <Folder Include="Sessions/Commands/Update/" />
       <Folder Include="Sessions/Events/" />
     </ItemGroup>

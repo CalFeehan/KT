@@ -21,7 +21,7 @@ public static class DependencyInjection
         
         services.AddScoped<ILearnerRepository, LearnerRepository>();
         services.AddScoped<ICourseRepository, CourseRepository>();
-        services.AddScoped<ILibraryRepository, LibraryRepository>();
+        services.AddScoped<ICourseTemplateRepository, CourseTemplateRepository>();
         services.AddScoped<ISessionRepository, SessionRepository>();
 
         return services;

@@ -4,9 +4,9 @@ using KT.Domain.CourseAggregate;
 using KT.Domain.CourseAggregate.ValueObjects;
 using KT.Domain.LearnerAggregate;
 using KT.Domain.LearnerAggregate.Entities;
-using KT.Domain.LibraryAggregate;
-using KT.Domain.LibraryAggregate.Entities;
-using KT.Domain.LibraryAggregate.ValueObjects;
+using KT.Domain.CourseTemplateAggregate;
+using KT.Domain.CourseTemplateAggregate.Entities;
+using KT.Domain.CourseTemplateAggregate.ValueObjects;
 using KT.Domain.SessionAggregate;
 using KT.Presentation.Contracts.V1.Requests;
 
@@ -26,7 +26,6 @@ public class RequestToDomainMappingProfile : Profile
         CreateMap<AddLearnerRequest, Learner>();
         CreateMap<AddSessionRequest, Session>();
         CreateMap<AddCourseRequest, Course>();
-        CreateMap<AddLibraryRequest, Library>();
 
         // entities
         CreateMap<AddLearningPlanRequest, LearningPlan>();

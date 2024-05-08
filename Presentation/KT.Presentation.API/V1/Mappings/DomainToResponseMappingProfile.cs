@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
 using KT.Domain.Common.ValueObjects;
 using KT.Domain.CourseAggregate.ValueObjects;
+using KT.Domain.CourseTemplateAggregate;
+using KT.Domain.CourseTemplateAggregate.Entities;
+using KT.Domain.CourseTemplateAggregate.ValueObjects;
 using KT.Domain.LearnerAggregate;
 using KT.Domain.LearnerAggregate.Entities;
-using KT.Domain.LibraryAggregate;
-using KT.Domain.LibraryAggregate.Entities;
-using KT.Domain.LibraryAggregate.ValueObjects;
 using KT.Domain.SessionAggregate;
 using KT.Presentation.Contracts.V1.Responses;
 
@@ -24,7 +24,6 @@ public class DomainToResponseProfile : Profile
         // aggregate roots
         CreateMap<Learner, LearnerResponse>()
             .ForCtorParam("DateOfBirth", opt => opt.MapFrom(src => src.DateOfBirth.ToDateTime(TimeOnly.MinValue)));
-        CreateMap<Library, LibraryResponse>();
         CreateMap<Session, SessionResponse>();
 
         // entities
