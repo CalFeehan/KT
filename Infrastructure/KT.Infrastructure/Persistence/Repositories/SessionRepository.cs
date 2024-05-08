@@ -13,14 +13,14 @@ public class SessionRepository : ISessionRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Session> CreateAsync(Session entity)
+    public async Task<Session> AddAsync(Session entity)
     {
         var session = (await _dbContext.Sessions.AddAsync(entity)).Entity;
         await _dbContext.SaveChangesAsync();
         return session;
     }
 
-    public async Task<int> DeleteAsync(Guid id)
+    public async Task<int> RemoveAsync(Guid id)
     {
         var session = await _dbContext.Sessions.FindAsync(id);
         if (session is null)

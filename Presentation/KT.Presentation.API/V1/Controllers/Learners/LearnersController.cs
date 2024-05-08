@@ -1,6 +1,6 @@
 using AutoMapper;
-using KT.Application.Learners.Commands.Create;
-using KT.Application.Learners.Commands.Delete;
+using KT.Application.Learners.Commands.Add;
+using KT.Application.Learners.Commands.Remove;
 using KT.Application.Learners.Queries.GetLearners;
 using KT.Domain.Common.ValueObjects;
 using KT.Presentation.Contracts.V1.Requests;
@@ -49,14 +49,14 @@ public class LearnersController(ISender mediatr,  IMapper mapper) : ApiControlle
     }
 
     /// <summary>
-    /// Create a learner.
+    /// Adds a learner.
     /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(LearnerResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateLearnerRequest request)
+    public async Task<IActionResult> AddAsync([FromBody] AddLearnerRequest request)
     {
-        var command = new CreateCommand(request.Forename, request.Surname, DateOnly.FromDateTime(request.DateOfBirth), 
+        var command = new AddLearnerCommand(request.Forename, request.Surname, DateOnly.FromDateTime(request.DateOfBirth), 
             Address.Create(request.Address.Line1, request.Address.Line2, request.Address.City, request.Address.County, request.Address.Postcode),
             ContactDetails.Create(request.ContactDetails.Email, request.ContactDetails.Phone, request.ContactDetails.ContactPreference));
 
@@ -68,14 +68,14 @@ public class LearnersController(ISender mediatr,  IMapper mapper) : ApiControlle
     }
 
     /// <summary>
-    /// Delete a learner by id.
+    /// Removes a learner by id.
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteAsync(Guid id)
+    public async Task<IActionResult> RemoveAsync(Guid id)
     {
-        var command = new DeleteCommand(id);
+        var command = new RemoveLearnerCommand(id);
         var deleted = await mediatr.Send(command);
         
         return deleted.Match(

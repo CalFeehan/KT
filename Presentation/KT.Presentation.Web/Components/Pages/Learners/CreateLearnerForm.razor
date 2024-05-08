@@ -1,75 +1,75 @@
-﻿@page "/create-learner"
+﻿@page "/add-learner"
 
 @inject ILearnerService LearnerService
 @inject NavigationManager NavigationManager
 @rendermode InteractiveServer
 
-<PageTitle>Create Learner</PageTitle>
+<PageTitle>Add Learner</PageTitle>
 
-<h3>Create a Learner</h3>
+<h3>Add a Learner</h3>
 
-<EditForm Model="@createLearnerRequest" OnValidSubmit="CreateLearner" FormName="CreateLearnerForm">
+<EditForm Model="@addLearnerRequest" OnValidSubmit="AddLearner" FormName="AddLearnerForm">
 
     <div class="form-group">
         <label for="Forename">Forename</label>
-        <InputText id="Forename" class="form-control" @bind-Value="createLearnerRequest.Forename" />
+        <InputText id="Forename" class="form-control" @bind-Value="addLearnerRequest.Forename" />
     </div>
 
     <div class="form-group">
         <label for="Surname">Surname</label>
-        <InputText id="Surname" class="form-control" @bind-Value="createLearnerRequest.Surname" />
+        <InputText id="Surname" class="form-control" @bind-Value="addLearnerRequest.Surname" />
     </div>
 
     <div class="form-group">
         <label for="DateOfBirth">Date of Birth</label>
-        <InputDate id="DateOfBirth" class="form-control" @bind-Value="createLearnerRequest.DateOfBirth" />
+        <InputDate id="DateOfBirth" class="form-control" @bind-Value="addLearnerRequest.DateOfBirth" />
     </div>
 
     <div class="form-group">
         <label for="Line1">Line 1</label>
-        <InputText id="Line1" class="form-control" @bind-Value="createLearnerRequest.Address.Line1" />
+        <InputText id="Line1" class="form-control" @bind-Value="addLearnerRequest.Address.Line1" />
     </div>
 
     <div class="form-group">
         <label for="Line2">Line 2</label>
-        <InputText id="Line2" class="form-control" @bind-Value="createLearnerRequest.Address.Line2" />
+        <InputText id="Line2" class="form-control" @bind-Value="addLearnerRequest.Address.Line2" />
     </div>
 
     <div class="form-group">
         <label for="City">City</label>
-        <InputText id="City" class="form-control" @bind-Value="createLearnerRequest.Address.City" />
+        <InputText id="City" class="form-control" @bind-Value="addLearnerRequest.Address.City" />
     </div>
 
     <div class="form-group">
         <label for="County">County</label>
-        <InputText id="County" class="form-control" @bind-Value="createLearnerRequest.Address.County" />
+        <InputText id="County" class="form-control" @bind-Value="addLearnerRequest.Address.County" />
     </div>
 
     <div class="form-group">
         <label for="Postcode">Postcode</label>
-        <InputText id="Postcode" class="form-control" @bind-Value="createLearnerRequest.Address.Postcode" />
+        <InputText id="Postcode" class="form-control" @bind-Value="addLearnerRequest.Address.Postcode" />
     </div>
 
     <div class="form-group">
         <label for="Email">Email</label>
-        <InputText id="Email" class="form-control" @bind-Value="createLearnerRequest.ContactDetails.Email" />
+        <InputText id="Email" class="form-control" @bind-Value="addLearnerRequest.ContactDetails.Email" />
     </div>
 
     <div class="form-group">
         <label for="Phone">Phone Number</label>
-        <InputText id="Phone" class="form-control" @bind-Value="createLearnerRequest.ContactDetails.Phone" />
+        <InputText id="Phone" class="form-control" @bind-Value="addLearnerRequest.ContactDetails.Phone" />
     </div>
 
     <div class="form-group">
         <label for="ContactPreference">Contact Preference</label>
-        <InputSelect id="ContactPreference" class="form-control" @bind-Value="createLearnerRequest.ContactDetails.ContactPreference">
+        <InputSelect id="ContactPreference" class="form-control" @bind-Value="addLearnerRequest.ContactDetails.ContactPreference">
             <option value="Email">Email</option>
             <option value="Phone">Phone</option>
         </InputSelect>
     </div>
 
     <div class="d-flex justify-content-between">
-        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Create</button>
+        <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Add</button>
         <button type="button" class="btn btn-secondary" style="margin-top: 10px;" @onclick="ListLearners">Back</button>
     </div>
 
@@ -77,11 +77,11 @@
 
 
 @code {
-    CreateLearnerRequest createLearnerRequest = new CreateLearnerRequest(){ Address = new AddressRequest(), ContactDetails = new ContactDetailsRequest() };
+    AddLearnerRequest addLearnerRequest = new AddLearnerRequest(){ Address = new AddressRequest(), ContactDetails = new ContactDetailsRequest() };
 
-    private async Task CreateLearner()
+    private async Task AddLearner()
     {
-        await LearnerService.LearnersPOSTAsync(createLearnerRequest);
+        await LearnerService.LearnersPOSTAsync(addLearnerRequest);
     }
 
     private void ListLearners()

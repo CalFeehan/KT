@@ -95,7 +95,7 @@ public class CourseTemplate : Entity
     {
         var courseTemplate = new CourseTemplate(Guid.NewGuid(), libraryId, title, description, code, level, durationInWeeks);
 
-        courseTemplate.AddDomainEvent(new CourseTemplateCreated(courseTemplate));
+        courseTemplate.AddDomainEvent(new CourseTemplateAdded(courseTemplate));
 
         return courseTemplate;
     }

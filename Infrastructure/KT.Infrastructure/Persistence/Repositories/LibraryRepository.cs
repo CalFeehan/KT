@@ -13,14 +13,14 @@ public class LibraryRepository : ILibraryRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Library> CreateAsync(Library entity)
+    public async Task<Library> AddAsync(Library entity)
     {
         var library = (await _dbContext.Libraries.AddAsync(entity)).Entity;
         await _dbContext.SaveChangesAsync();
         return library;
     }
 
-    public async Task<int> DeleteAsync(Guid id)
+    public async Task<int> RemoveAsync(Guid id)
     {
         var library = await _dbContext.Libraries.FindAsync(id);
         if (library is null)

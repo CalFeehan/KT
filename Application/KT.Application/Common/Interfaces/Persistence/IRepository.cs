@@ -3,9 +3,9 @@ namespace KT.Application.Common.Interfaces.Persistence;
 public interface IRepository<T> where T : class
 {
     /// <summary>
-    /// Creates the entity in the database.
+    /// Adds the entity to the database.
     /// </summary>
-    Task<T> CreateAsync(T entity);
+    Task<T> AddAsync(T entity);
 
     /// <summary>
     /// Get the entity by id.
@@ -18,9 +18,9 @@ public interface IRepository<T> where T : class
     Task<IList<T>> ListAsync();
 
     /// <summary>
-    /// Delete an entity by id. Returns number of records effected.
+    /// Remove an entity by id. Returns number of records effected.
     /// </summary>
-    Task<int> DeleteAsync(Guid id);
+    Task<int> RemoveAsync(Guid id);
 
     /// <summary>
     /// Update an entity.

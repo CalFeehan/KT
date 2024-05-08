@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using KT.Application.Libraries.Commands.Create;
-using KT.Application.Libraries.Commands.Delete;
+using KT.Application.Libraries.Commands.Add;
+using KT.Application.Libraries.Commands.Remove;
 using KT.Application.Libraries.Queries.GetCourse;
 using KT.Presentation.Contracts.V1.Requests;
 using KT.Presentation.Contracts.V1.Responses;
@@ -47,14 +47,14 @@ public class LibrariesController(ISender mediatr,  IMapper mapper) : ApiControll
     }
 
     /// <summary>
-    /// Create a library.
+    /// Add a library.
     /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(LibraryResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateLibraryRequest request)
+    public async Task<IActionResult> AddAsync([FromBody] AddLibraryRequest request)
     {
-        var command = new CreateCommand();
+        var command = new AddLibraryCommand();
 
         var created = await mediatr.Send(command);
         
@@ -64,17 +64,58 @@ public class LibrariesController(ISender mediatr,  IMapper mapper) : ApiControll
     }
 
     /// <summary>
-    /// Delete a library by id.
+    /// Remove a library by id.
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
+    public async Task<IActionResult> RemoveAsync([FromRoute] Guid id)
     {
-        var command = new DeleteCommand(id);
+        var command = new RemoveLibraryCommand(id);
         var deleted = await mediatr.Send(command);
         
         return deleted.Match(
+            authResult => NoContent(),
+            Problem);
+    }
+
+    /// <summary>
+    /// Add a course template to a library.
+    /// </summary>
+    [HttpPost("{libraryId:guid}/course-templates")]
+    [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> AddCourseTemplateAsync([FromRoute] Guid libraryId, [FromBody] AddCourseTemplateRequest request)
+    {
+        var command = new AddCourseTemplateCommand(
+            libraryId,
+            request.Title,
+            request.Description,
+            request.Code,
+            request.Level,
+            request.DurationInWeeks);
+
+        var added = await mediatr.Send(command);
+        
+        return added.Match(
+            authResult => NoContent(),
+            Problem);
+    }
+
+    /// <summary>
+    /// Remove a course template from a library.
+    /// </summary>
+    [HttpDelete("{libraryId:guid}/course-templates/{courseTemplateId:guid}")]
+    [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> RemoveCourseTemplateAsync([FromRoute] Guid libraryId, [FromRoute]
+    Guid courseTemplateId)
+    {
+        var command = new RemoveCourseTemplateCommand(libraryId, courseTemplateId);
+        var removed = await mediatr.Send(command);
+        
+        return removed.Match(
             authResult => NoContent(),
             Problem);
     }

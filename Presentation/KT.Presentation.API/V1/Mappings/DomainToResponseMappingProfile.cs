@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using KT.Domain.Common.ValueObjects;
+using KT.Domain.CourseAggregate.ValueObjects;
 using KT.Domain.LearnerAggregate;
 using KT.Domain.LearnerAggregate.Entities;
 using KT.Domain.LibraryAggregate;
@@ -20,20 +21,27 @@ public class DomainToResponseProfile : Profile
     /// </summary>
     public DomainToResponseProfile()
     {
+        // aggregate roots
         CreateMap<Learner, LearnerResponse>()
             .ForCtorParam("DateOfBirth", opt => opt.MapFrom(src => src.DateOfBirth.ToDateTime(TimeOnly.MinValue)));
-        CreateMap<Address, AddressResponse>();
-        CreateMap<ContactDetails, ContactDetailsResponse>();
-        CreateMap<LearningPlan, LearningPlanResponse>();
         CreateMap<Library, LibraryResponse>();
         CreateMap<Session, SessionResponse>();
+
+        // entities
+        CreateMap<LearningPlan, LearningPlanResponse>();
         CreateMap<CourseTemplate, CourseTemplateResponse>();
         CreateMap<SessionPlanTemplate, SessionPlanTemplateResponse>();
         CreateMap<SessionTemplate, SessionTemplateResponse>();
         CreateMap<ActivityPlanTemplate, ActivityPlanTemplateResponse>();
         CreateMap<ActivityTemplate, ActivityTemplateResponse>();
-        CreateMap<ScheduleDetails, ScheduleDetailsResponse>();
         CreateMap<ModuleTemplate, ModuleTemplateResponse>();
+
+        // value objects
+        CreateMap<Criteria, CriteriaResponse>();
+        CreateMap<CriteriaTemplate, CriteriaTemplateResponse>();
+        CreateMap<ScheduleDetails, ScheduleDetailsResponse>();
+        CreateMap<Address, AddressResponse>();
+        CreateMap<ContactDetails, ContactDetailsResponse>();
     }
 }
 

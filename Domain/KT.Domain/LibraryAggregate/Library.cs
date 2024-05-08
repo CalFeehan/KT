@@ -38,6 +38,25 @@ public class Library : AggregateRoot
         return library;
     }
 
+    public CourseTemplate AddCourseTemplate(string title, string description, string code, int level, int durationInDays)
+    {
+        var courseTemplate = CourseTemplate.Create(Id, title, description, code, level, durationInDays);
+
+        _courseTemplates.Add(courseTemplate);
+
+        return courseTemplate;
+    }
+
+    public void RemoveCourseTemplate(Guid courseTemplateId)
+    {
+        var courseTemplate = _courseTemplates.FirstOrDefault(x => x.Id == courseTemplateId);
+        if (courseTemplate is null)
+        {
+            return;
+        }
+
+        _courseTemplates.Remove(courseTemplate);
+    }
 
     #region EF Core Constructor
 

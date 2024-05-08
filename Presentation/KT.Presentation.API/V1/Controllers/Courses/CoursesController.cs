@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using KT.Application.Courses.Commands.Create;
-using KT.Application.Courses.Commands.Delete;
+using KT.Application.Courses.Commands.Add;
+using KT.Application.Courses.Commands.Remove;
 using KT.Application.Courses.Queries.GetCourse;
 using KT.Presentation.Contracts.V1.Requests;
 using KT.Presentation.Contracts.V1.Responses;
@@ -47,14 +47,14 @@ public class CoursesController(ISender mediatr,  IMapper mapper) : ApiController
     }
 
     /// <summary>
-    /// Create a course.
+    /// Add a course.
     /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(CourseResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateCourseRequest request)
+    public async Task<IActionResult> AddAsync([FromBody] AddCourseRequest request)
     {
-        var command = new CreateCommand(
+        var command = new AddCourseCommand(
             request.LearnerId,
             request.Code,
             request.Title,
@@ -72,14 +72,14 @@ public class CoursesController(ISender mediatr,  IMapper mapper) : ApiController
     }
 
     /// <summary>
-    /// Delete a course.
+    /// Remove a course.
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
+    public async Task<IActionResult> RemoveAsync([FromRoute] Guid id)
     {
-        var command = new DeleteCommand(id);
+        var command = new RemoveCourseCommand(id);
         var deleted = await mediatr.Send(command);
         
         return deleted.Match(

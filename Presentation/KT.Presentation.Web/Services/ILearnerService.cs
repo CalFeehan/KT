@@ -6,5 +6,5 @@ public interface ILearnerService
 {
     Task<List<LearnerResponse>> LearnersAllAsync();
 
-    Task<LearnerResponse> LearnersPOSTAsync(CreateLearnerRequest learner);
+    Task<LearnerResponse> LearnersPOSTAsync(AddLearnerRequest learner);
 }

@@ -12,7 +12,7 @@ Accept: application/json
 
 ###
 
-// CreateAsync
+// AddAsync
 POST {{host}}/learners/
 Accept: application/json
 
@@ -36,7 +36,7 @@ Accept: application/json
 
 ###
 
-// DeleteAsync
+// RemoveAsync
 DELETE {{host}}/learners/2bf954eb-b3e7-4e53-b535-4ecedee53d7e
 Accept: application/json
 

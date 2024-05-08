@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using KT.Application.Sessions.Commands.Create;
-using KT.Application.Sessions.Commands.Delete;
+using KT.Application.Sessions.Commands.Add;
+using KT.Application.Sessions.Commands.Remove;
 using KT.Application.Sessions.Queries.GetSessions;
 using KT.Presentation.Contracts.V1.Requests;
 using KT.Presentation.Contracts.V1.Responses;
@@ -47,14 +47,14 @@ public class SessionsController(ISender mediatr,  IMapper mapper) : ApiControlle
     }
 
     /// <summary>
-    /// Create a session.
+    /// Add a session.
     /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(SessionResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> CreateAsync([FromBody] CreateSessionRequest request)
+    public async Task<IActionResult> AddAsync([FromBody] AddSessionRequest request)
     {
-        var command = new CreateCommand(
+        var command = new AddSessionCommand(
             request.CourseId,
             request.SessionType,
             request.StartTime,
@@ -72,14 +72,14 @@ public class SessionsController(ISender mediatr,  IMapper mapper) : ApiControlle
     }
 
     /// <summary>
-    /// Delete a session by id.
+    /// Remove a session by id.
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-    public async Task<IActionResult> DeleteAsync([FromRoute] Guid id)
+    public async Task<IActionResult> RemoveAsync([FromRoute] Guid id)
     {
-        var command = new DeleteCommand(id);
+        var command = new RemoveSessionCommand(id);
         var deleted = await mediatr.Send(command);
         
         return deleted.Match(

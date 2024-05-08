@@ -13,14 +13,14 @@ public class CourseRepository : ICourseRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Course> CreateAsync(Course entity)
+    public async Task<Course> AddAsync(Course entity)
     {
         var course = (await _dbContext.Courses.AddAsync(entity)).Entity;
         await _dbContext.SaveChangesAsync();
         return course;
     }
 
-    public async Task<int> DeleteAsync(Guid id)
+    public async Task<int> RemoveAsync(Guid id)
     {
         var course = await _dbContext.Courses.FindAsync(id);
         if (course is null)

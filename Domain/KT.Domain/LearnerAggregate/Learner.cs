@@ -73,7 +73,7 @@ public class Learner : AggregateRoot
     {   
         var learner = new Learner(Guid.NewGuid(), forename, surname, dateOfBirth, address, contactDetails);
         
-        learner.AddDomainEvent(new LearnerCreated(learner));
+        learner.AddDomainEvent(new LearnerAdded(learner));
         
         return learner;
     }

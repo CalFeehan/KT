@@ -89,7 +89,7 @@ public class Course : AggregateRoot
     {
         var course = new Course(Guid.NewGuid(), learnerId, code, title, description, level, startDate, expectedEndDate, actualEndDate);
 
-        course.AddDomainEvent(new CourseCreated(course));
+        course.AddDomainEvent(new CourseAdded(course));
 
         return course;
     }

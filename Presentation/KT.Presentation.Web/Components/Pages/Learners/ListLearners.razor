@@ -7,7 +7,7 @@
 <PageTitle>Learners</PageTitle>
 <div class="container d-flex justify-content-between">
     <h3>Learners</h3>
-    <button class="btn btn-primary" style="margin: 10px;" @onclick="CreateLearner">Create a Learner</button>
+    <button class="btn btn-primary" style="margin: 10px;" @onclick="AddLearner">Add a Learner</button>
 </div>
 
 @if (learners == null)
@@ -58,8 +58,8 @@ else
         learners = await LearnerService.LearnersAllAsync();
     }
 
-    private void CreateLearner()
+    private void AddLearner()
     {
-        NavigationManager.NavigateTo("create-learner");
+        NavigationManager.NavigateTo("add-learner");
     }
 }

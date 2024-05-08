@@ -11,7 +11,7 @@ public class LearnerService : ILearnerService
         return [.. learners];
     }
 
-    public async Task<LearnerResponse> LearnersPOSTAsync(CreateLearnerRequest learner)
+    public async Task<LearnerResponse> LearnersPOSTAsync(AddLearnerRequest learner)
     {
         var client = new Client("http://localhost:5130", new HttpClient());
         var learnerResponse = await client.LearnersPOSTAsync(learner);

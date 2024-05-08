@@ -13,14 +13,14 @@ public class LearnerRepository : ILearnerRepository
         _dbContext = dbContext;
     }
 
-    public async Task<Learner> CreateAsync(Learner entity)
+    public async Task<Learner> AddAsync(Learner entity)
     {
         var learner = (await _dbContext.Learners.AddAsync(entity)).Entity;
         await _dbContext.SaveChangesAsync();
         return learner;
     }
 
-    public async Task<int> DeleteAsync(Guid id)
+    public async Task<int> RemoveAsync(Guid id)
     {
         var learner = await _dbContext.Learners.FindAsync(id);
         if (learner is null)
