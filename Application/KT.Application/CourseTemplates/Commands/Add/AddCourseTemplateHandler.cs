@@ -1,6 +1,5 @@
 ﻿using ErrorOr;
 using KT.Application.Common.Interfaces.Persistence;
-using KT.Domain.Common.Errors;
 using KT.Domain.CourseTemplateAggregate;
 using MediatR;
 
@@ -20,10 +19,6 @@ public class AddCourseTemplateHandler : IRequestHandler<AddCourseTemplateCommand
         var courseTemplate = CourseTemplate.Create(request.Title, request.Description, request.Code, request.Level, request.DurationInDays);
 
         var created = await _courseTemplateRepository.AddAsync(courseTemplate);
-        if (created is null)
-        {
-            return Errors.CourseTemplate.NotFound;
-        }
 
         return courseTemplate;
     }

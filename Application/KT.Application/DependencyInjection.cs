@@ -1,6 +1,5 @@
 using FluentValidation;
 using KT.Application.Common.Behaviours;
-using KT.Application.Common.Interfaces.Persistence;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
