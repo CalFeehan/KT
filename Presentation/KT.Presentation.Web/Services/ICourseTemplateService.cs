@@ -4,7 +4,9 @@ namespace KT.Presentation.Web.Services;
 
 public interface ICourseTemplateService
 {
-    Task<List<CourseTemplateResponse>> CourseTemplatesAllAsync();
+    Task<List<CourseTemplateResponse>> ListAsync();
 
-    Task<CourseTemplateResponse> CourseTemplatesPOSTAsync(AddCourseTemplateRequest courseTemplate);
+    Task<CourseTemplateResponse> GetByIdAsync(Guid id);
+
+    Task<CourseTemplateResponse> AddAsync(AddCourseTemplateRequest courseTemplate);
 }

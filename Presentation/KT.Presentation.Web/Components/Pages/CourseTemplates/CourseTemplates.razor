@@ -41,6 +41,7 @@ else
                     <td>@courseTemplate.Code</td>
                     <td>@courseTemplate.Level</td>
                     <td>@courseTemplate.DurationInWeeks</td>
+                    <td><button class="btn btn-primary" @onclick="() => EditCourseTemplate(courseTemplate.Id)">Edit</button></td>
                 </tr>
             }
         </tbody>
@@ -52,11 +53,16 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        courseTemplates = await CourseTemplateService.CourseTemplatesAllAsync();
+        courseTemplates = await CourseTemplateService.ListAsync();
     }
 
     private void AddCourseTemplate()
     {
         NavigationManager.NavigateTo("course-templates/add");
+    }
+
+    private void EditCourseTemplate(Guid id)
+    {
+        NavigationManager.NavigateTo($"course-templates/edit/{id}");
     }
 }

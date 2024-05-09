@@ -1,0 +1,34 @@
+﻿@page "/course-templates/edit/{id}"
+@rendermode InteractiveServer
+
+@inject ICourseTemplateService CourseTemplateService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Edit Course Template</PageTitle>
+
+@if (courseTemplate == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <EditForm CourseTemplate="courseTemplate" OnValidSubmit="HandleValidSubmit" />
+    @* TODO: Implement *@
+}
+
+@code {
+    CourseTemplateResponse courseTemplate = new CourseTemplateResponse();
+
+    [Parameter]
+    public Guid Id { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        courseTemplate = await CourseTemplateService.GetByIdAsync(Id);
+    }
+
+    private void HandleValidSubmit()
+    {
+        NavigationManager.NavigateTo("/course-templates");
+    }
+}

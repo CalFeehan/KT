@@ -4,17 +4,29 @@ namespace KT.Presentation.Web.Services;
 
 public class CourseTemplateService : ICourseTemplateService
 {
-    public async Task<List<CourseTemplateResponse>> CourseTemplatesAllAsync()
+    private readonly IClient _client;
+
+    public CourseTemplateService(IClient client)
     {
-        var client = new Client("http://localhost:5130", new HttpClient());
-        var courseTemplates = await client.CoursetemplatesAllAsync();
+        _client = client;
+    }
+
+    public async Task<List<CourseTemplateResponse>> ListAsync()
+    {
+        var courseTemplates = await _client.CoursetemplatesAllAsync();
         return [.. courseTemplates];
     }
 
-    public async Task<CourseTemplateResponse> CourseTemplatesPOSTAsync(AddCourseTemplateRequest courseTemplate)
+    public async Task<CourseTemplateResponse> GetByIdAsync(Guid id)
     {
-        var client = new Client("http://localhost:5130", new HttpClient());
-        var courseTemplateResponse = await client.CoursetemplatesPOSTAsync(courseTemplate);
+        var courseTemplate = await _client.CoursetemplatesGETAsync(id);
+        return courseTemplate;
+    }
+
+    public async Task<CourseTemplateResponse> AddAsync(AddCourseTemplateRequest courseTemplate)
+    {
+        var courseTemplateResponse = await _client.CoursetemplatesPOSTAsync(courseTemplate);
         return courseTemplateResponse;
     }
+
 }

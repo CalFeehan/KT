@@ -76,7 +76,7 @@
 
     private async Task AddCourseTemplate()
     {
-        var courseTemplate = await CourseTemplateService.CourseTemplatesPOSTAsync(addCourseTemplateRequest);
+        var courseTemplate = await CourseTemplateService.AddAsync(addCourseTemplateRequest);
 
         if (courseTemplate != null)
         {

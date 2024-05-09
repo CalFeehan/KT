@@ -1,3 +1,4 @@
+using KT.Presentation.ClientsGenerated;
 using KT.Presentation.Web.Components;
 using KT.Presentation.Web.Services;
 
@@ -8,6 +9,10 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 // add services
+builder.Services.AddHttpClient<IClient, Client>(client =>
+{
+    client.BaseAddress = new Uri("http://localhost:5130");
+});
 builder.Services.AddScoped<ILearnerService, LearnerService>();
 builder.Services.AddScoped<ICourseTemplateService, CourseTemplateService>();
 
