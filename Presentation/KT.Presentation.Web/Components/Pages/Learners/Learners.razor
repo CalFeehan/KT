@@ -1,4 +1,4 @@
-﻿@page "/list-learners"
+﻿@page "/learners"
 @rendermode InteractiveServer
 
 @inject ILearnerService LearnerService
@@ -60,6 +60,6 @@ else
 
     private void AddLearner()
     {
-        NavigationManager.NavigateTo("add-learner");
+        NavigationManager.NavigateTo("learners/add");
     }
 }

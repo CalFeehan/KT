@@ -12,7 +12,7 @@ namespace KT.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.EnsureSchema(
-                name: "Library");
+                name: "CourseTemplate");
 
             migrationBuilder.EnsureSchema(
                 name: "Course");
@@ -22,6 +22,24 @@ namespace KT.Infrastructure.Migrations
 
             migrationBuilder.EnsureSchema(
                 name: "Session");
+
+            migrationBuilder.CreateTable(
+                name: "CourseTemplates",
+                schema: "CourseTemplate",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CourseTemplateStatus = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    DurationInWeeks = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CourseTemplates", x => x.Id);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Learners",
@@ -41,16 +59,70 @@ namespace KT.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Libraries",
-                schema: "Library",
+                name: "ActivityPlanTemplates",
+                schema: "CourseTemplate",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LibraryType = table.Column<int>(type: "int", nullable: false)
+                    CourseTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Libraries", x => x.Id);
+                    table.PrimaryKey("PK_ActivityPlanTemplates", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ActivityPlanTemplates_CourseTemplates_CourseTemplateId",
+                        column: x => x.CourseTemplateId,
+                        principalSchema: "CourseTemplate",
+                        principalTable: "CourseTemplates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ModuleTemplates",
+                schema: "CourseTemplate",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CourseTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CriteriaTemplates = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModuleType = table.Column<int>(type: "int", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
+                    Level = table.Column<int>(type: "int", nullable: false),
+                    DurationInWeeks = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ModuleTemplates", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ModuleTemplates_CourseTemplates_CourseTemplateId",
+                        column: x => x.CourseTemplateId,
+                        principalSchema: "CourseTemplate",
+                        principalTable: "CourseTemplates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SessionPlanTemplates",
+                schema: "CourseTemplate",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CourseTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SessionPlanTemplates", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SessionPlanTemplates_CourseTemplates_CourseTemplateId",
+                        column: x => x.CourseTemplateId,
+                        principalSchema: "CourseTemplate",
+                        principalTable: "CourseTemplates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -104,27 +176,52 @@ namespace KT.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CourseTemplates",
-                schema: "Library",
+                name: "ActivityTemplates",
+                schema: "CourseTemplate",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    LibraryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CourseTemplateStatus = table.Column<int>(type: "int", nullable: false),
+                    ActivityPlanTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    Code = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Level = table.Column<int>(type: "int", nullable: false),
-                    DurationInWeeks = table.Column<int>(type: "int", nullable: false)
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DocumentIds = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ModuleTemplateIds = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ScheduleDetails = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CourseTemplates", x => x.Id);
+                    table.PrimaryKey("PK_ActivityTemplates", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CourseTemplates_Libraries_LibraryId",
-                        column: x => x.LibraryId,
-                        principalSchema: "Library",
-                        principalTable: "Libraries",
+                        name: "FK_ActivityTemplates_ActivityPlanTemplates_ActivityPlanTemplateId",
+                        column: x => x.ActivityPlanTemplateId,
+                        principalSchema: "CourseTemplate",
+                        principalTable: "ActivityPlanTemplates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SessionTemplates",
+                schema: "CourseTemplate",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SessionPlanTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    SessionType = table.Column<int>(type: "int", nullable: false),
+                    ScheduleDetails = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CohortId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Location = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Notes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    MeetingLink = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SessionTemplates", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SessionTemplates_SessionPlanTemplates_SessionPlanTemplateId",
+                        column: x => x.SessionPlanTemplateId,
+                        principalSchema: "CourseTemplate",
+                        principalTable: "SessionPlanTemplates",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -183,134 +280,16 @@ namespace KT.Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "ActivityPlanTemplates",
-                schema: "Library",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CourseTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ActivityPlanTemplates", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ActivityPlanTemplates_CourseTemplates_CourseTemplateId",
-                        column: x => x.CourseTemplateId,
-                        principalSchema: "Library",
-                        principalTable: "CourseTemplates",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ModuleTemplates",
-                schema: "Library",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CourseTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CriteriaTemplates = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModuleType = table.Column<int>(type: "int", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    Code = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: false),
-                    Level = table.Column<int>(type: "int", nullable: false),
-                    DurationInWeeks = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ModuleTemplates", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ModuleTemplates_CourseTemplates_CourseTemplateId",
-                        column: x => x.CourseTemplateId,
-                        principalSchema: "Library",
-                        principalTable: "CourseTemplates",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SessionPlanTemplates",
-                schema: "Library",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CourseTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SessionPlanTemplates", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SessionPlanTemplates_CourseTemplates_CourseTemplateId",
-                        column: x => x.CourseTemplateId,
-                        principalSchema: "Library",
-                        principalTable: "CourseTemplates",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "ActivityTemplates",
-                schema: "Library",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    ActivityPlanTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    DocumentIds = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ModuleTemplateIds = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ScheduleDetails = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ActivityTemplates", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_ActivityTemplates_ActivityPlanTemplates_ActivityPlanTemplateId",
-                        column: x => x.ActivityPlanTemplateId,
-                        principalSchema: "Library",
-                        principalTable: "ActivityPlanTemplates",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "SessionTemplates",
-                schema: "Library",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SessionPlanTemplateId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SessionType = table.Column<int>(type: "int", nullable: false),
-                    ScheduleDetails = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CohortId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    Location = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    Notes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    MeetingLink = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_SessionTemplates", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_SessionTemplates_SessionPlanTemplates_SessionPlanTemplateId",
-                        column: x => x.SessionPlanTemplateId,
-                        principalSchema: "Library",
-                        principalTable: "SessionPlanTemplates",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_ActivityPlanTemplates_CourseTemplateId",
-                schema: "Library",
+                schema: "CourseTemplate",
                 table: "ActivityPlanTemplates",
                 column: "CourseTemplateId",
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_ActivityTemplates_ActivityPlanTemplateId",
-                schema: "Library",
+                schema: "CourseTemplate",
                 table: "ActivityTemplates",
                 column: "ActivityPlanTemplateId");
 
@@ -319,12 +298,6 @@ namespace KT.Infrastructure.Migrations
                 schema: "Course",
                 table: "Courses",
                 column: "LearnerId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_CourseTemplates_LibraryId",
-                schema: "Library",
-                table: "CourseTemplates",
-                column: "LibraryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LearningPlans_LearnerId",
@@ -340,13 +313,13 @@ namespace KT.Infrastructure.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_ModuleTemplates_CourseTemplateId",
-                schema: "Library",
+                schema: "CourseTemplate",
                 table: "ModuleTemplates",
                 column: "CourseTemplateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_SessionPlanTemplates_CourseTemplateId",
-                schema: "Library",
+                schema: "CourseTemplate",
                 table: "SessionPlanTemplates",
                 column: "CourseTemplateId",
                 unique: true);
@@ -359,7 +332,7 @@ namespace KT.Infrastructure.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_SessionTemplates_SessionPlanTemplateId",
-                schema: "Library",
+                schema: "CourseTemplate",
                 table: "SessionTemplates",
                 column: "SessionPlanTemplateId");
         }
@@ -369,7 +342,7 @@ namespace KT.Infrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "ActivityTemplates",
-                schema: "Library");
+                schema: "CourseTemplate");
 
             migrationBuilder.DropTable(
                 name: "LearningPlans",
@@ -381,7 +354,7 @@ namespace KT.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "ModuleTemplates",
-                schema: "Library");
+                schema: "CourseTemplate");
 
             migrationBuilder.DropTable(
                 name: "Sessions",
@@ -389,11 +362,11 @@ namespace KT.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "SessionTemplates",
-                schema: "Library");
+                schema: "CourseTemplate");
 
             migrationBuilder.DropTable(
                 name: "ActivityPlanTemplates",
-                schema: "Library");
+                schema: "CourseTemplate");
 
             migrationBuilder.DropTable(
                 name: "Courses",
@@ -401,7 +374,7 @@ namespace KT.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "SessionPlanTemplates",
-                schema: "Library");
+                schema: "CourseTemplate");
 
             migrationBuilder.DropTable(
                 name: "Learners",
@@ -409,11 +382,7 @@ namespace KT.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "CourseTemplates",
-                schema: "Library");
-
-            migrationBuilder.DropTable(
-                name: "Libraries",
-                schema: "Library");
+                schema: "CourseTemplate");
         }
     }
 }

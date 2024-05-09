@@ -49,7 +49,7 @@ public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
     /// Add a CourseTemplate.
     /// </summary>
     [HttpPost("")]
-    [ProducesResponseType(typeof(void), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(CourseTemplateResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
     [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> AddAsync([FromBody] AddCourseTemplateRequest request)

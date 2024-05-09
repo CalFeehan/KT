@@ -1,0 +1,62 @@
+﻿@page "/course-templates"
+@rendermode InteractiveServer
+
+@inject ICourseTemplateService CourseTemplateService
+@inject NavigationManager NavigationManager
+
+<PageTitle>Course Templates</PageTitle>
+<div class="container d-flex justify-content-between">
+    <h3>Course Templates</h3>
+    <button class="btn btn-primary" style="margin: 10px;" @onclick="AddCourseTemplate">Add a Course Template</button>
+</div>
+
+@if (courseTemplates == null)
+{
+    <p>Loading...</p>
+}
+else if (courseTemplates.Count == 0)
+{
+    <p>No course templates found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Status</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Code</th>
+                <th>Level</th>
+                <th>Duration (weeks)</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var courseTemplate in courseTemplates)
+            {
+                <tr>
+                    <td>@courseTemplate.CourseTemplateStatus</td>
+                    <td>@courseTemplate.Title</td>
+                    <td>@courseTemplate.Description</td>
+                    <td>@courseTemplate.Code</td>
+                    <td>@courseTemplate.Level</td>
+                    <td>@courseTemplate.DurationInWeeks</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+}
+@code {
+    List<CourseTemplateResponse> courseTemplates  = new List<CourseTemplateResponse>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        courseTemplates = await CourseTemplateService.CourseTemplatesAllAsync();
+    }
+
+    private void AddCourseTemplate()
+    {
+        NavigationManager.NavigateTo("course-templates/add");
+    }
+}

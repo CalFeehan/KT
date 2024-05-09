@@ -7,10 +7,7 @@ public record AddCourseTemplateRequest(
     string Description,
     string Code,
     int Level,
-    int DurationInWeeks,
-    List<AddActivityPlanTemplateRequest> ActivityPlanTemplates,
-    List<AddSessionPlanTemplateRequest> SessionPlanTemplates,
-    List<AddModuleTemplateRequest> ModuleTemplates);
+    int DurationInWeeks);
 
 public record AddSessionPlanTemplateRequest(
     List<AddSessionTemplateRequest> SessionTemplates);

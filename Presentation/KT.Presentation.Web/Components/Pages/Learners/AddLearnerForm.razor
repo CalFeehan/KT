@@ -1,4 +1,4 @@
-﻿@page "/add-learner"
+﻿@page "/learners/add"
 
 @inject ILearnerService LearnerService
 @inject NavigationManager NavigationManager
@@ -7,6 +7,20 @@
 <PageTitle>Add Learner</PageTitle>
 
 <h3>Add a Learner</h3>
+
+@if (showSuccessMessage)
+{
+    <div class="alert alert-success" role="alert">
+        Course template added successfully!
+    </div>
+}
+
+@if (showErrorMessage)
+{
+    <div class="alert alert-danger" role="alert">
+        An error occurred while adding the course template.
+    </div>
+}
 
 <EditForm Model="@addLearnerRequest" OnValidSubmit="AddLearner" FormName="AddLearnerForm">
 
@@ -78,14 +92,26 @@
 
 @code {
     AddLearnerRequest addLearnerRequest = new AddLearnerRequest(){ Address = new AddressRequest(), ContactDetails = new ContactDetailsRequest() };
+    private bool showSuccessMessage = false;
+    private bool showErrorMessage = false;  
 
     private async Task AddLearner()
     {
-        await LearnerService.LearnersPOSTAsync(addLearnerRequest);
+        var learner = await LearnerService.LearnersPOSTAsync(addLearnerRequest);
+
+        if (learner != null)
+        {
+            showSuccessMessage = true;
+            addLearnerRequest = new AddLearnerRequest(){ Address = new AddressRequest(), ContactDetails = new ContactDetailsRequest() };
+        }
+        else
+        {
+            showErrorMessage = true;
+        }
     }
 
     private void ListLearners()
     {
-        NavigationManager.NavigateTo("list-learners");
+        NavigationManager.NavigateTo("learners");
     }
 }

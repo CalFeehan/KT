@@ -10,4 +10,11 @@ public class CourseTemplateService : ICourseTemplateService
         var courseTemplates = await client.CoursetemplatesAllAsync();
         return [.. courseTemplates];
     }
+
+    public async Task<CourseTemplateResponse> CourseTemplatesPOSTAsync(AddCourseTemplateRequest courseTemplate)
+    {
+        var client = new Client("http://localhost:5130", new HttpClient());
+        var courseTemplateResponse = await client.CoursetemplatesPOSTAsync(courseTemplate);
+        return courseTemplateResponse;
+    }
 }
