@@ -64,7 +64,7 @@ public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
         var added = await mediatr.Send(command);
         
         return added.Match(
-            authResult => CreatedAtAction(nameof(GetAsync), new { id = added.Value.Id }, null),
+            authResult => CreatedAtAction("Get", new { id = added.Value.Id }, mapper.Map<CourseTemplateResponse>(added.Value)),
             Problem);
     }
 

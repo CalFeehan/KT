@@ -67,7 +67,7 @@ public class SessionsController(ISender mediatr,  IMapper mapper) : ApiControlle
         var created = await mediatr.Send(command);
         
         return created.Match(
-            authResult => CreatedAtAction(nameof(GetAsync), new { id = created.Value.Id }, mapper.Map<SessionResponse>(created.Value)),
+            authResult => CreatedAtAction("Get", new { id = created.Value.Id }, mapper.Map<SessionResponse>(created.Value)),
             Problem);
     }
 
