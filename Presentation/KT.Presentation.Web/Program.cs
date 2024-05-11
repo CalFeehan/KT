@@ -9,10 +9,8 @@ builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
 // add services
-builder.Services.AddHttpClient<IClient, Client>(client =>
-{
-    client.BaseAddress = new Uri("http://localhost:5130");
-});
+builder.Services.AddScoped<IClient, Client>(client => new Client("http://localhost:5130", new HttpClient()));
+
 builder.Services.AddScoped<ILearnerService, LearnerService>();
 builder.Services.AddScoped<ICourseTemplateService, CourseTemplateService>();
 
