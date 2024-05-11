@@ -46,7 +46,6 @@ public record CriteriaTemplateRequest(
     int Level,
     int DurationInWeeks);
     
-
 public record SessionDetailsRequest(
     int StartWeek,
     DayOfWeek DayOfWeek,

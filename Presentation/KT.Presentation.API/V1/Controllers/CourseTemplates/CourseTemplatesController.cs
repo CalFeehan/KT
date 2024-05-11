@@ -83,4 +83,30 @@ public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
             authResult => NoContent(),
             Problem);
     }
+    
+    // /// <summary>
+    // /// Update a course template.
+    // /// </summary>
+    // [HttpPut("{id:guid}")]
+    // [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+    // [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
+    // public async Task<IActionResult> UpdateCourseTemplateAsync([FromRoute] Guid id, [FromBody] UpdateCourseTemplateRequest request)
+    // {
+    //     var command = new UpdateCourseTemplateCommand(
+    //         id,
+    //         request.Title,
+    //         request.Description,
+    //         request.Code,
+    //         request.Level,
+    //         request.DurationInWeeks,
+    //         request.ModuleTemplates,
+    //         request.SessionPlanTemplate,
+    //         request.ActivityPlanTemplate);
+
+    //     var updated = await mediatr.Send(command);
+        
+    //     return updated.Match(
+    //         authResult => NoContent(),
+    //         Problem);
+    // }
 }
