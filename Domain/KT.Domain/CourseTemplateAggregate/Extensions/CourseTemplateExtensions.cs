@@ -1,0 +1,23 @@
+﻿using KT.Common.Enums;
+using KT.Domain.CourseTemplateAggregate;
+
+namespace KT.Domain.CourseTemplateAggregate;
+
+/// <summary>
+/// Extension methods for the CourseTemplate class.
+/// </summary>
+public static class CourseTemplateExtensions
+{
+    /// <summary>
+    /// Determines if the course template is editable.
+    /// </summary>
+    public static bool IsEditable(this CourseTemplate courseTemplate)
+    {
+        return courseTemplate.CourseTemplateStatus switch
+        {
+            CourseTemplateStatus.Draft => true,
+            CourseTemplateStatus.Published => true,
+            _ => false
+        };
+    }
+}

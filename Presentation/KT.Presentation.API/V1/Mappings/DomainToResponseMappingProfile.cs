@@ -9,7 +9,12 @@ using KT.Domain.LearnerAggregate.Entities;
 using KT.Domain.ModuleTemplateAggregate;
 using KT.Domain.ModuleTemplateAggregate.ValueObjects;
 using KT.Domain.SessionAggregate;
-using KT.Presentation.Contracts.V1.Responses;
+using KT.Presentation.Contracts.V1.Responses.Common;
+using KT.Presentation.Contracts.V1.Responses.Courses;
+using KT.Presentation.Contracts.V1.Responses.CourseTemplates;
+using KT.Presentation.Contracts.V1.Responses.Learners;
+using KT.Presentation.Contracts.V1.Responses.ModuleTemplates;
+using KT.Presentation.Contracts.V1.Responses.Sessions;
 
 namespace KT.Presentation.API;
 

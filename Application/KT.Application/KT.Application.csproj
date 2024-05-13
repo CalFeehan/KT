@@ -10,14 +10,10 @@
       <Folder Include="Common/Behaviours/" />
       <Folder Include="Courses/Commands/Add/" />
       <Folder Include="Courses/Commands/Remove/" />
-      <Folder Include="Courses/Commands/Update/" />
       <Folder Include="Courses/Events/" />
-      <Folder Include="Learners/Commands/Update/" />
       <Folder Include="Learners/Events/" />
-      <Folder Include="Learners/Queries/GetLearners" />
-      <Folder Include="CourseTemplates/Commands/Update/" />
       <Folder Include="CourseTemplates/Events/" />
-      <Folder Include="Sessions/Commands/Update/" />
+      <Folder Include="ModuleTemplates/Events/" />
       <Folder Include="Sessions/Events/" />
     </ItemGroup>
 

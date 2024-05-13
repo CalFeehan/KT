@@ -7,16 +7,16 @@ namespace KT.Application.Learners.Commands.Remove;
 
 public class RemoveLearnerCommandHandler : IRequestHandler<RemoveLearnerCommand, ErrorOr<Task>>
 {
-    private readonly ILearnerRepository learnerRepository;
+    private readonly ILearnerRepository _learnerRepository;
 
     public RemoveLearnerCommandHandler(ILearnerRepository learnerRepository)
     {
-        this.learnerRepository = learnerRepository;
+        _learnerRepository = learnerRepository;
     }
 
     public async Task<ErrorOr<Task>> Handle(RemoveLearnerCommand command, CancellationToken cancellationToken)
     {
-        var deletedCount = await learnerRepository.RemoveAsync(command.Id);
+        var deletedCount = await _learnerRepository.RemoveAsync(command.Id);
         if (deletedCount is 0)
         {
             return Errors.Learner.NotFound;

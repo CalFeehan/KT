@@ -55,9 +55,10 @@ public class ModuleTemplate : AggregateRoot
     /// <summary>
     /// Private constructor to ensure that the only way to create a module template is through the Create method.
     /// </summary>
-    private ModuleTemplate(Guid id, string title, string description, string code, int level, int durationInWeeks)
+    private ModuleTemplate(Guid id, ModuleType moduleType, string title, string description, string code, int level, int durationInWeeks)
         : base(id)
     {
+        ModuleType = moduleType;
         Title = title;
         Description = description;
         Code = code;
@@ -68,9 +69,9 @@ public class ModuleTemplate : AggregateRoot
     /// <summary>
     /// Creates a new module template.
     /// </summary>
-    public static ModuleTemplate Create(string title, string description, string code, int level, int durationInWeeks)
+    public static ModuleTemplate Create(ModuleType moduleType, string title, string description, string code, int level, int durationInWeeks)
     {
-        var ModuleTemplate = new ModuleTemplate(Guid.NewGuid(), title, description, code, level, durationInWeeks);
+        var ModuleTemplate = new ModuleTemplate(Guid.NewGuid(), moduleType, title, description, code, level, durationInWeeks);
 
         return ModuleTemplate;
     }

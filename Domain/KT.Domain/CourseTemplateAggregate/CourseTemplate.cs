@@ -83,6 +83,43 @@ public class CourseTemplate : AggregateRoot
     }
 
     /// <summary>
+    /// Updates the course template status.
+    /// </summary>
+    public void UpdateCourseTemplateStatus(CourseTemplateStatus courseTemplateStatus)
+    {
+        CourseTemplateStatus = courseTemplateStatus;
+    }
+
+    /// <summary>
+    /// Updates the basic details of the course template.
+    /// </summary>
+    public void UpdateBasicDetails(CourseTemplateStatus courseTemplateStatus, string title, string description, string code, int level, int durationInWeeks)
+    {
+        CourseTemplateStatus = courseTemplateStatus;
+        Title = title;
+        Description = description;
+        Code = code;
+        Level = level;
+        DurationInWeeks = durationInWeeks;
+    }
+
+    /// <summary>
+    /// Updates the activity plan template for the course template.
+    /// </summary>
+    public void UpdateActivityPlanTemplate(ActivityPlanTemplate activityPlanTemplate)
+    {
+        ActivityPlanTemplate = activityPlanTemplate;
+    }
+
+    /// <summary>
+    /// Updates the session plan template for the course template.
+    /// </summary>
+    public void UpdateSessionPlanTemplate(SessionPlanTemplate sessionPlanTemplate)
+    {
+        SessionPlanTemplate = sessionPlanTemplate;
+    }
+
+    /// <summary>
     /// Adds a module template to the course template.
     /// </summary>
     public void AddModuleTemplate(Guid moduleTemplateId)
@@ -100,6 +137,31 @@ public class CourseTemplate : AggregateRoot
         if (courseTemplateModuleTemplate is not null)
         {
             CourseTemplateModuleTemplates.Remove(courseTemplateModuleTemplate);
+        }
+    }
+
+    /// <summary>
+    /// Updates the Module Templates for the course template.
+    /// </summary>
+    public void UpdateModuleTemplates(List<Guid> moduleTemplateIds)
+    {
+        var moduleTemplatesToRemove = CourseTemplateModuleTemplates
+            .Where(x => !moduleTemplateIds.Contains(x.ModuleTemplateId))
+            .Select(x => x.ModuleTemplateId)
+            .ToList();
+        
+        var moduleTemplatesToAdd = moduleTemplateIds
+            .Where(x => !CourseTemplateModuleTemplates.Any(y => y.ModuleTemplateId == x))
+            .ToList();
+
+        foreach (var moduleTemplateId in moduleTemplatesToRemove)
+        {
+            RemoveModuleTemplate(moduleTemplateId);
+        }
+
+        foreach (var moduleTemplateId in moduleTemplatesToAdd)
+        {
+            AddModuleTemplate(moduleTemplateId);
         }
     }
 
