@@ -20,6 +20,6 @@ public class AddCourseTemplateHandler : IRequestHandler<AddCourseTemplateCommand
 
         var created = await _courseTemplateRepository.AddAsync(courseTemplate);
 
-        return courseTemplate;
+        return created;
     }
 }

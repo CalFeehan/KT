@@ -57,6 +57,11 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
 
     private bool BeAValidCourseTemplateStatusTransition(CourseTemplateStatus courseTemplateStatus)
     {
+        if (OriginalCourseTemplate is null)
+        {
+            return false;
+        }
+
         if (OriginalCourseTemplate!.CourseTemplateStatus == courseTemplateStatus)
         {
             return true;
