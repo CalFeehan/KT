@@ -39,15 +39,13 @@ public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
             .IsRequired()
             .HasConversion(
                 a => JsonSerializer.Serialize(a, new JsonSerializerOptions()),
-                a => JsonSerializer.Deserialize<Address>(a, new JsonSerializerOptions())!
-            );
+                a => JsonSerializer.Deserialize<Address>(a, new JsonSerializerOptions())!);
         
         builder.Property(l => l.ContactDetails)
             .IsRequired()
             .HasConversion(
                 cd => JsonSerializer.Serialize(cd, new JsonSerializerOptions()),
-                cd => JsonSerializer.Deserialize<ContactDetails>(cd, new JsonSerializerOptions())!
-            );
+                cd => JsonSerializer.Deserialize<ContactDetails>(cd, new JsonSerializerOptions())!);
             
         // Configure relationships (if any)
 

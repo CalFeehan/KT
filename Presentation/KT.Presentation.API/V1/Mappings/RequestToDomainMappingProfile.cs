@@ -9,6 +9,8 @@ using KT.Domain.CourseTemplateAggregate.Entities;
 using KT.Domain.CourseTemplateAggregate.ValueObjects;
 using KT.Domain.SessionAggregate;
 using KT.Presentation.Contracts.V1.Requests;
+using KT.Domain.ModuleTemplateAggregate;
+using KT.Domain.ModuleTemplateAggregate.ValueObjects;
 
 namespace KT.Presentation.API;
 

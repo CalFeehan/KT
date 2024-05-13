@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-namespace KT.Infrastructure;
+namespace KT.Infrastructure.Persistence.Interceptors;
 
 /// <summary>
 /// An interceptor that publishes domain events when saving changes to the database.

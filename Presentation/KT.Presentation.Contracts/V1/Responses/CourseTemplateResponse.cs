@@ -12,7 +12,11 @@ public record CourseTemplateResponse(
     int DurationInWeeks,
     ActivityPlanTemplateResponse ActivityPlanTemplate,
     SessionPlanTemplateResponse SessionPlanTemplate,
-    List<ModuleTemplateResponse> ModuleTemplates);
+    List<CourseTemplateModuleTemplateResponse> CourseTemplateModuleTemplates);
+
+public record CourseTemplateModuleTemplateResponse(
+    Guid CourseTemplateId,
+    Guid ModuleTemplateId);
 
 public record SessionPlanTemplateResponse(
     Guid Id,
@@ -42,24 +46,6 @@ public record ActivityTemplateResponse(
     List<Guid> DocumentIds,
     List<Guid> ModuleTemplateIds,
     ScheduleDetailsResponse ScheduleDetails);
-
-
-public record ModuleTemplateResponse(
-    Guid Id,
-    Guid CourseTemplateId,
-    ModuleType ModuleType,
-    string Title,
-    string Description,
-    string Code,
-    int Level,
-    int DurationInWeeks,
-    List<CriteriaTemplateResponse> CriteriaTemplates);
-
-public record CriteriaTemplateResponse(
-    string Title,
-    string Description,
-    string Code,
-    string CriteriaGroup);
 
 public record ScheduleDetailsResponse(
     int StartWeek,

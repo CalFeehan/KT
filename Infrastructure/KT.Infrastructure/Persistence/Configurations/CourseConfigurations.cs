@@ -66,8 +66,7 @@ public class CourseConfigurations : IEntityTypeConfiguration<Course>
                     .IsRequired()
                     .HasConversion(
                         c => JsonSerializer.Serialize(c, new JsonSerializerOptions()),
-                        c => JsonSerializer.Deserialize<List<Criteria>>(c, new JsonSerializerOptions())!
-                    );
+                        c => JsonSerializer.Deserialize<List<Criteria>>(c, new JsonSerializerOptions())!);
 
             module.WithOwner().HasForeignKey("CourseId");
         });

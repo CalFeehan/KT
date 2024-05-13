@@ -2,8 +2,6 @@
 using KT.Presentation.API.Common.Errors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
-using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.AspNetCore.Mvc.Versioning.Conventions;
 
 namespace KT.Presentation.API;
 

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using KT.Application.Sessions.Commands.Add;
 using KT.Application.Sessions.Commands.Remove;
-using KT.Application.Sessions.Queries.GetSessions;
+using KT.Application.Sessions.Queries;
 using KT.Presentation.Contracts.V1.Requests;
 using KT.Presentation.Contracts.V1.Responses;
 using MediatR;

@@ -29,22 +29,6 @@ public record AddActivityTemplateRequest(
     List<Guid> DocumentIds,
     List<Guid> ModuleTemplateIds,
     SessionDetailsRequest SessionDetailsRequest);
-
-public record AddModuleTemplateRequest(
-    ModuleType ModuleType,
-    string Title,
-    string Description,
-    string Code,
-    int Level,
-    int DurationInWeeks,
-    List<CriteriaTemplateRequest> Criteria);
-
-public record CriteriaTemplateRequest(
-    string Title,
-    string Description,
-    string Code,
-    int Level,
-    int DurationInWeeks);
     
 public record SessionDetailsRequest(
     int StartWeek,

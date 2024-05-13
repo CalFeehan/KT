@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using KT.Application.Courses.Commands.Add;
 using KT.Application.Courses.Commands.Remove;
-using KT.Application.Courses.Queries.GetCourse;
+using KT.Application.Courses.Queries;
 using KT.Presentation.Contracts.V1.Requests;
 using KT.Presentation.Contracts.V1.Responses;
 using MediatR;

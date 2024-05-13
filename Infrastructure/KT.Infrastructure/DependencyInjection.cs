@@ -1,7 +1,6 @@
-
-
 using KT.Application.Common.Interfaces.Persistence;
 using KT.Infrastructure.Persistence;
+using KT.Infrastructure.Persistence.Interceptors;
 using KT.Infrastructure.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +21,7 @@ public static class DependencyInjection
         services.AddScoped<ILearnerRepository, LearnerRepository>();
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<ICourseTemplateRepository, CourseTemplateRepository>();
+        services.AddScoped<IModuleTemplateRepository, ModuleTemplateRepository>();
         services.AddScoped<ISessionRepository, SessionRepository>();
 
         return services;

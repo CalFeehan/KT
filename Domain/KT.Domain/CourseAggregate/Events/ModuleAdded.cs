@@ -1,4 +1,5 @@
-﻿using KT.Domain.CourseAggregate.Entities;
+﻿using KT.Domain.Common.Models;
+using KT.Domain.CourseAggregate.Entities;
 
 namespace KT.Domain.CourseAggregate.Events;
 

@@ -27,7 +27,7 @@
       <Folder Include="Common/Errors/" />
       <Folder Include="Common/Http/" />
       <Folder Include="Middleware/" />
-      <Folder Include="V1/HttpRequests/" />
+      <Folder Include="V1/Controllers/ModulesTemplates/" />
     </ItemGroup>
 
     <ItemGroup>

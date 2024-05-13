@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using KT.Domain.Common.ValueObjects;
 
-namespace KT.Application;
+namespace KT.Application.Common.Validators;
 
 public class ContactDetailsValidator : AbstractValidator<ContactDetails>
 {

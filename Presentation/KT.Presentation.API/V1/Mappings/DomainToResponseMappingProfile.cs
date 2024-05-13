@@ -6,6 +6,8 @@ using KT.Domain.CourseTemplateAggregate.Entities;
 using KT.Domain.CourseTemplateAggregate.ValueObjects;
 using KT.Domain.LearnerAggregate;
 using KT.Domain.LearnerAggregate.Entities;
+using KT.Domain.ModuleTemplateAggregate;
+using KT.Domain.ModuleTemplateAggregate.ValueObjects;
 using KT.Domain.SessionAggregate;
 using KT.Presentation.Contracts.V1.Responses;
 

@@ -1,7 +1,7 @@
 using AutoMapper;
 using KT.Application.Learners.Commands.Add;
 using KT.Application.Learners.Commands.Remove;
-using KT.Application.Learners.Queries.GetLearners;
+using KT.Application.Learners.Queries;
 using KT.Domain.Common.ValueObjects;
 using KT.Presentation.Contracts.V1.Requests;
 using KT.Presentation.Contracts.V1.Responses;

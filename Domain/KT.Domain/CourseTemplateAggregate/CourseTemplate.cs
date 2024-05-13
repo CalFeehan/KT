@@ -1,26 +1,17 @@
 ﻿using KT.Common.Enums;
 using KT.Domain.Common.Models;
 using KT.Domain.CourseTemplateAggregate.Entities;
+using KT.Domain.CourseTemplateAggregate.ValueObjects;
 
 namespace KT.Domain.CourseTemplateAggregate;
 
 /// <summary>
 /// A course template holds all of the details needed to create a course, 
-/// including its modules, sessions and activities. 
+/// including sessions, activities and linked modules. 
 /// It will be used to calculate session dates, etc. and populate the learning plan.
 public class CourseTemplate : AggregateRoot
 {
-    /// <summary>
-    /// The inner collection of module templates.
-    /// Note: This is a private collection, so it can only be modified by the CourseTemplate itself.
-    /// </summary>
-    private readonly List<ModuleTemplate> _moduleTemplates = [];
-
-    /// <summary>
-    /// The public accessor for the module templates.
-    /// This is read-only, so it can't be modified by external classes.
-    /// </summary>
-    public IReadOnlyCollection<ModuleTemplate> ModuleTemplates => _moduleTemplates.AsReadOnly();
+    public List<CourseTemplateModuleTemplate> CourseTemplateModuleTemplates { get; private set; } = [];
 
     /// <summary>
     /// The activity plan template for this course template.
@@ -94,17 +85,22 @@ public class CourseTemplate : AggregateRoot
     /// <summary>
     /// Adds a module template to the course template.
     /// </summary>
-    public void AddModuleTemplate(ModuleTemplate moduleTemplate)
+    public void AddModuleTemplate(Guid moduleTemplateId)
     {
-        _moduleTemplates.Add(moduleTemplate);
+        var courseTemplateModuleTemplate = CourseTemplateModuleTemplate.Create(Id, moduleTemplateId);
+        CourseTemplateModuleTemplates.Add(courseTemplateModuleTemplate);
     }
 
     /// <summary>
     /// Removes a module template from the course template.
     /// </summary>
-    public void RemoveModuleTemplate(ModuleTemplate moduleTemplate)
+    public void RemoveModuleTemplate(Guid moduleTemplateId)
     {
-        _moduleTemplates.Remove(moduleTemplate);
+        var courseTemplateModuleTemplate = CourseTemplateModuleTemplates.FirstOrDefault(x => x.ModuleTemplateId == moduleTemplateId);
+        if (courseTemplateModuleTemplate is not null)
+        {
+            CourseTemplateModuleTemplates.Remove(courseTemplateModuleTemplate);
+        }
     }
 
 

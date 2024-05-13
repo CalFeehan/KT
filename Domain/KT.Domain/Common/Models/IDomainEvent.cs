@@ -1,8 +1,7 @@
 ﻿using MediatR;
 
-namespace KT.Domain;
+namespace KT.Domain.Common.Models;
 
 public interface IDomainEvent : INotification
 {
-
 }

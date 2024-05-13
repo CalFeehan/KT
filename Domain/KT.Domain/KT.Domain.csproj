@@ -20,6 +20,9 @@
       <Folder Include="LearnerAggregate/ValueObjects/" />
       <Folder Include="Common/Models/" />
       <Folder Include="Common/ValueObjects/" />
+      <Folder Include="ModuleTemplateAggregate/Entities/" />
+      <Folder Include="ModuleTemplateAggregate/Events/" />
+      <Folder Include="ModuleTemplateAggregate/ValueObjects/" />
       <Folder Include="SessionAggregate/Entites/" />
       <Folder Include="SessionAggregate/Events/" />
       <Folder Include="SessionAggregate/ValueObjects/" />

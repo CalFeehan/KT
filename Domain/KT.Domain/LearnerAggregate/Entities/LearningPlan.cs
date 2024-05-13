@@ -1,5 +1,4 @@
-﻿using System.Text.Json.Serialization;
-using KT.Domain.Common.Models;
+﻿using KT.Domain.Common.Models;
 
 namespace KT.Domain.LearnerAggregate.Entities;
 

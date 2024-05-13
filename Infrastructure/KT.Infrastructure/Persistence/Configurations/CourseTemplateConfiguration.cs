@@ -4,14 +4,14 @@ using KT.Domain.CourseTemplateAggregate.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace KT.Infrastructure;
+namespace KT.Infrastructure.Persistence.Configurations;
 
 public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTemplate>
 {
     public void Configure(EntityTypeBuilder<CourseTemplate> builder)
     {
         ConfigureCourseTemplateTable(builder);
-        ConfigureModuleTemplateTable(builder);
+        ConfigureCourseTemplateModuleTemplatesTable(builder);
         ConfigureActivityPlanTemplateTable(builder);
         ConfigureActivityTemplateTable(builder);
         ConfigureSessionPlanTemplateTable(builder);
@@ -46,50 +46,23 @@ public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTempla
         builder.Property(ct => ct.DurationInWeeks)
             .IsRequired();
     }
-    
-    private void ConfigureModuleTemplateTable(EntityTypeBuilder<CourseTemplate> builder)
+
+    private void ConfigureCourseTemplateModuleTemplatesTable(EntityTypeBuilder<CourseTemplate> builder)
     {
-        builder.OwnsMany(ct => ct.ModuleTemplates, moduleTemplate =>
+        builder.OwnsMany(ct => ct.CourseTemplateModuleTemplates, courseTemplateModuleTemplate =>
         {
-            moduleTemplate.ToTable("ModuleTemplates", "CourseTemplate");
+            courseTemplateModuleTemplate.ToTable("CourseTemplateModuleTemplates", "CourseTemplate");
+            
+            courseTemplateModuleTemplate.HasKey(ctmt => new { ctmt.CourseTemplateId, ctmt.ModuleTemplateId });
 
-            moduleTemplate.HasKey(mt => mt.Id);
-            moduleTemplate.Property(mt => mt.Id).ValueGeneratedNever();
+            courseTemplateModuleTemplate.Property(ctmt => ctmt.CourseTemplateId).IsRequired();
+            courseTemplateModuleTemplate.WithOwner().HasForeignKey("CourseTemplateId");
 
-            moduleTemplate.Property(mt => mt.CourseTemplateId).IsRequired();
-            moduleTemplate.WithOwner().HasForeignKey("CourseTemplateId");
-
-            moduleTemplate.Property(mt => mt.ModuleType)
-            .IsRequired();
-
-            moduleTemplate.Property(mt => mt.Title)
-                .HasMaxLength(100)
-                .IsRequired();
-
-            moduleTemplate.Property(mt => mt.Description)
-                .HasMaxLength(500)
-                .IsRequired();
-
-            moduleTemplate.Property(mt => mt.Code)
-                .HasMaxLength(25)
-                .IsRequired();
-
-            moduleTemplate.Property(mt => mt.Level)
-                .IsRequired();
-
-            moduleTemplate.Property(mt => mt.DurationInWeeks)
-                .IsRequired();
-
-            // list of CriteriaTemplate value objects, serialized as JSON
-            moduleTemplate.Property(mt => mt.CriteriaTemplates)
-                .IsRequired()
-                .HasConversion(
-                    ct => JsonSerializer.Serialize(ct, new JsonSerializerOptions()),
-                    ct => JsonSerializer.Deserialize<List<CriteriaTemplate>>(ct, new JsonSerializerOptions())!
-                );
+            courseTemplateModuleTemplate.Property(ctmt => ctmt.ModuleTemplateId).IsRequired();
+            courseTemplateModuleTemplate.WithOwner().HasForeignKey("ModuleTemplateId");
         });
 
-        builder.Navigation(ct => ct.ModuleTemplates)
+        builder.Navigation(ct => ct.CourseTemplateModuleTemplates)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
             .AutoInclude(true);
     }
@@ -148,8 +121,7 @@ public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTempla
                     .IsRequired()
                     .HasConversion(
                         sd => JsonSerializer.Serialize(sd, new JsonSerializerOptions()),
-                        sd => JsonSerializer.Deserialize<ScheduleDetails>(sd, new JsonSerializerOptions())!
-                    );
+                        sd => JsonSerializer.Deserialize<ScheduleDetails>(sd, new JsonSerializerOptions())!);
             });
 
             sessionPlanTemplate.Navigation(spt => spt.SessionTemplates)
@@ -202,23 +174,20 @@ public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTempla
                     .IsRequired()
                     .HasConversion(
                         di => JsonSerializer.Serialize(di, new JsonSerializerOptions()),
-                        di => JsonSerializer.Deserialize<List<Guid>>(di, new JsonSerializerOptions())!
-                    );
+                        di => JsonSerializer.Deserialize<List<Guid>>(di, new JsonSerializerOptions())!);
 
                 // list of ModuleTemplateIds, serialized as JSON
                 activityTemplate.Property(at => at.ModuleTemplateIds)
                     .IsRequired()
                     .HasConversion(
                         mti => JsonSerializer.Serialize(mti, new JsonSerializerOptions()),
-                        mti => JsonSerializer.Deserialize<List<Guid>>(mti, new JsonSerializerOptions())!
-                    );
+                        mti => JsonSerializer.Deserialize<List<Guid>>(mti, new JsonSerializerOptions())!);
 
                 activityTemplate.Property(at => at.ScheduleDetails)
                     .IsRequired()
                     .HasConversion(
                         sd => JsonSerializer.Serialize(sd, new JsonSerializerOptions()),
-                        sd => JsonSerializer.Deserialize<ScheduleDetails>(sd, new JsonSerializerOptions())!
-                    );
+                        sd => JsonSerializer.Deserialize<ScheduleDetails>(sd, new JsonSerializerOptions())!);
             });
 
             activityPlanTemplate.Navigation(apt => apt.ActivityTemplates)
