@@ -1,5 +1,4 @@
 ﻿using KT.Common.Enums;
-using KT.Domain.CourseTemplateAggregate;
 
 namespace KT.Domain.CourseTemplateAggregate;
 
