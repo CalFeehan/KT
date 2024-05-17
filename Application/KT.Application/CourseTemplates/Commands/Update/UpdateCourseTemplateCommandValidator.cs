@@ -27,8 +27,9 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
                 return moduleTemplateIds.All(
                     moduleTemplateId => moduleTemplates.Any(moduleTemplate => moduleTemplate.Id == moduleTemplateId));
             })
-            .WithMessage("Module template not found.");
-
+            .WithMessage("Module template not found.")
+            .Must(NotContainDuplicates);
+        
         RuleFor(x => x.Id)
             .NotEmpty();
 
@@ -62,10 +63,6 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
 
         RuleFor(x => x.SessionPlanTemplate)
             .NotEmpty();
-
-        RuleFor(x => x.ModuleTemplateIds)
-            .NotEmpty()
-            .Must(NotContainDuplicates);
     }
 
     private CourseTemplate? OriginalCourseTemplate { get; set; }
