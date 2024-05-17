@@ -10,14 +10,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace KT.Presentation.API.V1.Controllers;
 
 /// <summary>
-/// ModuleTemplates controller.
+///     ModuleTemplates controller.
 /// </summary>
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-public class ModuleTemplatesController(ISender mediatr,  IMapper mapper) : ApiController
+public class ModuleTemplatesController(ISender mediatr, IMapper mapper) : ApiController
 {
     /// <summary>
-    /// List all ModuleTemplates.
+    ///     List all ModuleTemplates.
     /// </summary>
     [HttpGet("")]
     [ProducesResponseType(typeof(IEnumerable<ModuleTemplateResponse>), StatusCodes.Status200OK)]
@@ -30,7 +30,7 @@ public class ModuleTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
     }
 
     /// <summary>
-    /// Get a ModuleTemplate by id.
+    ///     Get a ModuleTemplate by id.
     /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(ModuleTemplateResponse), StatusCodes.Status200OK)]
@@ -46,7 +46,7 @@ public class ModuleTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
     }
 
     /// <summary>
-    /// Add a ModuleTemplate.
+    ///     Add a ModuleTemplate.
     /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(ModuleTemplateResponse), StatusCodes.Status201Created)]
@@ -63,14 +63,15 @@ public class ModuleTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
             request.DurationInWeeks);
 
         var added = await mediatr.Send(command);
-        
+
         return added.Match(
-            authResult => CreatedAtAction("Get", new { id = added.Value.Id }, mapper.Map<ModuleTemplateResponse>(added.Value)),
+            authResult => CreatedAtAction("Get", new { id = added.Value.Id },
+                mapper.Map<ModuleTemplateResponse>(added.Value)),
             Problem);
     }
 
     /// <summary>
-    /// Remove a module template.
+    ///     Remove a module template.
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
@@ -79,7 +80,7 @@ public class ModuleTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
     {
         var command = new RemoveModuleTemplateCommand(id);
         var removed = await mediatr.Send(command);
-        
+
         return removed.Match(
             authResult => NoContent(),
             Problem);

@@ -1,5 +1,4 @@
-﻿
-using KT.Domain.SessionAggregate;
+﻿using KT.Domain.SessionAggregate;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

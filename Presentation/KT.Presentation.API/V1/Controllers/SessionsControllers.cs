@@ -10,14 +10,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace KT.Presentation.API.V1.Controllers;
 
 /// <summary>
-/// Sessions controller.
+///     Sessions controller.
 /// </summary>
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-public class SessionsController(ISender mediatr,  IMapper mapper) : ApiController
+public class SessionsController(ISender mediatr, IMapper mapper) : ApiController
 {
     /// <summary>
-    /// Get a list of sessions.
+    ///     Get a list of sessions.
     /// </summary>
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<SessionResponse>), StatusCodes.Status200OK)]
@@ -28,9 +28,9 @@ public class SessionsController(ISender mediatr,  IMapper mapper) : ApiControlle
 
         return Ok(mapper.Map<IList<SessionResponse>>(sessions));
     }
-    
+
     /// <summary>
-    /// Get a session by id.
+    ///     Get a session by id.
     /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(SessionResponse), StatusCodes.Status200OK)]
@@ -47,7 +47,7 @@ public class SessionsController(ISender mediatr,  IMapper mapper) : ApiControlle
     }
 
     /// <summary>
-    /// Add a session.
+    ///     Add a session.
     /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(SessionResponse), StatusCodes.Status201Created)]
@@ -65,14 +65,15 @@ public class SessionsController(ISender mediatr,  IMapper mapper) : ApiControlle
             request.MeetingLink);
 
         var created = await mediatr.Send(command);
-        
+
         return created.Match(
-            authResult => CreatedAtAction("Get", new { id = created.Value.Id }, mapper.Map<SessionResponse>(created.Value)),
+            authResult =>
+                CreatedAtAction("Get", new { id = created.Value.Id }, mapper.Map<SessionResponse>(created.Value)),
             Problem);
     }
 
     /// <summary>
-    /// Remove a session by id.
+    ///     Remove a session by id.
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
@@ -81,7 +82,7 @@ public class SessionsController(ISender mediatr,  IMapper mapper) : ApiControlle
     {
         var command = new RemoveSessionCommand(id);
         var deleted = await mediatr.Send(command);
-        
+
         return deleted.Match(
             authResult => NoContent(),
             Problem);

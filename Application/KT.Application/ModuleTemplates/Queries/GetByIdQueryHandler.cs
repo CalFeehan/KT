@@ -12,10 +12,7 @@ public class GetByIdQueryHandler(IModuleTemplateRepository moduleTemplateReposit
     public async Task<ErrorOr<ModuleTemplate>> Handle(GetByIdQuery query, CancellationToken cancellationToken)
     {
         var moduleTemplate = await moduleTemplateRepository.GetByIdAsync(query.Id);
-        if (moduleTemplate is null)
-        {
-            return Errors.ModuleTemplate.NotFound;
-        }
+        if (moduleTemplate is null) return Errors.ModuleTemplate.NotFound;
 
         return moduleTemplate;
     }

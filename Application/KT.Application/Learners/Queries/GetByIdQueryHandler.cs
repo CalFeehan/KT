@@ -13,10 +13,7 @@ public class GetByIdQueryHandler(ILearnerRepository learnerRepository)
     {
         var learner = await learnerRepository.GetByIdAsync(query.Id);
 
-        if (learner is null)
-        {
-            return Errors.Learner.NotFound;
-        }
+        if (learner is null) return Errors.Learner.NotFound;
 
         return learner;
     }

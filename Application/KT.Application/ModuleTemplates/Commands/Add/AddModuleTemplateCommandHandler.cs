@@ -14,7 +14,8 @@ public class AddModuleTemplateCommandHandler : IRequestHandler<AddModuleTemplate
         _moduleTemplateRepository = moduleTemplateRepository;
     }
 
-    public async Task<ErrorOr<ModuleTemplate>> Handle(AddModuleTemplateCommand command, CancellationToken cancellationToken)
+    public async Task<ErrorOr<ModuleTemplate>> Handle(AddModuleTemplateCommand command,
+        CancellationToken cancellationToken)
     {
         var moduleTemplate = ModuleTemplate.Create(
             command.ModuleType,

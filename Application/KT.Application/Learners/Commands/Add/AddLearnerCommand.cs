@@ -10,5 +10,5 @@ public record AddLearnerCommand(
     string Surname,
     DateOnly DateOfBirth,
     Address Address,
-    ContactDetails ContactDetails) 
+    ContactDetails ContactDetails)
     : IRequest<ErrorOr<Learner>>;

@@ -2,6 +2,7 @@
 using KT.Application.Common.Interfaces.Persistence;
 using KT.Domain.Common.Errors;
 using KT.Domain.CourseTemplateAggregate;
+using KT.Domain.CourseTemplateAggregate.Extensions;
 using MediatR;
 
 namespace KT.Application.CourseTemplates.Commands.Update;
@@ -15,13 +16,11 @@ public class UpdateCourseTemplateCommandHandler : IRequestHandler<UpdateCourseTe
         _courseTemplateRepository = courseTemplateRepository;
     }
 
-    public async Task<ErrorOr<CourseTemplate>> Handle(UpdateCourseTemplateCommand request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<CourseTemplate>> Handle(UpdateCourseTemplateCommand request,
+        CancellationToken cancellationToken)
     {
         var courseTemplate = await _courseTemplateRepository.GetByIdAsync(request.Id);
-        if (courseTemplate is null)
-        {
-            return Errors.CourseTemplate.NotFound;
-        }
+        if (courseTemplate is null) return Errors.CourseTemplate.NotFound;
 
         if (courseTemplate.IsEditable())
         {

@@ -17,10 +17,7 @@ public class RemoveLearnerCommandHandler : IRequestHandler<RemoveLearnerCommand,
     public async Task<ErrorOr<Task>> Handle(RemoveLearnerCommand command, CancellationToken cancellationToken)
     {
         var deletedCount = await _learnerRepository.RemoveAsync(command.Id);
-        if (deletedCount is 0)
-        {
-            return Errors.Learner.NotFound;
-        }
+        if (deletedCount is 0) return Errors.Learner.NotFound;
 
         return Task.CompletedTask;
     }

@@ -22,7 +22,7 @@ public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
         // Configure the primary key
         builder.HasKey(l => l.Id);
         builder.Property(l => l.Id).ValueGeneratedNever();
-        
+
         // Configure other properties
         builder.Property(l => l.Forename)
             .HasMaxLength(50)
@@ -40,13 +40,13 @@ public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
             .HasConversion(
                 a => JsonSerializer.Serialize(a, new JsonSerializerOptions()),
                 a => JsonSerializer.Deserialize<Address>(a, new JsonSerializerOptions())!);
-        
+
         builder.Property(l => l.ContactDetails)
             .IsRequired()
             .HasConversion(
                 cd => JsonSerializer.Serialize(cd, new JsonSerializerOptions()),
                 cd => JsonSerializer.Deserialize<ContactDetails>(cd, new JsonSerializerOptions())!);
-            
+
         // Configure relationships (if any)
 
         // Configure indexes (if any)
@@ -57,14 +57,14 @@ public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
         builder.OwnsMany(l => l.LearningPlans, learningPlan =>
         {
             learningPlan.ToTable("LearningPlans", "Learner");
-            
+
             learningPlan.HasKey(lp => lp.Id);
             learningPlan.Property(lp => lp.Id).ValueGeneratedNever();
-            
+
             learningPlan.Property(lp => lp.Title)
                 .HasMaxLength(100)
                 .IsRequired();
-                
+
             learningPlan.Property(lp => lp.Description)
                 .HasMaxLength(500)
                 .IsRequired();
@@ -74,6 +74,6 @@ public class LearnerConfigurations : IEntityTypeConfiguration<Learner>
 
         builder.Navigation(l => l.LearningPlans)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
-            .AutoInclude(true);
+            .AutoInclude();
     }
 }

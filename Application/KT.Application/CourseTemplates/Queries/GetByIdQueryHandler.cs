@@ -1,8 +1,8 @@
 ﻿using ErrorOr;
 using KT.Application.Common.Interfaces.Persistence;
-using MediatR;
 using KT.Domain.Common.Errors;
 using KT.Domain.CourseTemplateAggregate;
+using MediatR;
 
 namespace KT.Application.CourseTemplates.Queries;
 
@@ -18,10 +18,7 @@ public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, ErrorOr<CourseT
     public async Task<ErrorOr<CourseTemplate>> Handle(GetByIdQuery query, CancellationToken cancellationToken)
     {
         var courseTemplate = await _courseTemplateRepository.GetByIdAsync(query.Id);
-        if (courseTemplate is null)
-        {
-            return Errors.CourseTemplate.NotFound;
-        }
+        if (courseTemplate is null) return Errors.CourseTemplate.NotFound;
 
         return courseTemplate;
     }

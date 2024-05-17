@@ -16,7 +16,7 @@ public class ListQueryHandler : IRequestHandler<ListQuery, IList<Session>>
     public async Task<IList<Session>> Handle(ListQuery query, CancellationToken cancellationToken)
     {
         var sessions = await _sessionRepository.ListAsync();
-        
+
         return sessions;
     }
 }

@@ -3,32 +3,12 @@
 namespace KT.Domain.CourseAggregate.ValueObjects;
 
 /// <summary>
-/// A criteria is a specific requirement that a learner must meet in order to pass a module.
+///     A criteria is a specific requirement that a learner must meet in order to pass a module.
 /// </summary>
 public class Criteria : ValueObject
 {
     /// <summary>
-    /// The title of the criteria. E.g., "Assignment 1"
-    /// </summary>
-    public string Title { get; private set; }
-
-    /// <summary>
-    /// The description of the criteria. E.g., "Describe the history of computer science."
-    /// </summary>
-    public string Description { get; private set; }
-
-    /// <summary>
-    /// The code of the criteria. E.g., "CS-101-01"
-    /// </summary>
-    public string Code { get; private set; }
-
-    /// <summary>
-    /// The group that the criteria belongs to. E.g., "Assignments", "Exams", etc.
-    /// </summary>
-    public string CriteriaGroup { get; private set; }
-
-    /// <summary>
-    /// Private constructor to ensure that the only way to create a criteria is through the Create method.
+    ///     Private constructor to ensure that the only way to create a criteria is through the Create method.
     /// </summary>
     private Criteria(string title, string description, string code, string criteriaGroup)
     {
@@ -37,9 +17,29 @@ public class Criteria : ValueObject
         Code = code;
         CriteriaGroup = criteriaGroup;
     }
-    
+
     /// <summary>
-    /// Creates a new criteria.
+    ///     The title of the criteria. E.g., "Assignment 1"
+    /// </summary>
+    public string Title { get; }
+
+    /// <summary>
+    ///     The description of the criteria. E.g., "Describe the history of computer science."
+    /// </summary>
+    public string Description { get; }
+
+    /// <summary>
+    ///     The code of the criteria. E.g., "CS-101-01"
+    /// </summary>
+    public string Code { get; }
+
+    /// <summary>
+    ///     The group that the criteria belongs to. E.g., "Assignments", "Exams", etc.
+    /// </summary>
+    public string CriteriaGroup { get; }
+
+    /// <summary>
+    ///     Creates a new criteria.
     /// </summary>
     public static Criteria Create(string title, string description, string code, string criteriaGroup)
     {
@@ -47,7 +47,7 @@ public class Criteria : ValueObject
     }
 
     /// <summary>
-    /// Compares two criteria for equality.
+    ///     Compares two criteria for equality.
     /// </summary>
     public override IEnumerable<object> GetEqualityComponents()
     {

@@ -42,7 +42,7 @@ public class CourseConfigurations : IEntityTypeConfiguration<Course>
             .WithOne()
             .HasForeignKey(c => c.CourseId)
             .OnDelete(DeleteBehavior.Cascade);
-        
+
         // Configure indexes (if any)
     }
 
@@ -51,10 +51,10 @@ public class CourseConfigurations : IEntityTypeConfiguration<Course>
         builder.OwnsMany(c => c.Modules, module =>
         {
             module.ToTable("Modules", "Course");
-            
+
             module.HasKey(m => m.Id);
             module.Property(m => m.Id).ValueGeneratedNever();
-            
+
             module.Property(m => m.Title).IsRequired().HasMaxLength(100);
             module.Property(m => m.Code).IsRequired().HasMaxLength(25);
             module.Property(m => m.Description).IsRequired().HasMaxLength(500);
@@ -63,16 +63,16 @@ public class CourseConfigurations : IEntityTypeConfiguration<Course>
             module.Property(m => m.ModuleStatus).IsRequired();
 
             module.Property(m => m.Criteria)
-                    .IsRequired()
-                    .HasConversion(
-                        c => JsonSerializer.Serialize(c, new JsonSerializerOptions()),
-                        c => JsonSerializer.Deserialize<List<Criteria>>(c, new JsonSerializerOptions())!);
+                .IsRequired()
+                .HasConversion(
+                    c => JsonSerializer.Serialize(c, new JsonSerializerOptions()),
+                    c => JsonSerializer.Deserialize<List<Criteria>>(c, new JsonSerializerOptions())!);
 
             module.WithOwner().HasForeignKey("CourseId");
         });
 
         builder.Navigation(c => c.Modules)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
-            .AutoInclude(true);
+            .AutoInclude();
     }
 }

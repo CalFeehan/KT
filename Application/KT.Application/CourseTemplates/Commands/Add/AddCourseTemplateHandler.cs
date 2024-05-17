@@ -14,9 +14,11 @@ public class AddCourseTemplateHandler : IRequestHandler<AddCourseTemplateCommand
         _courseTemplateRepository = courseTemplateRepository;
     }
 
-    public async Task<ErrorOr<CourseTemplate>> Handle(AddCourseTemplateCommand request, CancellationToken cancellationToken)
+    public async Task<ErrorOr<CourseTemplate>> Handle(AddCourseTemplateCommand request,
+        CancellationToken cancellationToken)
     {
-        var courseTemplate = CourseTemplate.Create(request.Title, request.Description, request.Code, request.Level, request.DurationInDays);
+        var courseTemplate = CourseTemplate.Create(request.Title, request.Description, request.Code, request.Level,
+            request.DurationInDays);
 
         var created = await _courseTemplateRepository.AddAsync(courseTemplate);
 

@@ -10,7 +10,7 @@ public class ListQueryHandler(IModuleTemplateRepository moduleTemplateRepository
     public async Task<IList<ModuleTemplate>> Handle(ListQuery query, CancellationToken cancellationToken)
     {
         var moduleTemplates = await moduleTemplateRepository.ListAsync();
-        
+
         return moduleTemplates;
     }
 }

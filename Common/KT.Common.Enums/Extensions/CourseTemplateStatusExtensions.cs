@@ -1,12 +1,12 @@
-﻿namespace KT.Common.Enums;
+﻿namespace KT.Common.Enums.Extensions;
 
 /// <summary>
-/// The status of a course template.
+///     The status of a course template.
 /// </summary>
 public static class CourseTemplateStatusExtensions
 {
     /// <summary>
-    /// Is valid transition.
+    ///     Is valid transition.
     /// </summary>
     public static bool IsValidTransition(this CourseTemplateStatus currentStatus, CourseTemplateStatus newStatus)
     {

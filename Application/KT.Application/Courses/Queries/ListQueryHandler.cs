@@ -16,7 +16,7 @@ public class ListQueryHandler : IRequestHandler<ListQuery, IList<Course>>
     public async Task<IList<Course>> Handle(ListQuery query, CancellationToken cancellationToken)
     {
         var courses = await _courseRepository.ListAsync();
-        
+
         return courses;
     }
 }

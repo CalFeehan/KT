@@ -6,26 +6,20 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 namespace KT.Presentation.API.V1.Controllers;
 
 /// <summary>
-/// Base class for API controllers.
+///     Base class for API controllers.
 /// </summary>
 [ApiController]
 public abstract class ApiController : ControllerBase
 {
     /// <summary>
-    /// Create a ProblemDetails object.
+    ///     Create a ProblemDetails object.
     /// </summary>
     protected IActionResult Problem(List<Error> errors)
     {
-        if (errors.Count is 0)
-        {
-            return Problem();
-        }
+        if (errors.Count is 0) return Problem();
 
         // if all errors are validation errors, return a validation problem
-        if (errors.All(e => e.Type == ErrorType.Validation))
-        {
-            return ValidationProblem(errors);
-        }
+        if (errors.All(e => e.Type == ErrorType.Validation)) return ValidationProblem(errors);
 
         HttpContext.Items[HttpContextItemKeys.Errors] = errors;
 
@@ -35,10 +29,7 @@ public abstract class ApiController : ControllerBase
     private IActionResult ValidationProblem(List<Error> errors)
     {
         var modelState = new ModelStateDictionary();
-        foreach (var error in errors)
-        {
-            modelState.AddModelError(error.Code, error.Description);
-        }
+        foreach (var error in errors) modelState.AddModelError(error.Code, error.Description);
         return ValidationProblem(modelState);
     }
 

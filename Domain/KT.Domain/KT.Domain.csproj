@@ -7,30 +7,30 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="ErrorOr" Version="2.0.1" />
-      <PackageReference Include="Mediatr" Version="12.2.0" />
+        <PackageReference Include="ErrorOr" Version="2.0.1"/>
+        <PackageReference Include="Mediatr" Version="12.2.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="ApplicantAggregate/" />
-      <Folder Include="AssessmentAggregate/" />
-      <Folder Include="CourseTemplateAggregate/Events/" />
-      <Folder Include="DocumentAggregate/" />
-      <Folder Include="FormAggregate/" />
-      <Folder Include="LearnerAggregate/ValueObjects/" />
-      <Folder Include="Common/Models/" />
-      <Folder Include="Common/ValueObjects/" />
-      <Folder Include="ModuleTemplateAggregate/Entities/" />
-      <Folder Include="ModuleTemplateAggregate/Events/" />
-      <Folder Include="ModuleTemplateAggregate/ValueObjects/" />
-      <Folder Include="SessionAggregate/Entites/" />
-      <Folder Include="SessionAggregate/Events/" />
-      <Folder Include="SessionAggregate/ValueObjects/" />
-      <Folder Include="UserAggregate/" />
+        <Folder Include="ApplicantAggregate/"/>
+        <Folder Include="AssessmentAggregate/"/>
+        <Folder Include="CourseTemplateAggregate/Events/"/>
+        <Folder Include="DocumentAggregate/"/>
+        <Folder Include="FormAggregate/"/>
+        <Folder Include="LearnerAggregate/ValueObjects/"/>
+        <Folder Include="Common/Models/"/>
+        <Folder Include="Common/ValueObjects/"/>
+        <Folder Include="ModuleTemplateAggregate/Entities/"/>
+        <Folder Include="ModuleTemplateAggregate/Events/"/>
+        <Folder Include="ModuleTemplateAggregate/ValueObjects/"/>
+        <Folder Include="SessionAggregate/Entites/"/>
+        <Folder Include="SessionAggregate/Events/"/>
+        <Folder Include="SessionAggregate/ValueObjects/"/>
+        <Folder Include="UserAggregate/"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Common\KT.Common.Enums\KT.Common.Enums.csproj" />
+        <ProjectReference Include="..\..\Common\KT.Common.Enums\KT.Common.Enums.csproj"/>
     </ItemGroup>
 
 </Project>

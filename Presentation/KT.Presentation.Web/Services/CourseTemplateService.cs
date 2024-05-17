@@ -28,5 +28,4 @@ public class CourseTemplateService : ICourseTemplateService
         var courseTemplateResponse = await _client.CoursetemplatesPOSTAsync(courseTemplate);
         return courseTemplateResponse;
     }
-
 }

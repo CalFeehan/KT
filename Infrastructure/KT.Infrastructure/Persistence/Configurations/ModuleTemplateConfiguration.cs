@@ -12,6 +12,7 @@ public class ModuleTemplateConfiguration : IEntityTypeConfiguration<ModuleTempla
     {
         ConfigureModuleTemplateTable(builder);
     }
+
     private void ConfigureModuleTemplateTable(EntityTypeBuilder<ModuleTemplate> builder)
     {
         builder.ToTable("ModuleTemplates", "ModuleTemplate");
@@ -20,7 +21,7 @@ public class ModuleTemplateConfiguration : IEntityTypeConfiguration<ModuleTempla
         builder.Property(mt => mt.Id).ValueGeneratedNever();
 
         builder.Property(mt => mt.ModuleType)
-        .IsRequired();
+            .IsRequired();
 
         builder.Property(mt => mt.Title)
             .HasMaxLength(100)

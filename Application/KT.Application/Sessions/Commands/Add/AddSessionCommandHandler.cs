@@ -26,7 +26,7 @@ public class AddSessionCommandHandler : IRequestHandler<AddSessionCommand, Error
             command.Notes,
             command.MeetingLink
         );
-        
+
         var created = await _sessionRepository.AddAsync(session);
 
         return created;

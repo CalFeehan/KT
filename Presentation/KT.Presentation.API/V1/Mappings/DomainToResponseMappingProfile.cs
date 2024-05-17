@@ -19,12 +19,12 @@ using KT.Presentation.Contracts.V1.Responses.Sessions;
 namespace KT.Presentation.API;
 
 /// <summary>
-/// Mapping profile for domain objects to responses.
+///     Mapping profile for domain objects to responses.
 /// </summary>
 public class DomainToResponseProfile : Profile
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="DomainToResponseProfile"/> class.
+    ///     Initializes a new instance of the <see cref="DomainToResponseProfile" /> class.
     /// </summary>
     public DomainToResponseProfile()
     {
@@ -50,4 +50,3 @@ public class DomainToResponseProfile : Profile
         CreateMap<ContactDetails, ContactDetailsResponse>();
     }
 }
-

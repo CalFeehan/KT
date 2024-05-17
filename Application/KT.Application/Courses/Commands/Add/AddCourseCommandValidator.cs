@@ -17,7 +17,7 @@ public class AddCourseCommandValidator : AbstractValidator<Course>
         RuleFor(x => x.StartDate).NotEmpty();
         RuleFor(x => x.ExpectedEndDate).NotEmpty().GreaterThan(x => x.StartDate);
         RuleFor(x => x.ActualEndDate).GreaterThan(x => x.StartDate);
-        
+
         RuleFor(x => x).Must(BeAValidStatus).WithMessage("Course status is not valid");
     }
 

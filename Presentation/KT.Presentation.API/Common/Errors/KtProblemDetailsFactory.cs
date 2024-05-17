@@ -1,22 +1,22 @@
-﻿using ErrorOr;
+﻿using System.Diagnostics;
+using ErrorOr;
 using KT.Presentation.API.Common.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.Extensions.Options;
-using System.Diagnostics;
 
 namespace KT.Presentation.API.Common.Errors;
 
 /// <summary>
-/// Factory for creating ProblemDetails and ValidationProblemDetails
+///     Factory for creating ProblemDetails and ValidationProblemDetails
 /// </summary>
-public class KTProblemDetailsFactory(IOptions<ApiBehaviorOptions> options) : ProblemDetailsFactory
+public class KtProblemDetailsFactory(IOptions<ApiBehaviorOptions> options) : ProblemDetailsFactory
 {
     private readonly ApiBehaviorOptions _options = options?.Value ?? throw new ArgumentNullException(nameof(options));
 
     /// <summary>
-    /// Create a ProblemDetails object.
+    ///     Create a ProblemDetails object.
     /// </summary>
     public override ProblemDetails CreateProblemDetails(
         HttpContext httpContext,
@@ -43,9 +43,11 @@ public class KTProblemDetailsFactory(IOptions<ApiBehaviorOptions> options) : Pro
     }
 
     /// <summary>
-    /// Create a ValidationProblemDetails object.
+    ///     Create a ValidationProblemDetails object.
     /// </summary>
-    public override ValidationProblemDetails CreateValidationProblemDetails(HttpContext httpContext, ModelStateDictionary modelStateDictionary, int? statusCode = null, string? title = null, string? type = null, string? detail = null, string? instance = null)
+    public override ValidationProblemDetails CreateValidationProblemDetails(HttpContext httpContext,
+        ModelStateDictionary modelStateDictionary, int? statusCode = null, string? title = null, string? type = null,
+        string? detail = null, string? instance = null)
     {
         statusCode ??= StatusCodes.Status400BadRequest;
 
@@ -61,7 +63,6 @@ public class KTProblemDetailsFactory(IOptions<ApiBehaviorOptions> options) : Pro
         ApplyProblemDetailsDefaults(httpContext, problemDetails, statusCode.Value);
 
         return problemDetails;
-
     }
 
     private void ApplyProblemDetailsDefaults(HttpContext httpContext, ProblemDetails problemDetails, int statusCode)
@@ -75,14 +76,9 @@ public class KTProblemDetailsFactory(IOptions<ApiBehaviorOptions> options) : Pro
         }
 
         var traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
-        if (traceId != null)
-        {
-            problemDetails.Extensions["traceId"] = traceId;
-        }
+        if (traceId != null) problemDetails.Extensions["traceId"] = traceId;
 
         if (httpContext.Items[HttpContextItemKeys.Errors] is List<Error> errors)
-        {
             problemDetails.Extensions.Add("errorCodes", errors.Select(x => x.Code));
-        }
     }
 }

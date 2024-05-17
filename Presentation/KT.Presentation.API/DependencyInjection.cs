@@ -6,12 +6,12 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 namespace KT.Presentation.API;
 
 /// <summary>
-/// Dependency injection extension methods.
+///     Dependency injection extension methods.
 /// </summary>
 public static class DependencyInjection
 {
     /// <summary>
-    /// Add API services.
+    ///     Add API services.
     /// </summary>
     public static IServiceCollection AddApi(this IServiceCollection services)
     {
@@ -34,12 +34,12 @@ public static class DependencyInjection
         services.AddHealthChecks();
         services.AddMemoryCache();
         services.AddControllers(options => options.SuppressAsyncSuffixInActionNames = true)
-        .AddJsonOptions(options =>
-            options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+            .AddJsonOptions(options =>
+                options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
         services.AddRouting(options => options.LowercaseUrls = true);
         services.AddAutoMapper(typeof(DependencyInjection).Assembly);
 
-        services.AddSingleton<ProblemDetailsFactory, KTProblemDetailsFactory>();
+        services.AddSingleton<ProblemDetailsFactory, KtProblemDetailsFactory>();
 
         return services;
     }

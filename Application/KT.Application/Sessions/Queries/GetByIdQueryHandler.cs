@@ -1,8 +1,8 @@
 ﻿using ErrorOr;
-using KT.Domain.SessionAggregate;
-using KT.Domain.Common.Errors;
-using MediatR;
 using KT.Application.Common.Interfaces.Persistence;
+using KT.Domain.Common.Errors;
+using KT.Domain.SessionAggregate;
+using MediatR;
 
 namespace KT.Application.Sessions.Queries;
 
@@ -18,10 +18,7 @@ public class GetByIdQueryHandler : IRequestHandler<GetByIdQuery, ErrorOr<Session
     public async Task<ErrorOr<Session>> Handle(GetByIdQuery query, CancellationToken cancellationToken)
     {
         var session = await _sessionRepository.GetByIdAsync(query.Id);
-        if (session is null)
-        {
-            return Errors.Session.NotFound;
-        }
+        if (session is null) return Errors.Session.NotFound;
 
         return session;
     }

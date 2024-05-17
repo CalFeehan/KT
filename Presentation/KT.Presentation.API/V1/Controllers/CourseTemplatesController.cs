@@ -10,14 +10,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace KT.Presentation.API.V1.Controllers;
 
 /// <summary>
-/// CourseTemplates controller.
+///     CourseTemplates controller.
 /// </summary>
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiController
+public class CourseTemplatesController(ISender mediatr, IMapper mapper) : ApiController
 {
     /// <summary>
-    /// List all CourseTemplates.
+    ///     List all CourseTemplates.
     /// </summary>
     [HttpGet("")]
     [ProducesResponseType(typeof(IEnumerable<CourseTemplateResponse>), StatusCodes.Status200OK)]
@@ -30,7 +30,7 @@ public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
     }
 
     /// <summary>
-    /// Get a CourseTemplate by id.
+    ///     Get a CourseTemplate by id.
     /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(CourseTemplateResponse), StatusCodes.Status200OK)]
@@ -41,12 +41,12 @@ public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
         var courseTemplate = await mediatr.Send(query);
 
         return courseTemplate.Match(
-            courseTemplate => Ok(mapper.Map<CourseTemplateResponse>(courseTemplate)),
+            ct => Ok(mapper.Map<CourseTemplateResponse>(ct)),
             Problem);
     }
 
     /// <summary>
-    /// Add a CourseTemplate.
+    ///     Add a CourseTemplate.
     /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(CourseTemplateResponse), StatusCodes.Status201Created)]
@@ -62,14 +62,14 @@ public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
             request.DurationInWeeks);
 
         var added = await mediatr.Send(command);
-        
+
         return added.Match(
-            authResult => CreatedAtAction("Get", new { id = added.Value.Id }, mapper.Map<CourseTemplateResponse>(added.Value)),
+            _ => CreatedAtAction("Get", new { id = added.Value.Id }, mapper.Map<CourseTemplateResponse>(added.Value)),
             Problem);
     }
 
     /// <summary>
-    /// Remove a course template.
+    ///     Remove a course template.
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
@@ -78,12 +78,12 @@ public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
     {
         var command = new RemoveCourseTemplateCommand(id);
         var removed = await mediatr.Send(command);
-        
+
         return removed.Match(
-            authResult => NoContent(),
+            _ => NoContent(),
             Problem);
     }
-    
+
     // /// <summary>
     // /// Update a course template.
     // /// </summary>
@@ -103,7 +103,7 @@ public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
     //         request.CourseTemplateStatus);
 
     //     var updated = await mediatr.Send(command);
-        
+
     //     return updated.Match(
     //         authResult => Ok(mapper.Map<CourseTemplateResponse>(updated.Value)),
     //         Problem);
@@ -123,7 +123,7 @@ public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
     //         request.ModuleTemplateIds);
 
     //     var updated = await mediatr.Send(command);
-        
+
     //     return updated.Match(
     //         authResult => Ok(mapper.Map<CourseTemplateResponse>(updated.Value)),
     //         Problem);
@@ -139,7 +139,7 @@ public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
     // {
     //     var command = new AddModuleTemplateCommand(id, moduleTemplateId);
     //     var added = await mediatr.Send(command);
-        
+
     //     return added.Match(
     //         authResult => NoContent(),
     //         Problem);
@@ -155,7 +155,7 @@ public class CourseTemplatesController(ISender mediatr,  IMapper mapper) : ApiCo
     // {
     //     var command = new RemoveModuleTemplateCommand(id, moduleTemplateId);
     //     var removed = await mediatr.Send(command);
-        
+
     //     return removed.Match(
     //         authResult => NoContent(),
     //         Problem);

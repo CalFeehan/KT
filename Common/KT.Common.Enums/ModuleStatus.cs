@@ -7,4 +7,3 @@ public enum ModuleStatus
     Completed,
     Failed
 }
-

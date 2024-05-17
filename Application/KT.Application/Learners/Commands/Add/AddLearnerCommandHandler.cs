@@ -16,7 +16,8 @@ public class AddLearnerCommandHandler : IRequestHandler<AddLearnerCommand, Error
 
     public async Task<ErrorOr<Learner>> Handle(AddLearnerCommand command, CancellationToken cancellationToken)
     {
-        var learner = Learner.Create(command.Forename, command.Surname, command.DateOfBirth, command.Address, command.ContactDetails);
+        var learner = Learner.Create(command.Forename, command.Surname, command.DateOfBirth, command.Address,
+            command.ContactDetails);
 
         var created = await _learnerRepository.AddAsync(learner);
 

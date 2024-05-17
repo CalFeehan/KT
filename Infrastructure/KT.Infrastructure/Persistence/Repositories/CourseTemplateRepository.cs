@@ -6,9 +6,9 @@ namespace KT.Infrastructure.Persistence.Repositories;
 
 public class CourseTemplateRepository : ICourseTemplateRepository
 {
-    private readonly KTDbContext _dbContext;
+    private readonly KtDbContext _dbContext;
 
-    public CourseTemplateRepository(KTDbContext dbContext)
+    public CourseTemplateRepository(KtDbContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -23,10 +23,7 @@ public class CourseTemplateRepository : ICourseTemplateRepository
     public async Task<int> RemoveAsync(Guid id)
     {
         var courseTemplate = await _dbContext.CourseTemplates.FindAsync(id);
-        if (courseTemplate is null)
-        {
-            return 0;
-        }
+        if (courseTemplate is null) return 0;
 
         _dbContext.CourseTemplates.Remove(courseTemplate);
         return await _dbContext.SaveChangesAsync();

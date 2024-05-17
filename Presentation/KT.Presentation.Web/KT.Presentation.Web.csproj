@@ -1,16 +1,16 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Models/" />
-  </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Models/"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\KT.Presentation.ClientsGenerated\KT.Presentation.ClientsGenerated.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\KT.Presentation.ClientsGenerated\KT.Presentation.ClientsGenerated.csproj"/>
+    </ItemGroup>
 </Project>

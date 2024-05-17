@@ -6,9 +6,9 @@ namespace KT.Infrastructure.Persistence.Repositories;
 
 public class SessionRepository : ISessionRepository
 {
-    private readonly KTDbContext _dbContext;
+    private readonly KtDbContext _dbContext;
 
-    public SessionRepository(KTDbContext dbContext)
+    public SessionRepository(KtDbContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -23,10 +23,7 @@ public class SessionRepository : ISessionRepository
     public async Task<int> RemoveAsync(Guid id)
     {
         var session = await _dbContext.Sessions.FindAsync(id);
-        if (session is null)
-        {
-            return 0;
-        }
+        if (session is null) return 0;
 
         _dbContext.Sessions.Remove(session);
         return await _dbContext.SaveChangesAsync();

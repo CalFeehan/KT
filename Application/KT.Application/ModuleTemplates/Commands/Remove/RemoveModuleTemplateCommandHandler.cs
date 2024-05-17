@@ -17,10 +17,7 @@ public class RemoveModuleTemplateCommandHandler : IRequestHandler<RemoveModuleTe
     public async Task<ErrorOr<Task>> Handle(RemoveModuleTemplateCommand command, CancellationToken cancellationToken)
     {
         var deletedCount = await _moduleTemplateRepository.RemoveAsync(command.Id);
-        if (deletedCount is 0)
-        {
-            return Errors.ModuleTemplate.NotFound;
-        }
+        if (deletedCount is 0) return Errors.ModuleTemplate.NotFound;
 
         return Task.CompletedTask;
     }

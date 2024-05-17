@@ -3,7 +3,7 @@
 public enum ModuleType
 {
     Other,
-    NVQ,
+    Nvq,
     TechnicalCertificate,
     FunctionalSkills,
     EndPointAssessment

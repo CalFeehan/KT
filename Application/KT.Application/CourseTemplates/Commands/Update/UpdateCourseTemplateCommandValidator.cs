@@ -1,14 +1,13 @@
 ﻿using FluentValidation;
 using KT.Application.Common.Interfaces.Persistence;
 using KT.Common.Enums;
+using KT.Common.Enums.Extensions;
 using KT.Domain.CourseTemplateAggregate;
 
 namespace KT.Application.CourseTemplates.Commands.Update;
 
 public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCourseTemplateCommand>
 {
-    private CourseTemplate? OriginalCourseTemplate { get; set; }
-
     public UpdateCourseTemplateCommandValidator(ICourseTemplateRepository courseTemplateRepository)
     {
         RuleFor(x => x)
@@ -55,17 +54,13 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
             .NotEmpty();
     }
 
+    private CourseTemplate? OriginalCourseTemplate { get; set; }
+
     private bool BeAValidCourseTemplateStatusTransition(CourseTemplateStatus courseTemplateStatus)
     {
-        if (OriginalCourseTemplate is null)
-        {
-            return false;
-        }
+        if (OriginalCourseTemplate is null) return false;
 
-        if (OriginalCourseTemplate!.CourseTemplateStatus == courseTemplateStatus)
-        {
-            return true;
-        }
+        if (OriginalCourseTemplate!.CourseTemplateStatus == courseTemplateStatus) return true;
 
         return OriginalCourseTemplate!.CourseTemplateStatus.IsValidTransition(courseTemplateStatus);
     }

@@ -7,11 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Common\KT.Common.Enums\KT.Common.Enums.csproj" />
+        <ProjectReference Include="..\..\Common\KT.Common.Enums\KT.Common.Enums.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="V1/Requests/CourseTemplates/" />
+        <Folder Include="V1/Requests/CourseTemplates/"/>
     </ItemGroup>
 
 </Project>

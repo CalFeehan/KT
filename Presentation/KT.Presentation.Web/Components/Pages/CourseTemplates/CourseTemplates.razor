@@ -22,34 +22,36 @@ else
 {
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Status</th>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Code</th>
-                <th>Level</th>
-                <th>Duration (weeks)</th>
-            </tr>
+        <tr>
+            <th>Status</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Code</th>
+            <th>Level</th>
+            <th>Duration (weeks)</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var courseTemplate in courseTemplates)
-            {
-                <tr>
-                    <td>@courseTemplate.CourseTemplateStatus</td>
-                    <td>@courseTemplate.Title</td>
-                    <td>@courseTemplate.Description</td>
-                    <td>@courseTemplate.Code</td>
-                    <td>@courseTemplate.Level</td>
-                    <td>@courseTemplate.DurationInWeeks</td>
-                    <td><button class="btn btn-primary" @onclick="() => EditCourseTemplate(courseTemplate.Id)">Edit</button></td>
-                </tr>
-            }
+        @foreach (var courseTemplate in courseTemplates)
+        {
+            <tr>
+                <td>@courseTemplate.CourseTemplateStatus</td>
+                <td>@courseTemplate.Title</td>
+                <td>@courseTemplate.Description</td>
+                <td>@courseTemplate.Code</td>
+                <td>@courseTemplate.Level</td>
+                <td>@courseTemplate.DurationInWeeks</td>
+                <td>
+                    <button class="btn btn-primary" @onclick="() => EditCourseTemplate(courseTemplate.Id)">Edit</button>
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
-    
 }
+
 @code {
-    List<CourseTemplateResponse> courseTemplates  = new List<CourseTemplateResponse>();
+    List<CourseTemplateResponse> courseTemplates = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -65,4 +67,5 @@ else
     {
         NavigationManager.NavigateTo($"course-templates/edit/{id}");
     }
+
 }

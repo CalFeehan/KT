@@ -1,14 +1,14 @@
 ﻿using KT.Common.Enums;
 
-namespace KT.Domain.CourseTemplateAggregate;
+namespace KT.Domain.CourseTemplateAggregate.Extensions;
 
 /// <summary>
-/// Extension methods for the CourseTemplate class.
+///     Extension methods for the CourseTemplate class.
 /// </summary>
 public static class CourseTemplateExtensions
 {
     /// <summary>
-    /// Determines if the course template is editable.
+    ///     Determines if the course template is editable.
     /// </summary>
     public static bool IsEditable(this CourseTemplate courseTemplate)
     {

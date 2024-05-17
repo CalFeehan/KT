@@ -5,16 +5,16 @@
 
 <h1>Add Modules to Course Template</h1>
 
-<EditForm Model="@moduleTemplates" OnValidSubmit="AddModules" FormName="AddModules" >
+<EditForm Model="@moduleTemplates" OnValidSubmit="AddModules" FormName="AddModules">
 
     @foreach (var moduleTemplate in moduleTemplates)
     {
         <div>
-            <input type="checkbox" checked />
+            <input type="checkbox" checked/>
             <label>@moduleTemplate.Title</label>
         </div>
     }
-    
+
     <div class="d-flex justify-content-between">
         <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Save</button>
         <button type="button" class="btn btn-secondary" style="margin-top: 10px;" @onclick="NavigateBack">Back</button>
@@ -23,10 +23,9 @@
 </EditForm>
 
 @code {
-    [Parameter]
-    public Guid Id { get; set; }
+    [Parameter] public Guid Id { get; set; }
 
-    private List<ModuleTemplateResponse> moduleTemplates = new List<ModuleTemplateResponse>();
+    private List<ModuleTemplateResponse> moduleTemplates = new();
 
     protected override async Task OnInitializedAsync()
     {
@@ -37,12 +36,11 @@
     private async Task AddModules()
     {
         await Task.CompletedTask;
-        return;
     }
 
     private void NavigateBack()
     {
         NavigationManager.NavigateTo($"/course-templates/edit/{Id}");
     }
-}
 
+}

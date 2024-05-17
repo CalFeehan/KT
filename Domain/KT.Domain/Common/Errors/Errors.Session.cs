@@ -7,7 +7,7 @@ public static partial class Errors
     public static class Session
     {
         public static Error NotFound => Error.NotFound(
-            code: "Session.NotFound",
-            description: "A Session with this id does not exist.");
+            "Session.NotFound",
+            "A Session with this id does not exist.");
     }
 }

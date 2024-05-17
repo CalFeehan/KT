@@ -6,9 +6,9 @@ namespace KT.Infrastructure.Persistence.Repositories;
 
 public class LearnerRepository : ILearnerRepository
 {
-    private readonly KTDbContext _dbContext;
+    private readonly KtDbContext _dbContext;
 
-    public LearnerRepository(KTDbContext dbContext)
+    public LearnerRepository(KtDbContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -23,10 +23,7 @@ public class LearnerRepository : ILearnerRepository
     public async Task<int> RemoveAsync(Guid id)
     {
         var learner = await _dbContext.Learners.FindAsync(id);
-        if (learner is null)
-        {
-            return 0;
-        }
+        if (learner is null) return 0;
 
         _dbContext.Learners.Remove(learner);
         return await _dbContext.SaveChangesAsync();

@@ -6,9 +6,9 @@ namespace KT.Infrastructure.Persistence.Repositories;
 
 public class ModuleTemplateRepository : IModuleTemplateRepository
 {
-    private readonly KTDbContext _dbContext;
+    private readonly KtDbContext _dbContext;
 
-    public ModuleTemplateRepository(KTDbContext dbContext)
+    public ModuleTemplateRepository(KtDbContext dbContext)
     {
         _dbContext = dbContext;
     }
@@ -23,10 +23,7 @@ public class ModuleTemplateRepository : IModuleTemplateRepository
     public async Task<int> RemoveAsync(Guid id)
     {
         var moduleTemplate = await _dbContext.ModuleTemplates.FindAsync(id);
-        if (moduleTemplate is null)
-        {
-            return 0;
-        }
+        if (moduleTemplate is null) return 0;
 
         _dbContext.ModuleTemplates.Remove(moduleTemplate);
         return await _dbContext.SaveChangesAsync();

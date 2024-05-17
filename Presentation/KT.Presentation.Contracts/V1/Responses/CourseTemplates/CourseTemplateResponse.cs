@@ -13,4 +13,3 @@ public record CourseTemplateResponse(
     ActivityPlanTemplateResponse ActivityPlanTemplate,
     SessionPlanTemplateResponse SessionPlanTemplate,
     List<CourseTemplateModuleTemplateResponse> CourseTemplateModuleTemplates);
-

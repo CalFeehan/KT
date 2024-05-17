@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KT.Infrastructure.Migrations
 {
-    [DbContext(typeof(KTDbContext))]
+    [DbContext(typeof(KtDbContext))]
     partial class KTDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

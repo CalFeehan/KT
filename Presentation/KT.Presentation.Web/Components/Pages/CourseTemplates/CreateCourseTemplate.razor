@@ -14,31 +14,31 @@
 }
 
 
-<EditForm Model="@addCourseTemplateRequest" OnValidSubmit="AddCourseTemplate" FormName="AddCourseTemplateForm" >
+<EditForm Model="@addCourseTemplateRequest" OnValidSubmit="AddCourseTemplate" FormName="AddCourseTemplateForm">
 
     <div class="form-group">
         <label for="Title">Title</label>
-        <InputText id="Title" class="form-control" @bind-Value="addCourseTemplateRequest.Title" />
+        <InputText id="Title" class="form-control" @bind-Value="addCourseTemplateRequest.Title"/>
     </div>
 
     <div class="form-group">
         <label for="Description">Description</label>
-        <InputText id="Description" class="form-control" @bind-Value="addCourseTemplateRequest.Description" />
+        <InputText id="Description" class="form-control" @bind-Value="addCourseTemplateRequest.Description"/>
     </div>
 
     <div class="form-group">
         <label for="Code">Code</label>
-        <InputText id="Code" class="form-control" @bind-Value="addCourseTemplateRequest.Code" />
+        <InputText id="Code" class="form-control" @bind-Value="addCourseTemplateRequest.Code"/>
     </div>
 
     <div class="form-group">
         <label for="Level">Level</label>
-        <InputNumber id="Level" class="form-control" @bind-Value="addCourseTemplateRequest.Level" />
+        <InputNumber id="Level" class="form-control" @bind-Value="addCourseTemplateRequest.Level"/>
     </div>
 
     <div class="form-group">
         <label for="DurationInWeeks">Duration (weeks)</label>
-        <InputNumber id="DurationInWeeks" class="form-control" @bind-Value="addCourseTemplateRequest.DurationInWeeks" />
+        <InputNumber id="DurationInWeeks" class="form-control" @bind-Value="addCourseTemplateRequest.DurationInWeeks"/>
     </div>
 
     <div class="d-flex justify-content-between">
@@ -49,7 +49,8 @@
 </EditForm>
 
 @code {
-    private AddCourseTemplateRequest addCourseTemplateRequest = new AddCourseTemplateRequest() 
+
+    private readonly AddCourseTemplateRequest addCourseTemplateRequest = new()
     {
         Title = "Care L2 2024",
         Description = "Health and Social Care Level 2 2024",
@@ -58,7 +59,7 @@
         DurationInWeeks = 52
     };
 
-    private bool showErrorMessage = false;
+    private bool showErrorMessage;
 
     private async Task AddCourseTemplate()
     {
@@ -78,4 +79,5 @@
     {
         NavigationManager.NavigateTo("course-templates");
     }
+
 }

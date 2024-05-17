@@ -1,14 +1,23 @@
-﻿using KT.Application.Common.Interfaces.Persistence;
-using Moq;
+﻿using ErrorOr;
 using FluentAssertions;
-using KT.Domain.LearnerAggregate;
+using KT.Application.Common.Interfaces.Persistence;
 using KT.Application.Learners.Commands.Add;
+using KT.Application.Tests.Common.DataHelpers;
+using KT.Domain.LearnerAggregate;
+using Moq;
 
-namespace KT.Application.Tests.Learners.Commands;
+namespace KT.Application.Tests.Learners.Commands.Create;
 
 [TestFixture]
 public class AddLearnerCommandHandlerTests
 {
+    [SetUp]
+    public void Setup()
+    {
+        SetupData();
+        SetupExpections();
+    }
+
     private readonly Mock<ILearnerRepository> _learnerRepositoryMock;
     private readonly AddLearnerCommandHandler _addCommandHandler;
 
@@ -61,14 +70,7 @@ public class AddLearnerCommandHandlerTests
         // Assert
         result.Value.Should().BeNull();
         result.Errors.Count.Should().BeGreaterThan(0);
-        result.Errors[0].Type.Should().Be(ErrorOr.ErrorType.Unexpected);
-    }
-
-    [SetUp]
-    public void Setup()
-    {
-        SetupData();
-        SetupExpections();
+        result.Errors[0].Type.Should().Be(ErrorType.Unexpected);
     }
 
     private void SetupExpections()
@@ -79,7 +81,7 @@ public class AddLearnerCommandHandlerTests
 
     private void SetupData()
     {
-        _learner = Learner.Create("John", "Doe", DateOnly.FromDateTime(new DateTime(2000, 1, 1)), AddressHelpers.DummyAddress, ContactDetailsHelpers.DummyContactDetails);
+        _learner = Learner.Create("John", "Doe", DateOnly.FromDateTime(new DateTime(2000, 1, 1)),
+            AddressHelpers.DummyAddress, ContactDetailsHelpers.DummyContactDetails);
     }
 }
-

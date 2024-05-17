@@ -22,36 +22,37 @@ else
 {
     <table class="table table-striped">
         <thead>
-            <tr>
-                <th>Forename</th>
-                <th>Surname</th>
-                <th>Date of Birth</th>
-                <th>Address Line 1</th>
-                <th>Address Line 2</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Contact Preference</th>
-            </tr>
+        <tr>
+            <th>Forename</th>
+            <th>Surname</th>
+            <th>Date of Birth</th>
+            <th>Address Line 1</th>
+            <th>Address Line 2</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Contact Preference</th>
+        </tr>
         </thead>
         <tbody>
-            @foreach (var learner in learners)
-            {
-                <tr>
-                    <td>@learner.Forename</td>
-                    <td>@learner.Surname</td>
-                    <td>@learner.DateOfBirth.ToString("d")</td>
-                    <td>@learner.Address.Line1</td>
-                    <td>@learner.Address.Line2</td>
-                    <td>@learner.ContactDetails.Email</td>
-                    <td>@learner.ContactDetails.Phone</td>
-                    <td>@learner.ContactDetails.ContactPreference</td>
-                </tr>
-            }
+        @foreach (var learner in learners)
+        {
+            <tr>
+                <td>@learner.Forename</td>
+                <td>@learner.Surname</td>
+                <td>@learner.DateOfBirth.ToString("d")</td>
+                <td>@learner.Address.Line1</td>
+                <td>@learner.Address.Line2</td>
+                <td>@learner.ContactDetails.Email</td>
+                <td>@learner.ContactDetails.Phone</td>
+                <td>@learner.ContactDetails.ContactPreference</td>
+            </tr>
+        }
         </tbody>
     </table>
 }
+
 @code {
-    List<LearnerResponse> learners = new List<LearnerResponse>();
+    List<LearnerResponse> learners = new();
 
     protected override async Task OnInitializedAsync()
     {

@@ -4,15 +4,15 @@ namespace KT.Domain.CourseTemplateAggregate.ValueObjects;
 
 public class CourseTemplateModuleTemplate : ValueObject
 {
-    public Guid CourseTemplateId { get; private set; }
-
-    public Guid ModuleTemplateId { get; private set; }
-
     private CourseTemplateModuleTemplate(Guid courseTemplateId, Guid moduleTemplateId)
     {
         CourseTemplateId = courseTemplateId;
         ModuleTemplateId = moduleTemplateId;
     }
+
+    public Guid CourseTemplateId { get; }
+
+    public Guid ModuleTemplateId { get; }
 
     public static CourseTemplateModuleTemplate Create(Guid courseTemplateId, Guid moduleTemplateId)
     {
@@ -26,5 +26,4 @@ public class CourseTemplateModuleTemplate : ValueObject
         yield return CourseTemplateId;
         yield return ModuleTemplateId;
     }
-
 }

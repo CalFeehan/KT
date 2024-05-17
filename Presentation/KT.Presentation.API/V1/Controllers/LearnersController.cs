@@ -11,14 +11,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace KT.Presentation.API.V1.Controllers;
 
 /// <summary>
-/// Learners controller.
+///     Learners controller.
 /// </summary>
 [ApiVersion("1.0")]
 [Route("api/v{version:apiVersion}/[controller]")]
-public class LearnersController(ISender mediatr,  IMapper mapper) : ApiController
+public class LearnersController(ISender mediatr, IMapper mapper) : ApiController
 {
     /// <summary>
-    /// Get a list of learners.
+    ///     Get a list of learners.
     /// </summary>
     [HttpGet("")]
     [ProducesResponseType(typeof(IList<LearnerResponse>), StatusCodes.Status200OK)]
@@ -26,13 +26,13 @@ public class LearnersController(ISender mediatr,  IMapper mapper) : ApiControlle
     {
         var query = new ListQuery();
         var learners = await mediatr.Send(query);
-        
+
         var response = mapper.Map<IList<LearnerResponse>>(learners);
         return Ok(response);
     }
-    
+
     /// <summary>
-    /// Get a learner by id.
+    ///     Get a learner by id.
     /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(typeof(LearnerResponse), StatusCodes.Status200OK)]
@@ -49,26 +49,30 @@ public class LearnersController(ISender mediatr,  IMapper mapper) : ApiControlle
     }
 
     /// <summary>
-    /// Adds a learner.
+    ///     Adds a learner.
     /// </summary>
     [HttpPost("")]
     [ProducesResponseType(typeof(LearnerResponse), StatusCodes.Status201Created)]
     [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> AddAsync([FromBody] AddLearnerRequest request)
     {
-        var command = new AddLearnerCommand(request.Forename, request.Surname, DateOnly.FromDateTime(request.DateOfBirth), 
-            Address.Create(request.Address.Line1, request.Address.Line2, request.Address.City, request.Address.County, request.Address.Postcode),
-            ContactDetails.Create(request.ContactDetails.Email, request.ContactDetails.Phone, request.ContactDetails.ContactPreference));
+        var command = new AddLearnerCommand(request.Forename, request.Surname,
+            DateOnly.FromDateTime(request.DateOfBirth),
+            Address.Create(request.Address.Line1, request.Address.Line2, request.Address.City, request.Address.County,
+                request.Address.Postcode),
+            ContactDetails.Create(request.ContactDetails.Email, request.ContactDetails.Phone,
+                request.ContactDetails.ContactPreference));
 
         var created = await mediatr.Send(command);
-        
+
         return created.Match(
-            authResult => CreatedAtAction("Get", new { id = created.Value.Id }, mapper.Map<LearnerResponse>(created.Value)),
+            authResult =>
+                CreatedAtAction("Get", new { id = created.Value.Id }, mapper.Map<LearnerResponse>(created.Value)),
             Problem);
     }
 
     /// <summary>
-    /// Removes a learner by id.
+    ///     Removes a learner by id.
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
@@ -77,7 +81,7 @@ public class LearnersController(ISender mediatr,  IMapper mapper) : ApiControlle
     {
         var command = new RemoveLearnerCommand(id);
         var deleted = await mediatr.Send(command);
-        
+
         return deleted.Match(
             authResult => NoContent(),
             Problem);

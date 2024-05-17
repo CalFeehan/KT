@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KT.Infrastructure.Migrations
 {
-    [DbContext(typeof(KTDbContext))]
+    [DbContext(typeof(KtDbContext))]
     [Migration("20240512150650_InitialCreate")]
     partial class InitialCreate
     {

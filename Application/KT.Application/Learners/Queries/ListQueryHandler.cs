@@ -10,7 +10,7 @@ public class ListQueryHandler(ILearnerRepository learnerRepository)
     public async Task<IList<Learner>> Handle(ListQuery query, CancellationToken cancellationToken)
     {
         var learners = await learnerRepository.ListAsync();
-        
+
         return learners;
     }
 }

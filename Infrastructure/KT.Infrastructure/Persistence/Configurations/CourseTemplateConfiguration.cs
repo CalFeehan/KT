@@ -35,7 +35,7 @@ public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTempla
         builder.Property(ct => ct.Description)
             .HasMaxLength(500)
             .IsRequired();
-        
+
         builder.Property(ct => ct.Code)
             .HasMaxLength(25)
             .IsRequired();
@@ -52,7 +52,7 @@ public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTempla
         builder.OwnsMany(ct => ct.CourseTemplateModuleTemplates, courseTemplateModuleTemplate =>
         {
             courseTemplateModuleTemplate.ToTable("CourseTemplateModuleTemplates", "CourseTemplate");
-            
+
             courseTemplateModuleTemplate.HasKey(ctmt => new { ctmt.CourseTemplateId, ctmt.ModuleTemplateId });
 
             courseTemplateModuleTemplate.Property(ctmt => ctmt.CourseTemplateId).IsRequired();
@@ -64,7 +64,7 @@ public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTempla
 
         builder.Navigation(ct => ct.CourseTemplateModuleTemplates)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
-            .AutoInclude(true);
+            .AutoInclude();
     }
 
     private void ConfigureSessionPlanTemplateTable(EntityTypeBuilder<CourseTemplate> builder)
@@ -82,7 +82,7 @@ public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTempla
 
         builder.Navigation(ct => ct.SessionPlanTemplate)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
-            .AutoInclude(true);
+            .AutoInclude();
     }
 
     private void ConfigureSessionTemplateTable(EntityTypeBuilder<CourseTemplate> builder)
@@ -126,7 +126,7 @@ public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTempla
 
             sessionPlanTemplate.Navigation(spt => spt.SessionTemplates)
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
-                .AutoInclude(true);
+                .AutoInclude();
         });
     }
 
@@ -145,7 +145,7 @@ public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTempla
 
         builder.Navigation(ct => ct.ActivityPlanTemplate)
             .UsePropertyAccessMode(PropertyAccessMode.Field)
-            .AutoInclude(true);
+            .AutoInclude();
     }
 
     private void ConfigureActivityTemplateTable(EntityTypeBuilder<CourseTemplate> builder)
@@ -192,7 +192,7 @@ public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTempla
 
             activityPlanTemplate.Navigation(apt => apt.ActivityTemplates)
                 .UsePropertyAccessMode(PropertyAccessMode.Field)
-                .AutoInclude(true);
+                .AutoInclude();
         });
     }
 }

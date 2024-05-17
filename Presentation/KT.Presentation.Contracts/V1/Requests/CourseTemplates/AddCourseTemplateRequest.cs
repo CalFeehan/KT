@@ -6,4 +6,3 @@ public record AddCourseTemplateRequest(
     string Code,
     int Level,
     int DurationInWeeks);
-

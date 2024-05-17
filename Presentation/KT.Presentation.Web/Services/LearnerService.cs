@@ -22,5 +22,4 @@ public class LearnerService : ILearnerService
         var learnerResponse = await _client.LearnersPOSTAsync(learner);
         return learnerResponse;
     }
-    
 }

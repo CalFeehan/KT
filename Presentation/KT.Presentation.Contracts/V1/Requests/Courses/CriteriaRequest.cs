@@ -5,4 +5,3 @@ public record CriteriaRequest(
     string Description,
     string Code,
     string CriteriaGroup);
-

@@ -9,30 +9,30 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="AutoMapper" Version="13.0.1" />
-        <PackageReference Include="MediatR" Version="12.2.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0" />
+        <PackageReference Include="AutoMapper" Version="13.0.1"/>
+        <PackageReference Include="MediatR" Version="12.2.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning.ApiExplorer" Version="5.1.0"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
         <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.4">
-          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-          <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+            <PrivateAssets>all</PrivateAssets>
         </PackageReference>
-        <PackageReference Include="NSwag.AspNetCore" Version="14.0.7" />
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+        <PackageReference Include="NSwag.AspNetCore" Version="14.0.7"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Common/" />
-      <Folder Include="Common/Errors/" />
-      <Folder Include="Common/Http/" />
-      <Folder Include="Middleware/" />
+        <Folder Include="Common/"/>
+        <Folder Include="Common/Errors/"/>
+        <Folder Include="Common/Http/"/>
+        <Folder Include="Middleware/"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Application\KT.Application\KT.Application.csproj" />
-      <ProjectReference Include="..\..\Infrastructure\KT.Infrastructure\KT.Infrastructure.csproj" />
-      <ProjectReference Include="..\KT.Presentation.Contracts\KT.Presentation.Contracts.csproj" />
+        <ProjectReference Include="..\..\Application\KT.Application\KT.Application.csproj"/>
+        <ProjectReference Include="..\..\Infrastructure\KT.Infrastructure\KT.Infrastructure.csproj"/>
+        <ProjectReference Include="..\KT.Presentation.Contracts\KT.Presentation.Contracts.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -26,52 +26,52 @@
 
     <div class="form-group">
         <label for="Forename">Forename</label>
-        <InputText id="Forename" class="form-control" @bind-Value="addLearnerRequest.Forename" />
+        <InputText id="Forename" class="form-control" @bind-Value="addLearnerRequest.Forename"/>
     </div>
 
     <div class="form-group">
         <label for="Surname">Surname</label>
-        <InputText id="Surname" class="form-control" @bind-Value="addLearnerRequest.Surname" />
+        <InputText id="Surname" class="form-control" @bind-Value="addLearnerRequest.Surname"/>
     </div>
 
     <div class="form-group">
         <label for="DateOfBirth">Date of Birth</label>
-        <InputDate id="DateOfBirth" class="form-control" @bind-Value="addLearnerRequest.DateOfBirth" />
+        <InputDate id="DateOfBirth" class="form-control" @bind-Value="addLearnerRequest.DateOfBirth"/>
     </div>
 
     <div class="form-group">
         <label for="Line1">Line 1</label>
-        <InputText id="Line1" class="form-control" @bind-Value="addLearnerRequest.Address.Line1" />
+        <InputText id="Line1" class="form-control" @bind-Value="addLearnerRequest.Address.Line1"/>
     </div>
 
     <div class="form-group">
         <label for="Line2">Line 2</label>
-        <InputText id="Line2" class="form-control" @bind-Value="addLearnerRequest.Address.Line2" />
+        <InputText id="Line2" class="form-control" @bind-Value="addLearnerRequest.Address.Line2"/>
     </div>
 
     <div class="form-group">
         <label for="City">City</label>
-        <InputText id="City" class="form-control" @bind-Value="addLearnerRequest.Address.City" />
+        <InputText id="City" class="form-control" @bind-Value="addLearnerRequest.Address.City"/>
     </div>
 
     <div class="form-group">
         <label for="County">County</label>
-        <InputText id="County" class="form-control" @bind-Value="addLearnerRequest.Address.County" />
+        <InputText id="County" class="form-control" @bind-Value="addLearnerRequest.Address.County"/>
     </div>
 
     <div class="form-group">
         <label for="Postcode">Postcode</label>
-        <InputText id="Postcode" class="form-control" @bind-Value="addLearnerRequest.Address.Postcode" />
+        <InputText id="Postcode" class="form-control" @bind-Value="addLearnerRequest.Address.Postcode"/>
     </div>
 
     <div class="form-group">
         <label for="Email">Email</label>
-        <InputText id="Email" class="form-control" @bind-Value="addLearnerRequest.ContactDetails.Email" />
+        <InputText id="Email" class="form-control" @bind-Value="addLearnerRequest.ContactDetails.Email"/>
     </div>
 
     <div class="form-group">
         <label for="Phone">Phone Number</label>
-        <InputText id="Phone" class="form-control" @bind-Value="addLearnerRequest.ContactDetails.Phone" />
+        <InputText id="Phone" class="form-control" @bind-Value="addLearnerRequest.ContactDetails.Phone"/>
     </div>
 
     <div class="form-group">
@@ -91,9 +91,9 @@
 
 
 @code {
-    AddLearnerRequest addLearnerRequest = new AddLearnerRequest(){ Address = new AddressRequest(), ContactDetails = new ContactDetailsRequest() };
-    private bool showSuccessMessage = false;
-    private bool showErrorMessage = false;  
+    AddLearnerRequest addLearnerRequest = new() { Address = new AddressRequest(), ContactDetails = new ContactDetailsRequest() };
+    private bool showSuccessMessage;
+    private bool showErrorMessage;
 
     private async Task AddLearner()
     {
@@ -102,7 +102,7 @@
         if (learner != null)
         {
             showSuccessMessage = true;
-            addLearnerRequest = new AddLearnerRequest(){ Address = new AddressRequest(), ContactDetails = new ContactDetailsRequest() };
+            addLearnerRequest = new AddLearnerRequest { Address = new AddressRequest(), ContactDetails = new ContactDetailsRequest() };
         }
         else
         {
@@ -114,4 +114,5 @@
     {
         NavigationManager.NavigateTo("learners");
     }
+
 }

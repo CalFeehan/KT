@@ -11,13 +11,14 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(this IServiceCollection services)
     {
-        services.AddDbContext<KTDbContext>(options =>
+        services.AddDbContext<KtDbContext>(options =>
         {
-            options.UseSqlServer("Server=localhost;Database=KT;User Id=sa;Password=Sa30176864!;TrustServerCertificate=True;");
+            options.UseSqlServer(
+                "Server=localhost;Database=KT;User Id=sa;Password=Sa30176864!;TrustServerCertificate=True;");
         });
 
         services.AddScoped<PublishDomainEventsInterceptor>();
-        
+
         services.AddScoped<ILearnerRepository, LearnerRepository>();
         services.AddScoped<ICourseRepository, CourseRepository>();
         services.AddScoped<ICourseTemplateRepository, CourseTemplateRepository>();

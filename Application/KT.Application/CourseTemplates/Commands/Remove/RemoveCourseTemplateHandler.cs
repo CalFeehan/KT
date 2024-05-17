@@ -1,7 +1,7 @@
 ﻿using ErrorOr;
 using KT.Application.Common.Interfaces.Persistence;
-using MediatR;
 using KT.Domain.Common.Errors;
+using MediatR;
 
 namespace KT.Application.CourseTemplates.Commands.Remove;
 
@@ -17,10 +17,7 @@ public class RemoveCourseTemplateHandler : IRequestHandler<RemoveCourseTemplateC
     public async Task<ErrorOr<Task>> Handle(RemoveCourseTemplateCommand request, CancellationToken cancellationToken)
     {
         var courseTemplate = await _courseTemplateRepository.GetByIdAsync(request.CourseTemplateId);
-        if (courseTemplate is null)
-        {
-            return Errors.CourseTemplate.NotFound;
-        }
+        if (courseTemplate is null) return Errors.CourseTemplate.NotFound;
 
         await _courseTemplateRepository.RemoveAsync(request.CourseTemplateId);
 

@@ -1,7 +1,7 @@
 ﻿namespace KT.Common.Enums;
 
 /// <summary>
-/// The status of a course template.
+///     The status of a course template.
 /// </summary>
 public enum CourseTemplateStatus
 {

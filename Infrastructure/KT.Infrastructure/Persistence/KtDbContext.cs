@@ -9,9 +9,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace KT.Infrastructure.Persistence;
 
-public class KTDbContext : DbContext
+public class KtDbContext : DbContext
 {
     private readonly PublishDomainEventsInterceptor _publishDomainEventsInterceptor;
+
+    public KtDbContext(DbContextOptions<KtDbContext> options,
+        PublishDomainEventsInterceptor publishDomainEventsInterceptor) : base(options)
+    {
+        _publishDomainEventsInterceptor = publishDomainEventsInterceptor;
+    }
 
     public DbSet<Learner> Learners { get; set; }
 
@@ -23,17 +29,12 @@ public class KTDbContext : DbContext
 
     public DbSet<Session> Sessions { get; set; }
 
-    public KTDbContext(DbContextOptions<KTDbContext> options, PublishDomainEventsInterceptor publishDomainEventsInterceptor) : base(options)
-    {
-        _publishDomainEventsInterceptor = publishDomainEventsInterceptor;
-    }
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder
             .HasDefaultSchema("KT")
             .Ignore<List<IDomainEvent>>()
-            .ApplyConfigurationsFromAssembly(typeof(KTDbContext).Assembly);
+            .ApplyConfigurationsFromAssembly(typeof(KtDbContext).Assembly);
 
         base.OnModelCreating(modelBuilder);
     }

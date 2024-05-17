@@ -3,4 +3,4 @@ using MediatR;
 
 namespace KT.Application.CourseTemplates.Queries;
 
-public record ListQuery() : IRequest<IList<CourseTemplate>>;
+public record ListQuery : IRequest<IList<CourseTemplate>>;
