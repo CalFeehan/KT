@@ -67,7 +67,7 @@ public class CoursesController(ISender mediatr,  IMapper mapper) : ApiController
         var created = await mediatr.Send(command);
         
         return created.Match(
-            authResult => CreatedAtAction("GetAsync", new { id = created.Value.Id }, mapper.Map<CourseResponse>(created.Value)),
+            authResult => CreatedAtAction("Get", new { id = created.Value.Id }, mapper.Map<CourseResponse>(created.Value)),
             Problem);
     }
 
