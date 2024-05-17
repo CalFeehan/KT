@@ -6,7 +6,7 @@ using KT.Domain.CourseTemplateAggregate.ValueObjects;
 namespace KT.Domain.CourseTemplateAggregate;
 
 /// <summary>
-///     A course template holds all of the details needed to create a course,
+///     A course template holds all the details needed to create a course,
 ///     including sessions, activities and linked modules.
 ///     It will be used to calculate session dates, etc. and populate the learning plan.
 /// </summary>
@@ -163,7 +163,7 @@ public class CourseTemplate : AggregateRoot
             .ToList();
 
         var moduleTemplatesToAdd = moduleTemplateIds
-            .Where(x => !CourseTemplateModuleTemplates.Any(y => y.ModuleTemplateId == x))
+            .Where(x => CourseTemplateModuleTemplates.All(y => y.ModuleTemplateId != x))
             .ToList();
 
         foreach (var moduleTemplateId in moduleTemplatesToRemove) RemoveModuleTemplate(moduleTemplateId);

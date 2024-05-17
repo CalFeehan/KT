@@ -8,7 +8,6 @@
 
     <ItemGroup>
         <Folder Include="Common/Behaviours/"/>
-        <Folder Include="Courses/Commands/Add/"/>
         <Folder Include="Courses/Commands/Remove/"/>
         <Folder Include="Courses/Events/"/>
         <Folder Include="Learners/Events/"/>

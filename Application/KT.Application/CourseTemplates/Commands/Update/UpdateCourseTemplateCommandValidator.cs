@@ -8,7 +8,9 @@ namespace KT.Application.CourseTemplates.Commands.Update;
 
 public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCourseTemplateCommand>
 {
-    public UpdateCourseTemplateCommandValidator(ICourseTemplateRepository courseTemplateRepository)
+    public UpdateCourseTemplateCommandValidator(
+        ICourseTemplateRepository courseTemplateRepository,
+        IModuleTemplateRepository moduleTemplateRepository)
     {
         RuleFor(x => x)
             .MustAsync(async (command, cancellationToken) =>
@@ -17,6 +19,15 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
                 return OriginalCourseTemplate is not null;
             })
             .WithMessage("Course template not found.");
+
+        RuleFor(x => x.ModuleTemplateIds)
+            .MustAsync(async (moduleTemplateIds, cancellationToken) =>
+            {
+                var moduleTemplates = await moduleTemplateRepository.ListAsync();
+                return moduleTemplateIds.All(
+                    moduleTemplateId => moduleTemplates.Any(moduleTemplate => moduleTemplate.Id == moduleTemplateId));
+            })
+            .WithMessage("Module template not found.");
 
         RuleFor(x => x.Id)
             .NotEmpty();
@@ -39,10 +50,12 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
             .MaximumLength(50);
 
         RuleFor(x => x.Level)
-            .NotEmpty();
+            .NotEmpty()
+            .GreaterThan(0);
 
         RuleFor(x => x.DurationInWeeks)
-            .NotEmpty();
+            .NotEmpty()
+            .GreaterThan(0);
 
         RuleFor(x => x.ActivityPlanTemplate)
             .NotEmpty();
@@ -51,10 +64,16 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
             .NotEmpty();
 
         RuleFor(x => x.ModuleTemplateIds)
-            .NotEmpty();
+            .NotEmpty()
+            .Must(NotContainDuplicates);
     }
 
     private CourseTemplate? OriginalCourseTemplate { get; set; }
+
+    private static bool NotContainDuplicates(List<Guid> arg)
+    {
+        return arg.Distinct().Count() == arg.Count;
+    }
 
     private bool BeAValidCourseTemplateStatusTransition(CourseTemplateStatus courseTemplateStatus)
     {
