@@ -83,7 +83,7 @@ public class CourseTemplatesController(ISender mediatr, IMapper mapper) : ApiCon
             _ => NoContent(),
             Problem);
     }
-
+    
     // /// <summary>
     // /// Update a course template.
     // /// </summary>
@@ -95,69 +95,20 @@ public class CourseTemplatesController(ISender mediatr, IMapper mapper) : ApiCon
     // {
     //     var command = new UpdateCourseTemplateCommand(
     //         id,
+    //         request.Status,
     //         request.Title,
     //         request.Description,
     //         request.Code,
     //         request.Level,
     //         request.DurationInWeeks,
-    //         request.CourseTemplateStatus);
-
+    //         request.ActivityTemplate,
+    //         request.SessionTemplate,
+    //         request.ModuleTemplates);
+    //
     //     var updated = await mediatr.Send(command);
-
+    //
     //     return updated.Match(
-    //         authResult => Ok(mapper.Map<CourseTemplateResponse>(updated.Value)),
-    //         Problem);
-    // }
-
-    // /// <summary>
-    // /// Update the module templates of a course template.
-    // /// </summary>
-    // [HttpPut("{id:guid}/module-templates")]
-    // [ProducesResponseType(typeof(CourseTemplateResponse), StatusCodes.Status200OK)]
-    // [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
-    // [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-    // public async Task<IActionResult> UpdateModuleTemplatesAsync([FromRoute] Guid id, [FromBody] UpdateModuleTemplatesRequest request)
-    // {
-    //     var command = new UpdateModuleTemplatesCommand(
-    //         id,
-    //         request.ModuleTemplateIds);
-
-    //     var updated = await mediatr.Send(command);
-
-    //     return updated.Match(
-    //         authResult => Ok(mapper.Map<CourseTemplateResponse>(updated.Value)),
-    //         Problem);
-    // }
-
-    // /// <summary>
-    // /// Add a module template to a course template.
-    // /// </summary>
-    // [HttpPost("{id:guid}/module-templates/{moduleTemplateId:guid}")]
-    // [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
-    // [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-    // public async Task<IActionResult> AddModuleTemplateAsync([FromRoute] Guid id, [FromRoute] Guid moduleTemplateId)
-    // {
-    //     var command = new AddModuleTemplateCommand(id, moduleTemplateId);
-    //     var added = await mediatr.Send(command);
-
-    //     return added.Match(
-    //         authResult => NoContent(),
-    //         Problem);
-    // }
-
-    // /// <summary>
-    // /// Remove a module template from a course template.
-    // /// </summary>
-    // [HttpDelete("{id:guid}/module-templates/{moduleTemplateId:guid}")]
-    // [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
-    // [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-    // public async Task<IActionResult> RemoveModuleTemplateAsync([FromRoute] Guid id, [FromRoute] Guid moduleTemplateId)
-    // {
-    //     var command = new RemoveModuleTemplateCommand(id, moduleTemplateId);
-    //     var removed = await mediatr.Send(command);
-
-    //     return removed.Match(
-    //         authResult => NoContent(),
+    //         _ => Ok(mapper.Map<CourseTemplateResponse>(updated.Value)),
     //         Problem);
     // }
 }

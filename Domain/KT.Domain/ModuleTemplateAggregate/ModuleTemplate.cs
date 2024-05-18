@@ -91,18 +91,11 @@ public class ModuleTemplate : AggregateRoot
     }
 
     /// <summary>
-    ///     Adds a criteria template to the module template.
+    /// Updates the criteria templates.
     /// </summary>
-    public void AddCriteriaTemplate(CriteriaTemplate criteriaTemplate)
+    public void UpdateCriteriaTemplates(List<CriteriaTemplate> criteriaTemplates)
     {
-        _criteriaTemplates.Add(criteriaTemplate);
-    }
-
-    /// <summary>
-    ///     Removes a criteria template from the module template.
-    /// </summary>
-    public void RemoveCriteriaTemplate(CriteriaTemplate criteriaTemplate)
-    {
-        _criteriaTemplates.Remove(criteriaTemplate);
+        _criteriaTemplates.Clear();
+        _criteriaTemplates.AddRange(criteriaTemplates);
     }
 }

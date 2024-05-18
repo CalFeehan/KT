@@ -24,7 +24,9 @@ public class AddModuleTemplateCommandHandler : IRequestHandler<AddModuleTemplate
             command.Code,
             command.Level,
             command.DurationInWeeks);
-
+        
+        moduleTemplate.UpdateCriteriaTemplates(command.Criteria);
+        
         var created = await _moduleTemplateRepository.AddAsync(moduleTemplate);
 
         return created;

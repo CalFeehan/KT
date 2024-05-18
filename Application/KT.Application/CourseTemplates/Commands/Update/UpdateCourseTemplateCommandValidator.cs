@@ -3,6 +3,7 @@ using KT.Application.Common.Interfaces.Persistence;
 using KT.Common.Enums;
 using KT.Common.Enums.Extensions;
 using KT.Domain.CourseTemplateAggregate;
+using KT.Domain.ModuleTemplateAggregate;
 
 namespace KT.Application.CourseTemplates.Commands.Update;
 
@@ -24,11 +25,18 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
             .MustAsync(async (moduleTemplateIds, cancellationToken) =>
             {
                 var moduleTemplates = await moduleTemplateRepository.ListAsync();
+
+                ModuleTemplates = moduleTemplates.Where(x => moduleTemplateIds.Contains(x.Id)).ToList();
+
                 return moduleTemplateIds.All(
                     moduleTemplateId => moduleTemplates.Any(moduleTemplate => moduleTemplate.Id == moduleTemplateId));
             })
             .WithMessage("Module template not found.")
-            .Must(NotContainDuplicates);
+            .Must(NotContainDuplicates)
+            .Must(NotHaveModulesWithGreaterLevelThanCourseTemplateLevel)
+            .WithMessage("Module templates must not have a level greater than the course template level.")
+            .Must(NotHaveModulesWithGreaterDurationThanCourseTemplateDuration)
+            .WithMessage("Module templates must not have a duration greater than the course template duration.");
         
         RuleFor(x => x.Id)
             .NotEmpty();
@@ -65,8 +73,20 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
             .NotEmpty();
     }
 
+    private bool NotHaveModulesWithGreaterDurationThanCourseTemplateDuration(List<Guid> list)
+    {
+        return ModuleTemplates.Select(x => x.DurationInWeeks).Sum() <= OriginalCourseTemplate!.DurationInWeeks;
+    }
+
+    private bool NotHaveModulesWithGreaterLevelThanCourseTemplateLevel(List<Guid> list)
+    {
+        return ModuleTemplates.Select(x => x.Level).Max() <= OriginalCourseTemplate!.Level;
+    }
+
     private CourseTemplate? OriginalCourseTemplate { get; set; }
 
+    private List<ModuleTemplate> ModuleTemplates { get; set; } = new();
+    
     private static bool NotContainDuplicates(List<Guid> arg)
     {
         return arg.Distinct().Count() == arg.Count;

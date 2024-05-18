@@ -33,6 +33,11 @@ public class ModuleTemplateRepository : IModuleTemplateRepository
     {
         return await _dbContext.ModuleTemplates.FindAsync(id);
     }
+    
+    public async Task<IList<ModuleTemplate>> GetByIdsAsync(IList<Guid> ids)
+    {
+        return await _dbContext.ModuleTemplates.Where(x => ids.Contains(x.Id)).ToListAsync();
+    }
 
     public async Task<IList<ModuleTemplate>> ListAsync()
     {

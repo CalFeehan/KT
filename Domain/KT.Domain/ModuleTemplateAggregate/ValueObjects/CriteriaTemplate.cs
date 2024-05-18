@@ -1,4 +1,5 @@
-﻿using KT.Domain.Common.Models;
+﻿using System.Text.Json.Serialization;
+using KT.Domain.Common.Models;
 
 namespace KT.Domain.ModuleTemplateAggregate.ValueObjects;
 
@@ -10,6 +11,7 @@ public class CriteriaTemplate : ValueObject
     /// <summary>
     ///     Private constructor to ensure that the only way to create a criteria template is through the Create method.
     /// </summary>
+    [JsonConstructor]
     private CriteriaTemplate(string title, string description, string code, string criteriaGroup)
     {
         Title = title;

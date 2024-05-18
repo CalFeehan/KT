@@ -2,6 +2,7 @@
 using KT.Application.ModuleTemplates.Commands.Add;
 using KT.Application.ModuleTemplates.Commands.Remove;
 using KT.Application.ModuleTemplates.Queries;
+using KT.Domain.ModuleTemplateAggregate.ValueObjects;
 using KT.Presentation.Contracts.V1.Requests.ModuleTemplates;
 using KT.Presentation.Contracts.V1.Responses.ModuleTemplates;
 using MediatR;
@@ -41,7 +42,7 @@ public class ModuleTemplatesController(ISender mediatr, IMapper mapper) : ApiCon
         var moduleTemplate = await mediatr.Send(query);
 
         return moduleTemplate.Match(
-            moduleTemplate => Ok(mapper.Map<ModuleTemplateResponse>(moduleTemplate)),
+            _ => Ok(mapper.Map<ModuleTemplateResponse>(moduleTemplate)),
             Problem);
     }
 
@@ -60,7 +61,9 @@ public class ModuleTemplatesController(ISender mediatr, IMapper mapper) : ApiCon
             request.Description,
             request.Code,
             request.Level,
-            request.DurationInWeeks);
+            request.DurationInWeeks,
+            request.Criteria.Select(c => 
+                CriteriaTemplate.Create(c.Title, c.Description, c.Code, c.Group)).ToList());
 
         var added = await mediatr.Send(command);
 
