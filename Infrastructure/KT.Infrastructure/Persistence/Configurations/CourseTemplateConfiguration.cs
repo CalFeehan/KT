@@ -49,18 +49,10 @@ public class CourseTemplateConfiguration : IEntityTypeConfiguration<CourseTempla
 
     private void ConfigureCourseTemplateModuleTemplatesTable(EntityTypeBuilder<CourseTemplate> builder)
     {
-        builder.OwnsMany(ct => ct.CourseTemplateModuleTemplates, courseTemplateModuleTemplate =>
-        {
-            courseTemplateModuleTemplate.ToTable("CourseTemplateModuleTemplates", "CourseTemplate");
-
-            courseTemplateModuleTemplate.HasKey(ctmt => new { ctmt.CourseTemplateId, ctmt.ModuleTemplateId });
-
-            courseTemplateModuleTemplate.Property(ctmt => ctmt.CourseTemplateId).IsRequired();
-            courseTemplateModuleTemplate.WithOwner().HasForeignKey("CourseTemplateId");
-
-            courseTemplateModuleTemplate.Property(ctmt => ctmt.ModuleTemplateId).IsRequired();
-            courseTemplateModuleTemplate.WithOwner().HasForeignKey("ModuleTemplateId");
-        });
+        builder.HasMany(ct => ct.CourseTemplateModuleTemplates)
+            .WithOne()
+            .HasForeignKey(ctmt => ctmt.CourseTemplateId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         builder.Navigation(ct => ct.CourseTemplateModuleTemplates)
             .UsePropertyAccessMode(PropertyAccessMode.Field)

@@ -1,6 +1,5 @@
 using ErrorOr;
 using KT.Application.Common.Interfaces.Persistence;
-using KT.Domain.Common.Errors;
 using KT.Domain.ModuleTemplateAggregate;
 using MediatR;
 
@@ -12,7 +11,7 @@ public class GetByIdsQueryHandler(IModuleTemplateRepository moduleTemplateReposi
     public async Task<ErrorOr<IList<ModuleTemplate>>> Handle(GetByIdsQuery query, CancellationToken cancellationToken)
     {
         var moduleTemplates = await moduleTemplateRepository.GetByIdsAsync(query.Ids);
-        
+
         return moduleTemplates.ToList();
     }
 }

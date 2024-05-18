@@ -91,7 +91,7 @@ public class ModuleTemplate : AggregateRoot
     }
 
     /// <summary>
-    /// Updates the criteria templates.
+    ///     Updates the criteria templates.
     /// </summary>
     public void UpdateCriteriaTemplates(List<CriteriaTemplate> criteriaTemplates)
     {

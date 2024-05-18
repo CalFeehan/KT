@@ -41,8 +41,8 @@ public class CourseTemplateRepository : ICourseTemplateRepository
 
     public async Task UpdateAsync(CourseTemplate entity)
     {
-        _dbContext.CourseTemplates.Attach(entity);
-        _dbContext.Entry(entity).State = EntityState.Modified;
+        _dbContext.CourseTemplates.Update(entity);
+
         await _dbContext.SaveChangesAsync();
     }
 }

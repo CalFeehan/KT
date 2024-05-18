@@ -62,7 +62,7 @@ public class ModuleTemplatesController(ISender mediatr, IMapper mapper) : ApiCon
             request.Code,
             request.Level,
             request.DurationInWeeks,
-            request.Criteria.Select(c => 
+            request.Criteria.Select(c =>
                 CriteriaTemplate.Create(c.Title, c.Description, c.Code, c.Group)).ToList());
 
         var added = await mediatr.Send(command);

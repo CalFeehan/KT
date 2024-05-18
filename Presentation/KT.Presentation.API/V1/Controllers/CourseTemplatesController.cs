@@ -83,7 +83,7 @@ public class CourseTemplatesController(ISender mediatr, IMapper mapper) : ApiCon
             _ => NoContent(),
             Problem);
     }
-    
+
     // /// <summary>
     // /// Update a course template.
     // /// </summary>

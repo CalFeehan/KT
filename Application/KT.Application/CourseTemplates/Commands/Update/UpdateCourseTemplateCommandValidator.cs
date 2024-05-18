@@ -37,7 +37,7 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
             .WithMessage("Module templates must not have a level greater than the course template level.")
             .Must(NotHaveModulesWithGreaterDurationThanCourseTemplateDuration)
             .WithMessage("Module templates must not have a duration greater than the course template duration.");
-        
+
         RuleFor(x => x.Id)
             .NotEmpty();
 
@@ -73,6 +73,10 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
             .NotEmpty();
     }
 
+    private CourseTemplate? OriginalCourseTemplate { get; set; }
+
+    private List<ModuleTemplate> ModuleTemplates { get; set; } = new();
+
     private bool NotHaveModulesWithGreaterDurationThanCourseTemplateDuration(List<Guid> list)
     {
         return ModuleTemplates.Select(x => x.DurationInWeeks).Sum() <= OriginalCourseTemplate!.DurationInWeeks;
@@ -80,13 +84,11 @@ public class UpdateCourseTemplateCommandValidator : AbstractValidator<UpdateCour
 
     private bool NotHaveModulesWithGreaterLevelThanCourseTemplateLevel(List<Guid> list)
     {
+        if (list.Count == 0) return true;
+
         return ModuleTemplates.Select(x => x.Level).Max() <= OriginalCourseTemplate!.Level;
     }
 
-    private CourseTemplate? OriginalCourseTemplate { get; set; }
-
-    private List<ModuleTemplate> ModuleTemplates { get; set; } = new();
-    
     private static bool NotContainDuplicates(List<Guid> arg)
     {
         return arg.Distinct().Count() == arg.Count;
