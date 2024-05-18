@@ -1,11 +1,15 @@
 ﻿using AutoMapper;
 using KT.Application.CourseTemplates.Commands.Add;
 using KT.Application.CourseTemplates.Commands.Remove;
-using KT.Application.CourseTemplates.Queries;
+using KT.Application.CourseTemplates.Commands.Update;
+using KT.Application.ModuleTemplates.Queries;
 using KT.Presentation.Contracts.V1.Requests.CourseTemplates;
 using KT.Presentation.Contracts.V1.Responses.CourseTemplates;
+using KT.Presentation.Contracts.V1.Responses.ModuleTemplates;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using GetByIdQuery = KT.Application.CourseTemplates.Queries.GetByIdQuery;
+using ListQuery = KT.Application.CourseTemplates.Queries.ListQuery;
 
 namespace KT.Presentation.API.V1.Controllers;
 
@@ -80,6 +84,64 @@ public class CourseTemplatesController(ISender mediatr, IMapper mapper) : ApiCon
         var removed = await mediatr.Send(command);
 
         return removed.Match(
+            _ => NoContent(),
+            Problem);
+    }
+
+    /// <summary>
+    ///     Get a list of module templates for a course template.
+    /// </summary>
+    [HttpGet("{id:guid}/moduleTemplates")]
+    [ProducesResponseType(typeof(IList<ModuleTemplateResponse>), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> ListAsync([FromRoute] Guid id)
+    {
+        var courseQuery = new GetByIdQuery(id);
+        var courseTemplate = await mediatr.Send(courseQuery);
+        if (courseTemplate.IsError) return Problem(courseTemplate.Errors);
+
+        var query = new GetByIdsQuery(
+            courseTemplate.Value.CourseTemplateModuleTemplates.Select(x => x.ModuleTemplateId).ToList());
+
+        var moduleTemplates = await mediatr.Send(query);
+
+        return moduleTemplates.Match(
+            mt => Ok(mapper.Map<IList<ModuleTemplateResponse>>(mt)),
+            Problem);
+    }
+
+    /// <summary>
+    ///     Update the module templates for a course template.
+    /// </summary>
+    [HttpPut("{id:guid}/moduleTemplates")]
+    [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] IList<Guid> moduleTemplateIds)
+    {
+        var courseQuery = new GetByIdQuery(id);
+        var courseTemplate = await mediatr.Send(courseQuery);
+        if (courseTemplate.IsError) return Problem(courseTemplate.Errors);
+
+        var moduleTemplateIdsQuery = new GetByIdsQuery(moduleTemplateIds);
+        var moduleTemplates = await mediatr.Send(moduleTemplateIdsQuery);
+        if (moduleTemplates.IsError) return Problem(moduleTemplates.Errors);
+
+        var command = new UpdateCourseTemplateCommand(
+            courseTemplate.Value.Id,
+            courseTemplate.Value.CourseTemplateStatus,
+            courseTemplate.Value.Title,
+            courseTemplate.Value.Description,
+            courseTemplate.Value.Code,
+            courseTemplate.Value.Level,
+            courseTemplate.Value.DurationInWeeks,
+            courseTemplate.Value.ActivityPlanTemplate,
+            courseTemplate.Value.SessionPlanTemplate,
+            moduleTemplates.Value.Select(x => x.Id).ToList());
+
+        var result = await mediatr.Send(command);
+
+        return result.Match(
             _ => NoContent(),
             Problem);
     }
