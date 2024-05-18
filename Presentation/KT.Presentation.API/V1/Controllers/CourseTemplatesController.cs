@@ -83,32 +83,4 @@ public class CourseTemplatesController(ISender mediatr, IMapper mapper) : ApiCon
             _ => NoContent(),
             Problem);
     }
-
-    // /// <summary>
-    // /// Update a course template.
-    // /// </summary>
-    // [HttpPut("{id:guid}")]
-    // [ProducesResponseType(typeof(CourseTemplateResponse), StatusCodes.Status200OK)]
-    // [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
-    // [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
-    // public async Task<IActionResult> UpdateAsync([FromRoute] Guid id, [FromBody] UpdateCourseTemplateRequest request)
-    // {
-    //     var command = new UpdateCourseTemplateCommand(
-    //         id,
-    //         request.Status,
-    //         request.Title,
-    //         request.Description,
-    //         request.Code,
-    //         request.Level,
-    //         request.DurationInWeeks,
-    //         request.ActivityTemplate,
-    //         request.SessionTemplate,
-    //         request.ModuleTemplates);
-    //
-    //     var updated = await mediatr.Send(command);
-    //
-    //     return updated.Match(
-    //         _ => Ok(mapper.Map<CourseTemplateResponse>(updated.Value)),
-    //         Problem);
-    // }
 }

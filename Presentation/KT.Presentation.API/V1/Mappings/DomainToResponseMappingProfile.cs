@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using KT.Domain.Common.ValueObjects;
+using KT.Domain.CourseAggregate;
 using KT.Domain.CourseAggregate.ValueObjects;
 using KT.Domain.CourseTemplateAggregate;
 using KT.Domain.CourseTemplateAggregate.Entities;
@@ -16,7 +17,7 @@ using KT.Presentation.Contracts.V1.Responses.Learners;
 using KT.Presentation.Contracts.V1.Responses.ModuleTemplates;
 using KT.Presentation.Contracts.V1.Responses.Sessions;
 
-namespace KT.Presentation.API;
+namespace KT.Presentation.API.V1.Mappings;
 
 /// <summary>
 ///     Mapping profile for domain objects to responses.
@@ -35,7 +36,9 @@ public class DomainToResponseProfile : Profile
 
         // entities
         CreateMap<LearningPlan, LearningPlanResponse>();
+        CreateMap<Course, CourseResponse>();
         CreateMap<CourseTemplate, CourseTemplateResponse>();
+        CreateMap<CourseTemplateModuleTemplate, CourseTemplateModuleTemplateResponse>();
         CreateMap<SessionPlanTemplate, SessionPlanTemplateResponse>();
         CreateMap<SessionTemplate, SessionTemplateResponse>();
         CreateMap<ActivityPlanTemplate, ActivityPlanTemplateResponse>();
