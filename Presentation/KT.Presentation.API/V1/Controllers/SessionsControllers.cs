@@ -41,7 +41,7 @@ public class SessionsController(ISender mediatr, IMapper mapper) : ApiController
         var session = await mediatr.Send(query);
 
         return session.Match(
-            authResult => Ok(mapper.Map<SessionResponse>(session.Value)),
+            value => Ok(mapper.Map<SessionResponse>(value)),
             Problem
         );
     }
@@ -67,8 +67,8 @@ public class SessionsController(ISender mediatr, IMapper mapper) : ApiController
         var created = await mediatr.Send(command);
 
         return created.Match(
-            authResult =>
-                CreatedAtAction("Get", new { id = created.Value.Id }, mapper.Map<SessionResponse>(created.Value)),
+            value =>
+                CreatedAtAction("Get", new { id = value.Id }, mapper.Map<SessionResponse>(value)),
             Problem);
     }
 
@@ -84,7 +84,7 @@ public class SessionsController(ISender mediatr, IMapper mapper) : ApiController
         var deleted = await mediatr.Send(command);
 
         return deleted.Match(
-            authResult => NoContent(),
+            _ => NoContent(),
             Problem);
     }
 }

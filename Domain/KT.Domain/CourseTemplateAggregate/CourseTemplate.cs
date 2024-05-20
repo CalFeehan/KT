@@ -1,7 +1,6 @@
 ﻿using KT.Common.Enums;
 using KT.Domain.Common.Models;
 using KT.Domain.CourseTemplateAggregate.Entities;
-using KT.Domain.CourseTemplateAggregate.ValueObjects;
 
 namespace KT.Domain.CourseTemplateAggregate;
 

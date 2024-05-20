@@ -10,11 +10,7 @@
     <button class="btn btn-primary" style="margin: 10px;" @onclick="AddLearner">Add a Learner</button>
 </div>
 
-@if (learners == null)
-{
-    <p>Loading...</p>
-}
-else if (learners.Count == 0)
+@if (_learners.Count == 0)
 {
     <p>No learners found.</p>
 }
@@ -34,7 +30,7 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var learner in learners)
+        @foreach (var learner in _learners)
         {
             <tr>
                 <td>@learner.Forename</td>
@@ -52,11 +48,11 @@ else
 }
 
 @code {
-    List<LearnerResponse> learners = new();
+    List<LearnerResponse> _learners = [];
 
     protected override async Task OnInitializedAsync()
     {
-        learners = await LearnerService.LearnersAllAsync();
+        _learners = await LearnerService.LearnersAllAsync();
     }
 
     private void AddLearner()

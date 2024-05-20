@@ -6,7 +6,7 @@
 
 <PageTitle>Edit Course Template</PageTitle>
 
-@if (courseTemplate == null)
+@if (_courseTemplate == null)
 {
     <p>Loading...</p>
 }
@@ -17,13 +17,13 @@ else
 }
 
 @code {
-    CourseTemplateResponse courseTemplate = new();
+    CourseTemplateResponse _courseTemplate = new();
 
     [Parameter] public Guid Id { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        courseTemplate = await CourseTemplateService.GetByIdAsync(Id);
+        _courseTemplate = await CourseTemplateService.GetByIdAsync(Id);
     }
 
     private void HandleValidSubmit()

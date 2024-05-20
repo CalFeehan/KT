@@ -2,7 +2,6 @@ using KT.Domain.Common.Models;
 using KT.Domain.CourseAggregate;
 using KT.Domain.CourseTemplateAggregate;
 using KT.Domain.CourseTemplateAggregate.Entities;
-using KT.Domain.CourseTemplateAggregate.ValueObjects;
 using KT.Domain.LearnerAggregate;
 using KT.Domain.ModuleTemplateAggregate;
 using KT.Domain.SessionAggregate;

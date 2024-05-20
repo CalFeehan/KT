@@ -5,9 +5,9 @@
 
 <h1>Add Modules to Course Template</h1>
 
-<EditForm Model="@moduleTemplates" OnValidSubmit="AddModules" FormName="AddModules">
+<EditForm Model="@_moduleTemplates" OnValidSubmit="AddModules" FormName="AddModules">
 
-    @foreach (var moduleTemplate in moduleTemplates)
+    @foreach (var moduleTemplate in _moduleTemplates)
     {
         <div>
             <input type="checkbox" checked/>
@@ -25,12 +25,12 @@
 @code {
     [Parameter] public Guid Id { get; set; }
 
-    private List<ModuleTemplateResponse> moduleTemplates = new();
+    private List<ModuleTemplateResponse> _moduleTemplates = [];
 
     protected override async Task OnInitializedAsync()
     {
         var courseTemplate = await CourseTemplateService.GetByIdAsync(Id);
-        moduleTemplates = courseTemplate.ModuleTemplates.ToList();
+        _moduleTemplates = courseTemplate.ModuleTemplates.ToList();
     }
 
     private async Task AddModules()

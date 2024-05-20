@@ -10,11 +10,7 @@
     <button class="btn btn-primary" style="margin: 10px;" @onclick="AddCourseTemplate">Add a Course Template</button>
 </div>
 
-@if (courseTemplates == null)
-{
-    <p>Loading...</p>
-}
-else if (courseTemplates.Count == 0)
+@if (_courseTemplates.Count == 0)
 {
     <p>No course templates found.</p>
 }
@@ -32,7 +28,7 @@ else
         </tr>
         </thead>
         <tbody>
-        @foreach (var courseTemplate in courseTemplates)
+        @foreach (var courseTemplate in _courseTemplates)
         {
             <tr>
                 <td>@courseTemplate.CourseTemplateStatus</td>
@@ -51,11 +47,11 @@ else
 }
 
 @code {
-    List<CourseTemplateResponse> courseTemplates = new();
+    List<CourseTemplateResponse> _courseTemplates = [];
 
     protected override async Task OnInitializedAsync()
     {
-        courseTemplates = await CourseTemplateService.ListAsync();
+        _courseTemplates = await CourseTemplateService.ListAsync();
     }
 
     private void AddCourseTemplate()

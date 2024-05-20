@@ -43,7 +43,7 @@ public class LearnersController(ISender mediatr, IMapper mapper) : ApiController
         var learner = await mediatr.Send(query);
 
         return learner.Match(
-            authResult => Ok(mapper.Map<LearnerResponse>(learner.Value)),
+            value => Ok(mapper.Map<LearnerResponse>(value)),
             Problem
         );
     }
@@ -66,8 +66,8 @@ public class LearnersController(ISender mediatr, IMapper mapper) : ApiController
         var created = await mediatr.Send(command);
 
         return created.Match(
-            authResult =>
-                CreatedAtAction("Get", new { id = created.Value.Id }, mapper.Map<LearnerResponse>(created.Value)),
+            value =>
+                CreatedAtAction("Get", new { id = value.Id }, mapper.Map<LearnerResponse>(value)),
             Problem);
     }
 
@@ -83,7 +83,7 @@ public class LearnersController(ISender mediatr, IMapper mapper) : ApiController
         var deleted = await mediatr.Send(command);
 
         return deleted.Match(
-            authResult => NoContent(),
+            _ => NoContent(),
             Problem);
     }
 }

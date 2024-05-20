@@ -76,7 +76,7 @@ public class KtProblemDetailsFactory(IOptions<ApiBehaviorOptions> options) : Pro
         }
 
         var traceId = Activity.Current?.Id ?? httpContext.TraceIdentifier;
-        if (traceId != null) problemDetails.Extensions["traceId"] = traceId;
+        problemDetails.Extensions["traceId"] = traceId;
 
         if (httpContext.Items[HttpContextItemKeys.Errors] is List<Error> errors)
             problemDetails.Extensions.Add("errorCodes", errors.Select(x => x.Code));

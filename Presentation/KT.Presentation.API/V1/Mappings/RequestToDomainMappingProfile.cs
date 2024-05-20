@@ -17,7 +17,7 @@ using KT.Presentation.Contracts.V1.Requests.Learners;
 using KT.Presentation.Contracts.V1.Requests.ModuleTemplates;
 using KT.Presentation.Contracts.V1.Requests.Sessions;
 
-namespace KT.Presentation.API;
+namespace KT.Presentation.API.V1.Mappings;
 
 /// <summary>
 ///     Mapping profile for requests to domain objects.

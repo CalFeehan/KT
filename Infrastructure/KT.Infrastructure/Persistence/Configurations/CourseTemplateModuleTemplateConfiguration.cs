@@ -11,13 +11,13 @@ public class CourseTemplateModuleTemplateConfiguration : IEntityTypeConfiguratio
     {
         builder.ToTable("CourseTemplateModuleTemplates", "CourseTemplate");
 
-        builder.HasKey(ctmt => ctmt.Id);
-        builder.Property(ctmt => ctmt.Id).ValueGeneratedNever();
+        builder.HasKey(mt => mt.Id);
+        builder.Property(mt => mt.Id).ValueGeneratedNever();
 
-        builder.Property(ctmt => ctmt.CourseTemplateId)
+        builder.Property(mt => mt.CourseTemplateId)
             .IsRequired();
 
-        builder.Property(ctmt => ctmt.ModuleTemplateId)
+        builder.Property(mt => mt.ModuleTemplateId)
             .IsRequired();
     }
 }

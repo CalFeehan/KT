@@ -68,8 +68,8 @@ public class ModuleTemplatesController(ISender mediatr, IMapper mapper) : ApiCon
         var added = await mediatr.Send(command);
 
         return added.Match(
-            authResult => CreatedAtAction("Get", new { id = added.Value.Id },
-                mapper.Map<ModuleTemplateResponse>(added.Value)),
+            value => CreatedAtAction("Get", new { id = value.Id },
+                mapper.Map<ModuleTemplateResponse>(value)),
             Problem);
     }
 
@@ -85,7 +85,7 @@ public class ModuleTemplatesController(ISender mediatr, IMapper mapper) : ApiCon
         var removed = await mediatr.Send(command);
 
         return removed.Match(
-            authResult => NoContent(),
+            _ => NoContent(),
             Problem);
     }
 }

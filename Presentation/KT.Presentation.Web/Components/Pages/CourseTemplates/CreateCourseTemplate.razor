@@ -6,7 +6,7 @@
 
 <h3>Add Course Template</h3>
 
-@if (showErrorMessage)
+@if (_showErrorMessage)
 {
     <div class="alert alert-danger" role="alert">
         An error occurred while adding the course template.
@@ -14,31 +14,31 @@
 }
 
 
-<EditForm Model="@addCourseTemplateRequest" OnValidSubmit="AddCourseTemplate" FormName="AddCourseTemplateForm">
+<EditForm Model="@_addCourseTemplateRequest" OnValidSubmit="AddCourseTemplate" FormName="AddCourseTemplateForm">
 
     <div class="form-group">
         <label for="Title">Title</label>
-        <InputText id="Title" class="form-control" @bind-Value="addCourseTemplateRequest.Title"/>
+        <InputText id="Title" class="form-control" @bind-Value="_addCourseTemplateRequest.Title"/>
     </div>
 
     <div class="form-group">
         <label for="Description">Description</label>
-        <InputText id="Description" class="form-control" @bind-Value="addCourseTemplateRequest.Description"/>
+        <InputText id="Description" class="form-control" @bind-Value="_addCourseTemplateRequest.Description"/>
     </div>
 
     <div class="form-group">
         <label for="Code">Code</label>
-        <InputText id="Code" class="form-control" @bind-Value="addCourseTemplateRequest.Code"/>
+        <InputText id="Code" class="form-control" @bind-Value="_addCourseTemplateRequest.Code"/>
     </div>
 
     <div class="form-group">
         <label for="Level">Level</label>
-        <InputNumber id="Level" class="form-control" @bind-Value="addCourseTemplateRequest.Level"/>
+        <InputNumber id="Level" class="form-control" @bind-Value="_addCourseTemplateRequest.Level"/>
     </div>
 
     <div class="form-group">
         <label for="DurationInWeeks">Duration (weeks)</label>
-        <InputNumber id="DurationInWeeks" class="form-control" @bind-Value="addCourseTemplateRequest.DurationInWeeks"/>
+        <InputNumber id="DurationInWeeks" class="form-control" @bind-Value="_addCourseTemplateRequest.DurationInWeeks"/>
     </div>
 
     <div class="d-flex justify-content-between">
@@ -50,7 +50,7 @@
 
 @code {
 
-    private readonly AddCourseTemplateRequest addCourseTemplateRequest = new()
+    private readonly AddCourseTemplateRequest _addCourseTemplateRequest = new()
     {
         Title = "Care L2 2024",
         Description = "Health and Social Care Level 2 2024",
@@ -59,19 +59,19 @@
         DurationInWeeks = 52
     };
 
-    private bool showErrorMessage;
+    private bool _showErrorMessage;
 
     private async Task AddCourseTemplate()
     {
-        var courseTemplate = await CourseTemplateService.AddAsync(addCourseTemplateRequest);
+        var courseTemplate = await CourseTemplateService.AddAsync(_addCourseTemplateRequest);
 
-        if (courseTemplate != null)
+        if (courseTemplate is not null)
         {
             NavigationManager.NavigateTo($"course-templates/{courseTemplate.Id}/modules/edit");
         }
         else
         {
-            showErrorMessage = true;
+            _showErrorMessage = true;
         }
     }
 
