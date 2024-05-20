@@ -1,5 +1,4 @@
 ﻿using KT.Domain.CourseTemplateAggregate.Entities;
-using KT.Domain.CourseTemplateAggregate.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
