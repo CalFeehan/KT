@@ -3,6 +3,7 @@ using KT.Application.CourseTemplates.Commands.Add;
 using KT.Application.CourseTemplates.Commands.Remove;
 using KT.Application.CourseTemplates.Commands.Update;
 using KT.Application.ModuleTemplates.Queries;
+using KT.Domain.CourseTemplateAggregate.Entities;
 using KT.Presentation.Contracts.V1.Requests.CourseTemplates;
 using KT.Presentation.Contracts.V1.Responses.CourseTemplates;
 using KT.Presentation.Contracts.V1.Responses.ModuleTemplates;
@@ -138,6 +139,57 @@ public class CourseTemplatesController(ISender mediatr, IMapper mapper) : ApiCon
             courseTemplate.Value.ActivityPlanTemplate,
             courseTemplate.Value.SessionPlanTemplate,
             moduleTemplates.Value.Select(x => x.Id).ToList());
+
+        var result = await mediatr.Send(command);
+
+        return result.Match(
+            _ => NoContent(),
+            Problem);
+    }
+    
+    /// <summary>
+    ///     Get the SessionPlanTemplate for a course template.
+    /// </summary>
+    [HttpGet("{id:guid}/sessionPlanTemplate")]
+    [ProducesResponseType(typeof(SessionPlanTemplateResponse), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> GetSessionPlanTemplateAsync([FromRoute] Guid id)
+    {
+        var courseQuery = new GetByIdQuery(id);
+        var courseTemplate = await mediatr.Send(courseQuery);
+        if (courseTemplate.IsError) return Problem(courseTemplate.Errors);
+        
+        return courseTemplate.Match(
+            ct => Ok(mapper.Map<SessionPlanTemplateResponse>(ct.SessionPlanTemplate)),
+            Problem);
+    }
+    
+    /// <summary>
+    ///     Update the SessionPlanTemplate for a course template.
+    /// </summary>
+    [HttpPut("{id:guid}/sessionPlanTemplate")]
+    [ProducesResponseType(typeof(void), StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(void), StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateSessionPlanTemplateAsync([FromRoute] Guid id, [FromBody] AddSessionPlanTemplateRequest request)
+    {
+        var courseQuery = new GetByIdQuery(id);
+        var courseTemplate = await mediatr.Send(courseQuery);
+        if (courseTemplate.IsError) return Problem(courseTemplate.Errors);
+        
+        var sessionPlanTemplate = mapper.Map<SessionPlanTemplate>(request);
+
+        var command = new UpdateCourseTemplateCommand(
+            courseTemplate.Value.Id,
+            courseTemplate.Value.CourseTemplateStatus,
+            courseTemplate.Value.Title,
+            courseTemplate.Value.Description,
+            courseTemplate.Value.Code,
+            courseTemplate.Value.Level,
+            courseTemplate.Value.DurationInWeeks,
+            courseTemplate.Value.ActivityPlanTemplate,
+            sessionPlanTemplate,
+            courseTemplate.Value.CourseTemplateModuleTemplates.Select(x => x.ModuleTemplateId).ToList());
 
         var result = await mediatr.Send(command);
 
